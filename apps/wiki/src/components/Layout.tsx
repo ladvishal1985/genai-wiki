@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { Outlet, useMatch, Link } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { useManifest } from '../hooks/useManifest'
@@ -9,6 +9,17 @@ export default function Layout() {
   const match = useMatch('/blog/:slug')
   const currentSlug = match?.params?.slug ?? ''
   const posts = manifest?.posts ?? []
+
+  const [search, setSearch] = useState('')
+  const [activeTag, setActiveTag] = useState('ALL')
+
+  const filteredPosts = useMemo(() => {
+    return posts.filter((p) => {
+      const matchesTag = activeTag === 'ALL' || p.tags.includes(activeTag)
+      const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase())
+      return matchesTag && matchesSearch
+    })
+  }, [posts, activeTag, search])
 
   return (
     <div className="flex flex-col h-screen bg-white">
@@ -63,14 +74,22 @@ export default function Layout() {
           `}
         >
           <div className="h-full overflow-y-auto py-4">
-            <Sidebar posts={posts} currentSlug={currentSlug} />
+            <Sidebar
+              posts={posts}
+              currentSlug={currentSlug}
+              search={search}
+              setSearch={setSearch}
+              activeTag={activeTag}
+              setActiveTag={setActiveTag}
+              filteredPosts={filteredPosts}
+            />
           </div>
         </aside>
 
         {/* Main content */}
         <main className="flex-1 overflow-y-auto">
           <div className="max-w-[780px] mx-auto px-6 py-10">
-            <Outlet />
+            <Outlet context={{ posts: filteredPosts, loading: !manifest }} />
           </div>
         </main>
       </div>

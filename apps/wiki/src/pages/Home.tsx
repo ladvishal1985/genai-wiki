@@ -1,9 +1,9 @@
 import PostCard from '../components/PostCard'
-import { useManifest } from '../hooks/useManifest'
+import { useOutletContext } from 'react-router-dom'
+import type { PostMeta } from '../types'
 
 export default function Home() {
-  const { manifest, loading } = useManifest()
-  const posts = manifest?.posts ?? []
+  const { posts, loading } = useOutletContext<{ posts: PostMeta[], loading: boolean }>()
 
   return (
     <div>

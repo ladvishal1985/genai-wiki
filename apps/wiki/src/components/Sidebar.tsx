@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import type { PostMeta, Difficulty } from '../types'
 
@@ -11,11 +11,14 @@ const difficultyStyle: Record<Difficulty, string> = {
 interface Props {
   posts: PostMeta[]
   currentSlug: string
+  search: string
+  setSearch: (s: string) => void
+  activeTag: string
+  setActiveTag: (t: string) => void
+  filteredPosts: PostMeta[]
 }
 
-export default function Sidebar({ posts, currentSlug }: Props) {
-  const [search, setSearch] = useState('')
-  const [activeTag, setActiveTag] = useState('ALL')
+export default function Sidebar({ posts, currentSlug, search, setSearch, activeTag, setActiveTag, filteredPosts }: Props) {
 
   const allTags = useMemo(() => {
     const tags = new Set<string>()
@@ -23,13 +26,7 @@ export default function Sidebar({ posts, currentSlug }: Props) {
     return ['ALL', ...Array.from(tags).sort()]
   }, [posts])
 
-  const filtered = useMemo(() => {
-    return posts.filter((p) => {
-      const matchesTag = activeTag === 'ALL' || p.tags.includes(activeTag)
-      const matchesSearch = p.title.toLowerCase().includes(search.toLowerCase())
-      return matchesTag && matchesSearch
-    })
-  }, [posts, activeTag, search])
+  // Filtering logic is now lifted up
 
   return (
     <div className="flex flex-col h-full overflow-hidden">
@@ -70,10 +67,10 @@ export default function Sidebar({ posts, currentSlug }: Props) {
 
       {/* Post list */}
       <nav className="flex-1 overflow-y-auto px-2 pb-4 space-y-0.5">
-        {filtered.length === 0 ? (
+        {filteredPosts.length === 0 ? (
           <p className="text-sm text-gray-400 px-2 py-4 text-center">No posts found</p>
         ) : (
-          filtered.map((post) => (
+          filteredPosts.map((post) => (
             <Link
               key={post.slug}
               to={`/blog/${post.slug}`}
