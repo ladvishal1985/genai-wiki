@@ -1,0 +1,18 @@
+{
+  "name": "genai-wiki",
+  "private": true,
+  "scripts": {
+    "dev:wiki": "pnpm --filter wiki dev",
+    "dev:dictionary": "pnpm --filter gen-ai-dictionary dev",
+    "build:all": "pnpm --filter wiki build && pnpm --filter gen-ai-dictionary build",
+    "build:manifest": "npx ts-node scripts/build-manifest.ts",
+    "prebuild": "npx ts-node scripts/build-manifest.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "glob": "^13.0.6",
+    "gray-matter": "^4.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}
