@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom'
 import { format } from 'date-fns'
 import { useContent } from '../hooks/useContent'
 import { useManifest } from '../hooks/useManifest'
+import SEO from './SEO'
 import type { Difficulty } from '../types'
 
 const difficultyStyle: Record<Difficulty, string> = {
@@ -55,7 +56,33 @@ export default function ContentPage() {
   const rawDate = meta?.publishedAt ?? meta?.date ?? ''
   const formattedDate = rawDate ? format(new Date(rawDate), 'MMM d, yyyy') : ''
 
+  const jsonLd = meta
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: meta.title,
+        description: meta.description,
+        author: { '@type': 'Person', name: meta.author },
+        datePublished: rawDate,
+        keywords: meta.tags.join(', '),
+        publisher: {
+          '@type': 'Organization',
+          name: 'GenAI Wiki',
+          url: 'https://genai.wiki',
+        },
+      }
+    : undefined
+
   return (
+    <>
+      <SEO
+        title={meta?.title}
+        description={meta?.description}
+        path={`/blog/${slug}`}
+        publishedAt={rawDate || undefined}
+        tags={meta?.tags}
+        jsonLd={jsonLd}
+      />
     <article>
       {/* Page header */}
       <header className="mb-10 pb-8 border-b border-gray-200">
@@ -123,5 +150,6 @@ export default function ContentPage() {
         dangerouslySetInnerHTML={{ __html: html }}
       />
     </article>
+    </>
   )
 }

@@ -1,4 +1,5 @@
 import PostCard from '../components/PostCard'
+import SEO from '../components/SEO'
 import { useOutletContext } from 'react-router-dom'
 import type { PostMeta } from '../types'
 
@@ -6,6 +7,8 @@ export default function Home() {
   const { posts, loading } = useOutletContext<{ posts: PostMeta[], loading: boolean }>()
 
   return (
+    <>
+    <SEO />
     <div>
       {/* Hero */}
       <div className="mb-12 pb-10 border-b border-gray-200">
@@ -51,5 +54,6 @@ export default function Home() {
         )}
       </div>
     </div>
+    </>
   )
 }
