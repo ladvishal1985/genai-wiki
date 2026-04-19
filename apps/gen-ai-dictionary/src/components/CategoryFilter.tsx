@@ -25,8 +25,8 @@ export default function CategoryFilter({ active, onChange }: Props) {
             className="text-[10px] px-2.5 py-1 rounded-full font-mono tracking-wider transition-all"
             style={{
               background: isActive ? `${color}18` : 'transparent',
-              border: `1px solid ${isActive ? color : '#2a2a2a'}`,
-              color: isActive ? color : '#4a4a4a',
+              border: `1px solid ${isActive ? color : '#383838'}`,
+              color: isActive ? color : '#828282',
               cursor: 'pointer',
             }}
           >

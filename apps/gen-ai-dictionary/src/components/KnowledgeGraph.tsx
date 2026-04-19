@@ -284,7 +284,7 @@ export default function KnowledgeGraph({ terms, startTerm }: Props) {
       nodeSel.attr('transform', d => `translate(${d.x ?? 0},${d.y ?? 0})`)
     })
 
-    return () => sim.stop()
+    return () => { sim.stop() }
   }, [nodes, links])
 
   // --- Picker shown when no starting term ---
@@ -434,12 +434,12 @@ export default function KnowledgeGraph({ terms, startTerm }: Props) {
                   opacity: ROLE_OPACITY[role],
                 }}
               />
-              <span className="text-[9px] font-mono" style={{ color: '#252525' }}>
+              <span className="text-[9px] font-mono" style={{ color: '#828282' }}>
                 {label}
               </span>
             </div>
           ))}
-          <span className="ml-auto text-[9px] font-mono" style={{ color: '#1a1a1a' }}>
+          <span className="ml-auto text-[9px] font-mono" style={{ color: '#828282' }}>
             drag · scroll to zoom · click nodes to traverse
           </span>
         </div>

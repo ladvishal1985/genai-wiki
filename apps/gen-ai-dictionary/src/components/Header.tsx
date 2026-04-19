@@ -18,8 +18,11 @@ export default function Header({ filteredCount, totalCount }: Props) {
         >
           GenAI Dictionary
         </h1>
-        <p className="text-[10px] tracking-[0.2em] uppercase mt-0.5" style={{ color: '#404040' }}>
+        <p className="text-[10px] tracking-[0.15em] uppercase mt-0.5" style={{ color: '#828282' }}>
           Practitioner's Reference
+        </p>
+        <p className="text-[10px] font-mono mt-1 max-w-xs" style={{ color: '#828282', lineHeight: '1.5' }}>
+          Clear definitions for AI, LLMs, RAG, agents, embeddings, fine-tuning, evals &amp; safety — built for engineers and researchers.
         </p>
       </div>
 

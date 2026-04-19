@@ -21,7 +21,7 @@ export default function AlphabetNav({ availableLetters, activeLetter, onSelect }
             className="w-6 h-6 text-[11px] font-mono rounded transition-colors"
             style={{
               background: active ? '#f59e0b22' : 'transparent',
-              color: active ? '#f59e0b' : available ? '#555' : '#252525',
+              color: active ? '#f59e0b' : available ? '#828282' : '#383838',
               border: active ? '1px solid #f59e0b55' : '1px solid transparent',
               cursor: available ? 'pointer' : 'default',
               fontWeight: active ? '700' : '400',

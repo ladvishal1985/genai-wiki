@@ -34,7 +34,7 @@ const TermList = forwardRef<TermListHandle, Props>(({ terms, selectedId, onSelec
 
   if (grouped.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-16" style={{ color: '#333' }}>
+      <div className="flex flex-col items-center justify-center py-16" style={{ color: '#828282' }}>
         <span className="text-3xl mb-2">∅</span>
         <p className="text-xs font-mono">no terms match</p>
       </div>
@@ -50,7 +50,7 @@ const TermList = forwardRef<TermListHandle, Props>(({ terms, selectedId, onSelec
         >
           <div
             className="px-3 py-1 text-[10px] font-mono font-bold tracking-[0.2em] sticky top-0 z-10"
-            style={{ background: '#0d0d0d', borderBottom: '1px solid #1a1a1a', color: '#333' }}
+            style={{ background: '#0d0d0d', borderBottom: '1px solid #1a1a1a', color: '#828282' }}
           >
             {letter}
           </div>
@@ -71,11 +71,11 @@ const TermList = forwardRef<TermListHandle, Props>(({ terms, selectedId, onSelec
                 onMouseLeave={(e) => { if (!isSelected) e.currentTarget.style.background = 'transparent' }}
               >
                 <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: color }} />
-                <span className="text-sm flex-1 truncate" style={{ color: isSelected ? '#e5e5e5' : '#7a7a7a' }}>
+                <span className="text-sm flex-1 truncate" style={{ color: isSelected ? '#e5e5e5' : '#8a8a8a' }}>
                   {term.term}
                 </span>
                 {term.shortForm && (
-                  <span className="text-[10px] font-mono flex-shrink-0" style={{ color: '#2e2e2e' }}>
+                  <span className="text-[10px] font-mono flex-shrink-0" style={{ color: '#828282' }}>
                     {term.shortForm}
                   </span>
                 )}

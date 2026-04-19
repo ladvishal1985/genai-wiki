@@ -53,7 +53,7 @@ export default function TermDetail({ term, onSelectRelated }: Props) {
           className="rounded-md p-4 mb-6"
           style={{ background: '#141414', border: '1px solid #1e1e1e' }}
         >
-          <p className="text-[10px] font-mono tracking-widest uppercase mb-2" style={{ color: '#3a3a3a' }}>
+          <p className="text-[10px] font-mono tracking-widest uppercase mb-2" style={{ color: '#828282' }}>
             Example
           </p>
           <p className="text-sm" style={{ color: '#7a7a7a' }}>
@@ -65,7 +65,7 @@ export default function TermDetail({ term, onSelectRelated }: Props) {
       {/* Tags */}
       {term.tags.length > 0 && (
         <div className="mb-6">
-          <p className="text-[10px] font-mono tracking-widest uppercase mb-2" style={{ color: '#3a3a3a' }}>
+          <p className="text-[10px] font-mono tracking-widest uppercase mb-2" style={{ color: '#828282' }}>
             Tags
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -75,8 +75,8 @@ export default function TermDetail({ term, onSelectRelated }: Props) {
                 className="text-[11px] px-2 py-0.5 rounded font-mono"
                 style={{
                   background: '#161616',
-                  border: '1px solid #222',
-                  color: '#4a4a4a',
+                  border: '1px solid #2a2a2a',
+                  color: '#9ca3af',
                 }}
               >
                 #{tag}
@@ -89,7 +89,7 @@ export default function TermDetail({ term, onSelectRelated }: Props) {
       {/* Related Terms */}
       {term.relatedTerms && term.relatedTerms.length > 0 && (
         <div>
-          <p className="text-[10px] font-mono tracking-widest uppercase mb-2" style={{ color: '#3a3a3a' }}>
+          <p className="text-[10px] font-mono tracking-widest uppercase mb-2" style={{ color: '#828282' }}>
             Related Terms
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -98,7 +98,7 @@ export default function TermDetail({ term, onSelectRelated }: Props) {
                 key={id}
                 onClick={() => onSelectRelated(id)}
                 className="text-[11px] px-2.5 py-1 rounded-full font-mono transition-colors"
-                style={{ background: '#161616', border: '1px solid #2a2a2a', color: '#555' }}
+                style={{ background: '#161616', border: '1px solid #2a2a2a', color: '#9ca3af' }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = `${color}66`
                   e.currentTarget.style.color = color

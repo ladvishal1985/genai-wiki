@@ -19,7 +19,12 @@
       "Bash(curl -s http://localhost:5173)",
       "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('public/terms.json'\\)\\); console.log\\(d.terms.map\\(t=>t.term\\).sort\\(\\).join\\('\\\\n'\\)\\)\")",
       "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('public/terms.json'\\)\\); console.log\\(JSON.stringify\\(d.terms[0], null, 2\\)\\); console.log\\('Total:', d.terms.length\\); console.log\\('generatedAt:', d.generatedAt\\)\")",
-      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('public/terms.json'\\)\\); console.log\\(d.terms.map\\(t=>t.id\\).sort\\(\\).join\\('\\\\n'\\)\\)\")"
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('public/terms.json'\\)\\); console.log\\(d.terms.map\\(t=>t.id\\).sort\\(\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(curl -s http://localhost:5174)",
+      "Bash(node scripts/prerender.mjs)",
+      "Bash(curl -s http://localhost:5174/favicon.svg)",
+      "Bash(sed -i '' \"s/'#757575'/'#828282'/g\" src/App.tsx src/components/AlphabetNav.tsx src/components/TermDetail.tsx src/components/TermList.tsx src/components/CategoryFilter.tsx src/components/Header.tsx src/components/KnowledgeGraph.tsx src/pages/DictionaryPage.tsx)",
+      "Bash(sed -i '' \"s/'#525252'/'#828282'/g\" src/App.tsx src/components/TermList.tsx src/components/KnowledgeGraph.tsx)"
     ]
   }
 }
