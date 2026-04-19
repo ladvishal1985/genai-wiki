@@ -16,7 +16,10 @@
       "Bash(node -e ' *)",
       "Bash(npx tsc *)",
       "Bash(npx vite *)",
-      "Bash(curl -s http://localhost:5173)"
+      "Bash(curl -s http://localhost:5173)",
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('public/terms.json'\\)\\); console.log\\(d.terms.map\\(t=>t.term\\).sort\\(\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('public/terms.json'\\)\\); console.log\\(JSON.stringify\\(d.terms[0], null, 2\\)\\); console.log\\('Total:', d.terms.length\\); console.log\\('generatedAt:', d.generatedAt\\)\")",
+      "Bash(node -e \"const d=JSON.parse\\(require\\('fs'\\).readFileSync\\('public/terms.json'\\)\\); console.log\\(d.terms.map\\(t=>t.id\\).sort\\(\\).join\\('\\\\n'\\)\\)\")"
     ]
   }
 }

@@ -4468,7 +4468,875 @@
         "llm"
       ],
       "shortForm": "zero-shot"
+    },
+    {
+      "id": "euclidean-distance",
+      "term": "Euclidean Distance",
+      "definition": "The straight-line L2 distance between two vectors in n-dimensional space, computed as the square root of the sum of squared differences per dimension. Larger distance means less similar. Unlike cosine similarity, it is sensitive to vector magnitude, so embedding vectors should be normalized before use in retrieval unless magnitude carries meaning.",
+      "category": "core",
+      "tags": [
+        "similarity",
+        "distance",
+        "vector",
+        "retrieval"
+      ],
+      "relatedTerms": [
+        "cosine-similarity",
+        "dot-product-similarity",
+        "embedding",
+        "ann"
+      ]
+    },
+    {
+      "id": "manhattan-distance",
+      "term": "Manhattan Distance",
+      "definition": "The L1 distance between two vectors, computed as the sum of absolute differences per dimension. Faster to compute than Euclidean distance and more robust to outlier dimensions. Useful in sparse, high-dimensional spaces and sometimes preferred in approximate nearest neighbor settings where speed matters.",
+      "category": "core",
+      "tags": [
+        "similarity",
+        "distance",
+        "vector",
+        "retrieval"
+      ],
+      "relatedTerms": [
+        "euclidean-distance",
+        "cosine-similarity",
+        "hamming-distance",
+        "embedding"
+      ]
+    },
+    {
+      "id": "dot-product-similarity",
+      "term": "Dot Product Similarity",
+      "shortForm": "Dot Product",
+      "definition": "The unnormalized inner product of two vectors, computed as the sum of element-wise products. Unlike cosine similarity, it is sensitive to both direction and magnitude. Used when vector magnitude encodes relevance strength — for example, in retrieval models trained with MaxSim objectives. Cosine similarity is equivalent to the dot product of unit-normalized vectors.",
+      "category": "core",
+      "tags": [
+        "similarity",
+        "distance",
+        "vector",
+        "retrieval"
+      ],
+      "relatedTerms": [
+        "cosine-similarity",
+        "euclidean-distance",
+        "embedding",
+        "dense-retrieval"
+      ]
+    },
+    {
+      "id": "jaccard-similarity",
+      "term": "Jaccard Similarity",
+      "definition": "Measures overlap between two sets as the size of their intersection divided by the size of their union. Ranges from 0 (no overlap) to 1 (identical sets). Commonly used in sparse retrieval, deduplication, and token-level similarity comparisons. Not suitable for dense embeddings but effective for shingling-based near-duplicate detection.",
+      "category": "core",
+      "tags": [
+        "similarity",
+        "sparse",
+        "deduplication",
+        "retrieval"
+      ],
+      "relatedTerms": [
+        "cosine-similarity",
+        "hamming-distance",
+        "deduplication",
+        "sparse-retrieval"
+      ]
+    },
+    {
+      "id": "hamming-distance",
+      "term": "Hamming Distance",
+      "definition": "The number of positions at which two binary vectors differ. Used with binary embeddings to measure similarity via fast bitwise XOR operations. Enables extremely fast approximate nearest neighbor search on binary-quantized embeddings, making it attractive for large-scale retrieval at reduced memory cost.",
+      "category": "core",
+      "tags": [
+        "similarity",
+        "distance",
+        "binary",
+        "retrieval"
+      ],
+      "relatedTerms": [
+        "binary-embeddings",
+        "euclidean-distance",
+        "jaccard-similarity",
+        "ann"
+      ]
+    },
+    {
+      "id": "kl-divergence",
+      "term": "KL Divergence",
+      "shortForm": "KL",
+      "definition": "Kullback-Leibler divergence measures how one probability distribution differs from a reference distribution. Not symmetric — KL(P||Q) ≠ KL(Q||P) — and not a true distance metric. Sensitive to zero probabilities, which can cause numerical instability. Widely used in training objectives such as variational autoencoders and KL-regularized RLHF to prevent the policy from deviating too far from a reference model.",
+      "category": "core",
+      "tags": [
+        "probability",
+        "divergence",
+        "training",
+        "rlhf"
+      ],
+      "relatedTerms": [
+        "jensen-shannon-divergence",
+        "rlhf",
+        "reward-model",
+        "ppo"
+      ]
+    },
+    {
+      "id": "jensen-shannon-divergence",
+      "term": "Jensen-Shannon Divergence",
+      "shortForm": "JSD",
+      "definition": "A symmetric and bounded (0 to 1 when using log base 2) divergence between two probability distributions, derived as a symmetrized average of KL divergences. Unlike KL divergence, JSD is always defined even when distributions have non-overlapping support, making it numerically more stable for comparing language model output distributions.",
+      "category": "core",
+      "tags": [
+        "probability",
+        "divergence",
+        "evaluation"
+      ],
+      "relatedTerms": [
+        "kl-divergence",
+        "calibration",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "binary-embeddings",
+      "term": "Binary Embeddings",
+      "definition": "1-bit quantized embeddings where each dimension is represented as a single bit. 32× smaller than float32 representations, enabling fast Hamming distance comparisons via bitwise operations. Can significantly reduce memory with acceptable recall loss depending on use case — not universally near-lossless. Best used as a first-stage filter in multi-stage retrieval pipelines.",
+      "category": "retrieval",
+      "tags": [
+        "embedding",
+        "quantization",
+        "memory",
+        "retrieval"
+      ],
+      "relatedTerms": [
+        "int8-embeddings",
+        "hamming-distance",
+        "product-quantization",
+        "matryoshka-embeddings",
+        "two-stage-retrieval"
+      ]
+    },
+    {
+      "id": "int8-embeddings",
+      "term": "Int8 Embeddings",
+      "definition": "8-bit integer quantized embeddings, 4× smaller than float32. Often maintains high recall, but quality depends on quantization method and domain — aggressive quantization on out-of-distribution data can degrade retrieval accuracy. A practical middle ground between full-precision embeddings and binary embeddings for large-scale vector databases.",
+      "category": "retrieval",
+      "tags": [
+        "embedding",
+        "quantization",
+        "memory",
+        "retrieval"
+      ],
+      "relatedTerms": [
+        "binary-embeddings",
+        "product-quantization",
+        "quantization",
+        "vector-database"
+      ]
+    },
+    {
+      "id": "asymmetric-search",
+      "term": "Asymmetric Search",
+      "definition": "A retrieval approach using different encoders for queries and documents, exploiting the fact that queries (short, keyword-like) and documents (long, descriptive) have different distributions. Commonly implemented in bi-encoder setups where a lightweight query encoder and a heavier document encoder are trained jointly with contrastive loss to improve recall over symmetric approaches.",
+      "category": "retrieval",
+      "tags": [
+        "retrieval",
+        "bi-encoder",
+        "embedding",
+        "search"
+      ],
+      "relatedTerms": [
+        "bi-encoder",
+        "dense-retrieval",
+        "cross-encoder",
+        "cosine-similarity"
+      ]
+    },
+    {
+      "id": "mmr",
+      "term": "Maximal Marginal Relevance",
+      "shortForm": "MMR",
+      "definition": "A retrieval re-ranking strategy that balances relevance and diversity by iteratively selecting documents that are both similar to the query and dissimilar to already-selected documents. Prevents the retrieval set from being dominated by near-duplicate chunks, which wastes context window space and reduces answer quality. Commonly used as a post-retrieval step before injection.",
+      "category": "retrieval",
+      "tags": [
+        "retrieval",
+        "diversity",
+        "reranking",
+        "context"
+      ],
+      "relatedTerms": [
+        "reranking",
+        "context-compression",
+        "over-retrieval",
+        "two-stage-retrieval",
+        "reciprocal-rank-fusion"
+      ]
+    },
+    {
+      "id": "two-stage-retrieval",
+      "term": "Two-Stage Retrieval",
+      "definition": "The standard production retrieval pattern: a fast but approximate first stage (ANN or BM25) recalls a large candidate set, followed by a precise but slower second stage (cross-encoder reranker) that scores and reorders candidates. Balances recall and precision at scale — the first stage optimizes throughput, the second optimizes ranking quality.",
+      "category": "retrieval",
+      "tags": [
+        "retrieval",
+        "reranking",
+        "production",
+        "pipeline"
+      ],
+      "relatedTerms": [
+        "ann",
+        "reranking",
+        "cross-encoder",
+        "bi-encoder",
+        "dense-retrieval",
+        "mmr"
+      ]
+    },
+    {
+      "id": "sentence-window-retrieval",
+      "term": "Sentence-Window Retrieval",
+      "definition": "A chunking and retrieval strategy where individual sentences are embedded for precise matching, but at inference time the surrounding window of sentences is returned as context. Addresses the trade-off between fine-grained retrieval precision and sufficient context for the LLM to answer. The index stores sentences; the retrieval pipeline expands matches to their parent window before injection.",
+      "category": "retrieval",
+      "tags": [
+        "retrieval",
+        "chunking",
+        "context",
+        "rag"
+      ],
+      "relatedTerms": [
+        "chunking",
+        "parent-child-chunking",
+        "semantic-chunking",
+        "context-compression",
+        "rag"
+      ]
+    },
+    {
+      "id": "rag-fusion",
+      "term": "RAG Fusion",
+      "definition": "A retrieval technique that generates multiple query variants from a single user question, retrieves candidates for each, and merges result sets using reciprocal rank fusion. Improves recall by covering diverse phrasings and sub-aspects of the query. Adds latency due to parallel retrieval calls but is effective when a single query fails to surface all relevant documents.",
+      "category": "retrieval",
+      "tags": [
+        "rag",
+        "retrieval",
+        "query-rewriting",
+        "fusion"
+      ],
+      "relatedTerms": [
+        "reciprocal-rank-fusion",
+        "multi-query-retrieval",
+        "advanced-rag",
+        "hyde",
+        "query-vocabulary-gap"
+      ]
+    },
+    {
+      "id": "rope",
+      "term": "Rotary Position Embedding",
+      "shortForm": "RoPE",
+      "definition": "A positional encoding scheme that encodes token position by rotating query and key vectors in the attention mechanism, rather than adding fixed or learned positional vectors to token embeddings. RoPE naturally encodes relative positions — the dot product of two rotated vectors depends only on their distance — and generalizes better to sequence lengths unseen during training. Used in Llama, Mistral, Qwen, and most modern open-weight LLMs.",
+      "category": "model",
+      "tags": [
+        "positional-encoding",
+        "attention",
+        "architecture",
+        "transformer"
+      ],
+      "relatedTerms": [
+        "attention-mechanism",
+        "alibi",
+        "transformer",
+        "context-length",
+        "multi-head-attention"
+      ]
+    },
+    {
+      "id": "layer-normalization",
+      "term": "Layer Normalization",
+      "shortForm": "LayerNorm",
+      "definition": "A normalization technique applied within each transformer layer that standardizes activations across the feature dimension (not the batch dimension). Stabilizes training by reducing internal covariate shift. Modern LLMs use RMSNorm (a simplified variant) placed before each sublayer (pre-norm) rather than after (post-norm), which improves training stability at scale.",
+      "category": "model",
+      "tags": [
+        "architecture",
+        "normalization",
+        "training",
+        "transformer"
+      ],
+      "relatedTerms": [
+        "transformer",
+        "residual-connection",
+        "feed-forward-network",
+        "attention-mechanism"
+      ]
+    },
+    {
+      "id": "residual-connection",
+      "term": "Residual Connection",
+      "shortForm": "Skip Connection",
+      "definition": "A direct additive pathway that bypasses a sublayer (attention or FFN) and adds the input directly to the output: output = sublayer(x) + x. Prevents vanishing gradients in deep networks by providing a gradient highway, and allows the network to learn incremental refinements rather than full transformations. A fundamental architectural element of every transformer model.",
+      "category": "model",
+      "tags": [
+        "architecture",
+        "transformer",
+        "training",
+        "gradient"
+      ],
+      "relatedTerms": [
+        "transformer",
+        "layer-normalization",
+        "feed-forward-network",
+        "attention-mechanism"
+      ]
+    },
+    {
+      "id": "feed-forward-network",
+      "term": "Feed-Forward Network",
+      "shortForm": "FFN",
+      "definition": "The two-layer MLP applied position-wise in each transformer block after the attention sublayer. Expands the hidden dimension by a factor (typically 4×) in the first layer, applies a non-linear activation (SwiGLU in modern LLMs), then projects back down. FFN layers store the bulk of factual knowledge in LLMs and account for the majority of parameter count and compute in standard architectures.",
+      "category": "model",
+      "tags": [
+        "architecture",
+        "transformer",
+        "mlp",
+        "parameters"
+      ],
+      "relatedTerms": [
+        "transformer",
+        "activation-function",
+        "mixture-of-experts",
+        "residual-connection",
+        "layer-normalization"
+      ]
+    },
+    {
+      "id": "causal-attention-mask",
+      "term": "Causal Attention Mask",
+      "definition": "A triangular mask applied during attention computation that prevents each token from attending to future positions. Required for autoregressive language model training and inference — without it, the model could cheat by reading ahead. In practice implemented as setting future positions to -infinity before softmax, producing zero attention weight. The defining characteristic that separates decoder-only from encoder models.",
+      "category": "model",
+      "tags": [
+        "attention",
+        "architecture",
+        "autoregressive",
+        "transformer"
+      ],
+      "relatedTerms": [
+        "attention-mechanism",
+        "decoder-only",
+        "transformer",
+        "multi-head-attention"
+      ]
+    },
+    {
+      "id": "alibi",
+      "term": "ALiBi",
+      "shortForm": "ALiBi",
+      "definition": "Attention with Linear Biases — a positional encoding scheme that adds a fixed, non-learned negative bias to attention scores proportional to the distance between tokens. Requires no positional embeddings and allows models to extrapolate to longer sequences than seen during training more gracefully than absolute positional encodings. An alternative to RoPE, used in models like BLOOM and MPT.",
+      "category": "model",
+      "tags": [
+        "positional-encoding",
+        "attention",
+        "architecture",
+        "context-length"
+      ],
+      "relatedTerms": [
+        "rope",
+        "attention-mechanism",
+        "transformer",
+        "context-length",
+        "sliding-window-context"
+      ]
+    },
+    {
+      "id": "mixed-precision-training",
+      "term": "Mixed Precision Training",
+      "definition": "A training technique that uses lower-precision formats (FP16 or BF16) for the forward pass and gradient computation, while maintaining a full-precision (FP32) master copy of weights for the optimizer update. Reduces memory by roughly 2× and speeds up computation on modern GPUs and TPUs that have accelerated FP16/BF16 matrix units, with minimal effect on final model quality when combined with loss scaling.",
+      "category": "training",
+      "tags": [
+        "training",
+        "efficiency",
+        "memory",
+        "gpu"
+      ],
+      "relatedTerms": [
+        "gradient-checkpointing",
+        "quantization",
+        "pretraining",
+        "fine-tuning"
+      ]
+    },
+    {
+      "id": "gradient-checkpointing",
+      "term": "Gradient Checkpointing",
+      "definition": "A memory-efficiency technique that recomputes intermediate activations during the backward pass rather than storing them from the forward pass. Reduces activation memory from O(n) to O(sqrt(n)) layers at the cost of ~33% more compute. Essential for training very large models or long sequences on memory-constrained hardware. Also called activation recomputation or rematerialization.",
+      "category": "training",
+      "tags": [
+        "training",
+        "memory",
+        "efficiency",
+        "gpu"
+      ],
+      "relatedTerms": [
+        "mixed-precision-training",
+        "pretraining",
+        "fine-tuning",
+        "lora"
+      ]
+    },
+    {
+      "id": "curriculum-learning",
+      "term": "Curriculum Learning",
+      "definition": "A training strategy inspired by human learning that orders training examples from easy to hard. Early training on simpler examples provides stable gradients; progressively harder examples improve generalization. Applied in pretraining data ordering, fine-tuning difficulty scheduling, and RLHF reward shaping. Effectiveness is task-dependent and curriculum design often requires domain expertise.",
+      "category": "training",
+      "tags": [
+        "training",
+        "data",
+        "optimization",
+        "fine-tuning"
+      ],
+      "relatedTerms": [
+        "pretraining",
+        "fine-tuning",
+        "sft",
+        "synthetic-data",
+        "data-mixture"
+      ]
+    },
+    {
+      "id": "data-mixture",
+      "term": "Data Mixture",
+      "definition": "The proportions of different data sources (web text, code, books, scientific papers, etc.) used during pretraining. Has an outsized effect on model character — a model trained on more code reasons better about structured problems; more dialogue data improves instruction following. Finding optimal mixtures is an active research area; models like Llama and Mistral publish their mixture ratios as key hyperparameters.",
+      "category": "training",
+      "tags": [
+        "training",
+        "data",
+        "pretraining",
+        "scaling"
+      ],
+      "relatedTerms": [
+        "pretraining",
+        "scaling-laws",
+        "compute-optimal-training",
+        "synthetic-data",
+        "curriculum-learning"
+      ]
+    },
+    {
+      "id": "compute-optimal-training",
+      "term": "Compute-Optimal Training",
+      "definition": "A training strategy derived from Chinchilla scaling laws that finds the optimal trade-off between model size and number of training tokens for a fixed compute budget. The Chinchilla paper showed that most large models at the time were undertrained — a smaller model trained on proportionally more tokens outperforms a larger model trained on fewer. Motivated a shift toward smaller, longer-trained models like Mistral and Llama 2.",
+      "category": "training",
+      "tags": [
+        "training",
+        "scaling",
+        "efficiency",
+        "chinchilla"
+      ],
+      "relatedTerms": [
+        "chinchilla-scaling",
+        "scaling-laws",
+        "pretraining",
+        "data-mixture",
+        "parameters"
+      ]
+    },
+    {
+      "id": "tensor-parallelism",
+      "term": "Tensor Parallelism",
+      "definition": "A model parallelism strategy that splits individual weight matrices (attention projections, FFN layers) across multiple GPUs, with each device holding a shard of each layer. Requires all-reduce communication at each layer boundary but keeps all layers active simultaneously. Reduces per-device memory proportionally to the number of GPUs. Preferred over pipeline parallelism for latency-sensitive inference.",
+      "category": "infra",
+      "tags": [
+        "serving",
+        "parallelism",
+        "gpu",
+        "inference",
+        "distributed"
+      ],
+      "relatedTerms": [
+        "pipeline-parallelism",
+        "vllm-paged-attention",
+        "continuous-batching",
+        "latency",
+        "throughput"
+      ]
+    },
+    {
+      "id": "pipeline-parallelism",
+      "term": "Pipeline Parallelism",
+      "definition": "A model parallelism strategy that assigns consecutive groups of transformer layers to different devices. Each device processes its assigned layers before passing activations to the next stage. Enables training and serving models too large to fit on a single device, but introduces pipeline bubbles (idle time between microbatches) that reduce hardware utilization. Often combined with tensor parallelism for very large models.",
+      "category": "infra",
+      "tags": [
+        "serving",
+        "parallelism",
+        "gpu",
+        "inference",
+        "distributed"
+      ],
+      "relatedTerms": [
+        "tensor-parallelism",
+        "continuous-batching",
+        "throughput",
+        "latency"
+      ]
+    },
+    {
+      "id": "prefix-caching",
+      "term": "Prefix Caching",
+      "definition": "A KV cache optimization that reuses precomputed key-value states for prompt prefixes shared across multiple requests — typically system prompts, few-shot examples, or long document contexts. When a new request shares a prefix with a cached request, the prefill computation for that prefix is skipped entirely. Dramatically reduces latency and cost in high-traffic deployments with repetitive prompt structures. Distinct from semantic caching, which matches by meaning rather than exact prefix.",
+      "category": "infra",
+      "tags": [
+        "caching",
+        "kv-cache",
+        "inference",
+        "latency",
+        "efficiency"
+      ],
+      "relatedTerms": [
+        "kv-cache",
+        "prompt-caching",
+        "semantic-cache",
+        "ttft",
+        "continuous-batching"
+      ]
+    },
+    {
+      "id": "disaggregated-prefill",
+      "term": "Disaggregated Prefill",
+      "definition": "An inference architecture pattern that separates prompt processing (prefill) and token generation (decode) across different compute resources. Prefill is compute-bound and parallelizable; decode is memory-bandwidth-bound and sequential. Running them on separate hardware allows each to be optimized independently, improving overall throughput and hardware utilization at the cost of KV cache transfer overhead between nodes.",
+      "category": "infra",
+      "tags": [
+        "serving",
+        "inference",
+        "throughput",
+        "architecture",
+        "prefill"
+      ],
+      "relatedTerms": [
+        "kv-cache",
+        "continuous-batching",
+        "tensor-parallelism",
+        "ttft",
+        "tps",
+        "vllm-paged-attention"
+      ]
+    },
+    {
+      "id": "request-scheduling",
+      "term": "Request Scheduling",
+      "definition": "The strategy an inference server uses to queue, batch, and prioritize incoming requests. Policies include FCFS (first-come-first-served), shortest-job-first (to reduce average latency), and priority queuing. Effective scheduling interacts with continuous batching, prefix caching, and preemption to maximize GPU utilization while meeting latency SLOs. A core concern in LLMOps at scale.",
+      "category": "infra",
+      "tags": [
+        "serving",
+        "inference",
+        "batching",
+        "latency",
+        "throughput"
+      ],
+      "relatedTerms": [
+        "continuous-batching",
+        "disaggregated-prefill",
+        "vllm-paged-attention",
+        "latency",
+        "throughput",
+        "llmops"
+      ]
+    },
+    {
+      "id": "computer-use",
+      "term": "Computer Use",
+      "definition": "A capability where agents interact with external environments such as browsers, GUIs, or desktop applications via tools, APIs, or simulated interfaces to complete tasks requiring visual or interactive input. Allows agents to perform actions a human would take at a computer — clicking buttons, filling forms, reading screens — rather than relying solely on text-based API calls. Raises significant safety challenges around unintended actions and side effects.",
+      "category": "agent",
+      "tags": [
+        "agent",
+        "tool-use",
+        "gui",
+        "automation",
+        "browser"
+      ],
+      "relatedTerms": [
+        "tool-use",
+        "ai-agent",
+        "subagent",
+        "sandboxing",
+        "agentic-loop",
+        "parallel-tool-calling"
+      ]
+    },
+    {
+      "id": "parallel-tool-calling",
+      "term": "Parallel Tool Calling",
+      "definition": "An agent capability that allows multiple tool calls to be issued and executed simultaneously within a single agent step, rather than sequentially. Reduces end-to-end latency for tasks that involve independent tool invocations — such as fetching multiple APIs or querying several databases at once. Requires the orchestration layer to manage concurrent execution and aggregate results before the next reasoning step.",
+      "category": "agent",
+      "tags": [
+        "agent",
+        "tool-use",
+        "latency",
+        "orchestration",
+        "efficiency"
+      ],
+      "relatedTerms": [
+        "tool-use",
+        "ai-agent",
+        "orchestration",
+        "computer-use",
+        "agentic-loop",
+        "task-decomposition"
+      ]
+    },
+    {
+      "id": "agent-handoff",
+      "term": "Agent Handoff",
+      "definition": "The transfer of control and context from one agent to another in a multi-agent system. The handing-off agent packages relevant state (conversation history, intermediate results, objectives) and passes it to a specialist subagent better suited for the next phase of a task. Handoff design — what context to transfer and when — is a key architectural decision affecting both quality and cost in multi-agent pipelines.",
+      "category": "agent",
+      "tags": [
+        "agent",
+        "multi-agent",
+        "orchestration",
+        "context"
+      ],
+      "relatedTerms": [
+        "multi-agent",
+        "subagent",
+        "orchestrator",
+        "planning-execution-separation",
+        "task-decomposition",
+        "memory"
+      ]
+    },
+    {
+      "id": "scratchpad",
+      "term": "Scratchpad",
+      "definition": "An explicit chain-of-thought buffer that an agent writes reasoning steps into before committing to a final output or tool call. Often implemented as hidden reasoning (not shown to the user) or as a structured working memory log visible to the model. Allows the model to plan, check assumptions, and revise thinking before acting — associated with reduced error rates on multi-step tasks. Closely related to reasoning tokens in models that support extended thinking.",
+      "category": "agent",
+      "tags": [
+        "agent",
+        "reasoning",
+        "chain-of-thought",
+        "planning"
+      ],
+      "relatedTerms": [
+        "chain-of-thought",
+        "reasoning-tokens",
+        "react-pattern",
+        "self-reflection",
+        "agentic-loop",
+        "task-decomposition"
+      ]
+    },
+    {
+      "id": "bleu-score",
+      "term": "BLEU Score",
+      "shortForm": "BLEU",
+      "definition": "Bilingual Evaluation Understudy — an n-gram precision metric that measures how many n-grams in the generated text appear in one or more reference texts, with a brevity penalty for short outputs. The dominant automatic metric for machine translation for decades but widely criticized for not capturing meaning, fluency, or factuality. Still reported as a baseline but increasingly supplanted by model-based metrics like BERTScore and LLM-as-Judge.",
+      "category": "eval",
+      "tags": [
+        "evaluation",
+        "metric",
+        "translation",
+        "n-gram"
+      ],
+      "relatedTerms": [
+        "rouge-score",
+        "bertscore",
+        "exact-match",
+        "f1-score",
+        "llm-as-judge",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "rouge-score",
+      "term": "ROUGE Score",
+      "shortForm": "ROUGE",
+      "definition": "Recall-Oriented Understudy for Gisting Evaluation — a family of metrics measuring n-gram overlap between generated text and reference summaries. ROUGE-1 and ROUGE-2 measure unigram and bigram overlap; ROUGE-L measures the longest common subsequence. The standard automatic metric for summarization. Like BLEU, it does not assess factual accuracy or coherence and should be paired with human or model-based evaluation.",
+      "category": "eval",
+      "tags": [
+        "evaluation",
+        "metric",
+        "summarization",
+        "n-gram"
+      ],
+      "relatedTerms": [
+        "bleu-score",
+        "bertscore",
+        "exact-match",
+        "f1-score",
+        "faithfulness",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "bertscore",
+      "term": "BERTScore",
+      "definition": "An automatic evaluation metric that computes similarity between generated and reference text using contextual embeddings from a pretrained language model (typically BERT or RoBERTa). Matches tokens greedily by cosine similarity in embedding space, capturing semantic equivalence that surface n-gram metrics miss. Correlates better with human judgements than BLEU or ROUGE for tasks like translation and summarization.",
+      "category": "eval",
+      "tags": [
+        "evaluation",
+        "metric",
+        "semantic",
+        "embedding"
+      ],
+      "relatedTerms": [
+        "bleu-score",
+        "rouge-score",
+        "cosine-similarity",
+        "embedding",
+        "llm-as-judge",
+        "evaluation"
+      ]
+    },
+    {
+      "id": "pass-at-k",
+      "term": "Pass@k",
+      "definition": "A code generation evaluation metric that measures the probability that at least one of k generated code samples passes all provided unit tests. Pass@1 measures single-sample accuracy; Pass@10 and Pass@100 measure whether a model can produce a correct solution given multiple attempts. HumanEval and MBPP benchmarks are reported in Pass@k. Estimated statistically by sampling n >> k completions and computing the fraction that pass.",
+      "category": "eval",
+      "tags": [
+        "evaluation",
+        "code",
+        "metric",
+        "benchmark"
+      ],
+      "relatedTerms": [
+        "humaneval",
+        "benchmarking",
+        "evaluation",
+        "exact-match"
+      ]
+    },
+    {
+      "id": "win-rate",
+      "term": "Win Rate",
+      "definition": "The fraction of head-to-head comparisons in which model A is preferred over model B by a judge (human or LLM). A common metric in preference-based evaluation where absolute scoring is difficult. Sensitive to judge bias, ordering effects, and the composition of the evaluation set. Often reported alongside confidence intervals from pairwise significance testing. Used to rank models on leaderboards like Chatbot Arena.",
+      "category": "eval",
+      "tags": [
+        "evaluation",
+        "preference",
+        "metric",
+        "benchmark"
+      ],
+      "relatedTerms": [
+        "llm-as-judge",
+        "pairwise-ranking-evals",
+        "rlhf",
+        "reward-model",
+        "benchmarking"
+      ]
+    },
+    {
+      "id": "truthfulqa",
+      "term": "TruthfulQA",
+      "definition": "A benchmark measuring whether a language model gives truthful answers to questions that humans often answer incorrectly due to common misconceptions, false beliefs, or conspiracy theories. Contains 817 questions across 38 categories. Models that mimic human-like text generation tend to replicate human misconceptions — larger models can score worse than smaller ones on truthfulness without RLHF or constitutional training. A standard benchmark for safety and alignment evaluation.",
+      "category": "eval",
+      "tags": [
+        "evaluation",
+        "benchmark",
+        "hallucination",
+        "safety",
+        "alignment"
+      ],
+      "relatedTerms": [
+        "hallucination",
+        "mmlu",
+        "benchmarking",
+        "alignment",
+        "constitutional-ai",
+        "calibration"
+      ]
+    },
+    {
+      "id": "red-teaming",
+      "term": "Red Teaming",
+      "definition": "Systematic adversarial probing of a model to find safety failures, policy violations, or harmful outputs before deployment. Combines automated attacks (classifier-guided prompt mutation, GCG suffix attacks) with human red teamers who probe the model creatively. Findings feed back into safety training (RLHF, constitutional AI). Distinct from benchmarking — red teaming actively searches for failure modes rather than measuring average performance.",
+      "category": "safety",
+      "tags": [
+        "safety",
+        "adversarial",
+        "evaluation",
+        "alignment"
+      ],
+      "relatedTerms": [
+        "jailbreaking",
+        "adversarial-prompts",
+        "alignment",
+        "constitutional-ai",
+        "guardrails",
+        "data-poisoning"
+      ]
+    },
+    {
+      "id": "watermarking",
+      "term": "Watermarking",
+      "definition": "A technique for embedding detectable statistical signatures in LLM outputs to identify AI-generated text. During generation, a secret key partitions vocabulary into green and red token lists, biasing sampling toward green tokens; detection checks whether the proportion of green tokens is statistically elevated. Detectable under controlled conditions but fragile under paraphrasing, translation, or adversarial edits — not a robust provenance guarantee at this stage.",
+      "category": "safety",
+      "tags": [
+        "safety",
+        "detection",
+        "provenance",
+        "generation"
+      ],
+      "relatedTerms": [
+        "guardrails",
+        "hallucination-detection",
+        "alignment",
+        "red-teaming"
+      ]
+    },
+    {
+      "id": "differential-privacy",
+      "term": "Differential Privacy",
+      "shortForm": "DP",
+      "definition": "A mathematical framework providing a formal guarantee that the output of a training algorithm reveals negligibly more information about any individual training example than it would have without that example. Implemented by adding calibrated Gaussian noise to gradients during training (DP-SGD). Used to train models on sensitive data (medical records, private communications) with provable privacy bounds, at the cost of some model utility.",
+      "category": "safety",
+      "tags": [
+        "privacy",
+        "training",
+        "compliance",
+        "security"
+      ],
+      "relatedTerms": [
+        "membership-inference",
+        "model-inversion",
+        "pii-filtering",
+        "fine-tuning"
+      ]
+    },
+    {
+      "id": "bias-detection",
+      "term": "Bias Detection",
+      "definition": "The process of measuring demographic, ideological, or representational skew in model outputs across population subgroups. Common approaches include counterfactual evaluation (swapping identity terms and measuring output changes), stereotype benchmarks (WinoBias, BBQ), and embedding-space geometry analysis. Bias detection is a prerequisite for bias mitigation — findings are used to adjust training data, fine-tuning objectives, or output filtering strategies.",
+      "category": "safety",
+      "tags": [
+        "safety",
+        "fairness",
+        "evaluation",
+        "alignment"
+      ],
+      "relatedTerms": [
+        "alignment",
+        "red-teaming",
+        "rlhf",
+        "constitutional-ai",
+        "sycophancy",
+        "hallucination"
+      ]
+    },
+    {
+      "id": "model-cards",
+      "term": "Model Cards",
+      "definition": "Standardized documentation accompanying a released model, covering intended use cases, training data sources and limitations, evaluation results across demographic groups, known failure modes, and ethical considerations. Introduced by Google in 2018 as a transparency mechanism. Now a common expectation for responsibly released models — Hugging Face hosts thousands of community-authored model cards. Analogous to datasheets for datasets.",
+      "category": "safety",
+      "tags": [
+        "safety",
+        "documentation",
+        "transparency",
+        "governance"
+      ],
+      "relatedTerms": [
+        "alignment",
+        "benchmarking",
+        "evaluation",
+        "bias-detection",
+        "guardrails"
+      ]
     }
   ],
-  "generatedAt": "2026-04-18T17:25:05.661Z"
+  "generatedAt": "2026-04-19T10:16:46.604Z"
 }
