@@ -335,7 +335,7 @@ export default function KnowledgeGraph({ terms, startTerm }: Props) {
   }
 
   return (
-    <div className="flex flex-1 overflow-hidden">
+    <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
       {/* Graph area */}
       <div className="flex flex-col flex-1 overflow-hidden">
 
@@ -411,9 +411,9 @@ export default function KnowledgeGraph({ terms, startTerm }: Props) {
           )}
         </div>
 
-        {/* Legend */}
+        {/* Legend — hidden on mobile to save space */}
         <div
-          className="flex-shrink-0 flex items-center gap-5 px-4 py-2"
+          className="hidden sm:flex flex-shrink-0 items-center gap-5 px-4 py-2"
           style={{ borderTop: '1px solid #111', background: '#080808' }}
         >
           {(
@@ -445,14 +445,20 @@ export default function KnowledgeGraph({ terms, startTerm }: Props) {
         </div>
       </div>
 
-      {/* Side panel — term detail */}
+      {/* Side panel — full width bottom panel on mobile, fixed 320px sidebar on desktop */}
       <div
-        className="flex-shrink-0 overflow-y-auto"
-        style={{ width: '320px', borderLeft: '1px solid #141414', background: '#070707' }}
+        className="overflow-y-auto md:flex-shrink-0"
+        style={{
+          borderLeft: '1px solid #141414',
+          borderTop: '1px solid #141414',
+          background: '#070707',
+        }}
       >
-        {panelTerm && (
-          <TermDetail term={panelTerm} onSelectRelated={navigateById} />
-        )}
+        <div className="md:w-[320px]">
+          {panelTerm && (
+            <TermDetail term={panelTerm} onSelectRelated={navigateById} />
+          )}
+        </div>
       </div>
     </div>
   )

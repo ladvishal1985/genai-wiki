@@ -16,13 +16,13 @@ function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center h-full" style={{ color: '#1e1e1e' }}>
       <div
-        className="text-[8rem] font-black leading-none mb-4 select-none"
+        className="text-[6rem] md:text-[8rem] font-black leading-none mb-4 select-none"
         style={{ color: '#151515', fontFamily: 'ui-monospace, monospace' }}
       >
         AI
       </div>
-      <p className="text-xs font-mono" style={{ color: '#2a2a2a' }}>
-        Select a term from the left to view its definition
+      <p className="text-xs font-mono text-center px-4" style={{ color: '#828282' }}>
+        Select a term to view its definition
       </p>
     </div>
   )
@@ -41,13 +41,17 @@ export default function DictionaryPage({ onTermSelect }: Props) {
   const [activeCategory, setActiveCategory] = useState<Category | 'all'>('all')
   const [activeLetter, setActiveLetter] = useState<string | null>(null)
   const [selectedTerm, setSelectedTerm] = useState<Term | null>(null)
+  const [mobileView, setMobileView] = useState<'list' | 'detail'>('list')
   const termListRef = useRef<TermListHandle>(null)
 
-  // Initialise selection from URL param (direct link or page refresh)
+  // Initialise from URL param — also switches mobile to detail view
   useEffect(() => {
     if (!id || terms.length === 0) return
     const match = terms.find(t => t.id === id)
-    if (match) setSelectedTerm(match)
+    if (match) {
+      setSelectedTerm(match)
+      setMobileView('detail')
+    }
   }, [id, terms])
 
   const searched = useSearch(terms, query)
@@ -73,6 +77,7 @@ export default function DictionaryPage({ onTermSelect }: Props) {
       setSelectedTerm(term)
       onTermSelect?.(term)
       navigate(`/terms/${term.id}`, { replace: false })
+      setMobileView('detail')
     },
     [navigate, onTermSelect]
   )
@@ -84,6 +89,7 @@ export default function DictionaryPage({ onTermSelect }: Props) {
         setSelectedTerm(term)
         onTermSelect?.(term)
         navigate(`/terms/${term.id}`, { replace: false })
+        setMobileView('detail')
       }
     },
     [terms, navigate, onTermSelect]
@@ -92,6 +98,10 @@ export default function DictionaryPage({ onTermSelect }: Props) {
   const handleSearchChange = useCallback((v: string) => {
     setQuery(v)
     setActiveLetter(null)
+  }, [])
+
+  const handleBack = useCallback(() => {
+    setMobileView('list')
   }, [])
 
   const seoDescription = selectedTerm
@@ -127,8 +137,9 @@ export default function DictionaryPage({ onTermSelect }: Props) {
       <div className="flex flex-col h-full overflow-hidden" style={{ background: '#0f0f0f' }}>
         <Header filteredCount={filtered.length} totalCount={terms.length} />
 
+        {/* Controls — hidden on mobile when viewing detail */}
         <div
-          className="flex-shrink-0 px-4 pt-3 pb-2 space-y-2.5"
+          className={`flex-shrink-0 px-4 pt-3 pb-2 space-y-2.5 ${mobileView === 'detail' ? 'hidden md:block' : 'block'}`}
           style={{ borderBottom: '1px solid #1a1a1a', background: '#0a0a0a' }}
         >
           <SearchBar value={query} onChange={handleSearchChange} />
@@ -140,11 +151,15 @@ export default function DictionaryPage({ onTermSelect }: Props) {
           )}
 
           <CategoryFilter active={activeCategory} onChange={setActiveCategory} />
-          <AlphabetNav
-            availableLetters={availableLetters}
-            activeLetter={activeLetter}
-            onSelect={handleLetterClick}
-          />
+
+          {/* AlphabetNav — hidden on mobile to save space */}
+          <div className="hidden sm:block">
+            <AlphabetNav
+              availableLetters={availableLetters}
+              activeLetter={activeLetter}
+              onSelect={handleLetterClick}
+            />
+          </div>
         </div>
 
         {loading && (
@@ -165,9 +180,13 @@ export default function DictionaryPage({ onTermSelect }: Props) {
 
         {!loading && !error && (
           <div className="flex flex-1 overflow-hidden">
+
+            {/* Left panel — full width on mobile list, fixed 272px on desktop */}
             <div
-              className="flex-shrink-0 overflow-y-auto"
-              style={{ width: '272px', borderRight: '1px solid #161616' }}
+              className={`overflow-y-auto flex-shrink-0 ${
+                mobileView === 'detail' ? 'hidden md:block' : 'w-full'
+              } md:w-[272px]`}
+              style={{ borderRight: '1px solid #161616' }}
             >
               <TermList
                 ref={termListRef}
@@ -177,13 +196,34 @@ export default function DictionaryPage({ onTermSelect }: Props) {
               />
             </div>
 
-            <div className="flex-1 overflow-y-auto">
-              {selectedTerm ? (
-                <TermDetail term={selectedTerm} onSelectRelated={handleSelectById} />
-              ) : (
-                <EmptyState />
-              )}
+            {/* Right panel — hidden on mobile list view, full width on mobile detail */}
+            <div
+              className={`flex-1 overflow-y-auto flex flex-col ${
+                mobileView === 'list' ? 'hidden md:flex' : 'flex'
+              }`}
+            >
+              {/* Mobile back button */}
+              <button
+                className="md:hidden flex items-center gap-2 px-4 py-3 flex-shrink-0 w-full text-left"
+                style={{ borderBottom: '1px solid #1a1a1a', background: '#0a0a0a', color: '#828282' }}
+                onClick={handleBack}
+              >
+                <span style={{ fontSize: 16 }}>←</span>
+                <span className="text-[11px] font-mono tracking-wider">All terms</span>
+                <span className="text-[10px] font-mono ml-auto" style={{ color: '#525252' }}>
+                  {filtered.length} results
+                </span>
+              </button>
+
+              <div className="flex-1 overflow-y-auto">
+                {selectedTerm ? (
+                  <TermDetail term={selectedTerm} onSelectRelated={handleSelectById} />
+                ) : (
+                  <EmptyState />
+                )}
+              </div>
             </div>
+
           </div>
         )}
       </div>

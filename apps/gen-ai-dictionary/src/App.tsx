@@ -74,9 +74,12 @@ function Shell() {
         style={{ borderTop: '1px solid #141414', background: '#080808' }}
       >
         <span className="text-[10px] font-mono" style={{ color: '#828282' }}>
-          © {new Date().getFullYear()} GenAI Dictionary · All definitions are educational and evolve with the field.
+          <span className="hidden sm:inline">
+            © {new Date().getFullYear()} GenAI Dictionary · All definitions are educational and evolve with the field.
+          </span>
+          <span className="sm:hidden">© {new Date().getFullYear()} GenAI Dictionary</span>
         </span>
-        <span className="text-[10px] font-mono" style={{ color: '#828282' }}>
+        <span className="hidden sm:inline text-[10px] font-mono" style={{ color: '#828282' }}>
           Built for AI practitioners
         </span>
       </footer>
