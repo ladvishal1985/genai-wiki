@@ -1,0 +1,637 @@
+{
+  "slug": "genai-system-design",
+  "title": "GenAI System Design",
+  "description": "Design problems for enterprise assistants, document intelligence, AI search, coding assistants, memory, and evaluation platforms.",
+  "questions": [
+    {
+      "id": "enterprise-doc-assistant",
+      "title": "Design ChatGPT for enterprise documents.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "chatgpt",
+        "for"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "A company wants a conversational assistant over millions of internal documents.",
+      "expectedAnswer": "Cover document ingestion, permissions, parsing, chunking, retrieval, reranking, answer generation, citations, conversation state, feedback, observability, model routing, and governance. Discuss non-functional requirements such as latency, scale, security, cost, availability, and freshness.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 1
+    },
+    {
+      "id": "document-intelligence-platform",
+      "title": "Design a document intelligence platform.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "a",
+        "document"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An insurance company processes claims documents, forms, and invoices.",
+      "expectedAnswer": "Include upload, OCR, layout-aware parsing, table extraction, classification, entity extraction, human review, storage, search, RAG, confidence scoring, and audit logs. Discuss accuracy, throughput, latency, compliance, and integration with downstream workflows.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 2
+    },
+    {
+      "id": "ai-search-500m-docs",
+      "title": "Design AI search over 500 million documents.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "ai",
+        "search"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "A global enterprise wants semantic and keyword search across all knowledge repositories.",
+      "expectedAnswer": "Discuss ingestion pipelines, sharding, metadata, lexical and vector indexes, hybrid retrieval, reranking, caching, access control, query understanding, evaluation, freshness, and cost. Scale choices should cover index partitioning, recall-latency tradeoffs, and monitoring.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 3
+    },
+    {
+      "id": "enterprise-memory-system",
+      "title": "Design an enterprise memory system for AI assistants.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "an",
+        "enterprise"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "A productivity assistant should remember preferences and project context safely.",
+      "expectedAnswer": "Cover memory types, write policies, retrieval policies, consent, privacy, retention, correction, tenant isolation, user controls, summarization, and evaluation. Strong answers avoid storing everything and distinguish user memory from task state.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 4
+    },
+    {
+      "id": "evaluation-platform",
+      "title": "Design an evaluation platform for GenAI apps.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "an",
+        "evaluation"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "Many teams need to compare prompts and models before production rollout.",
+      "expectedAnswer": "Include dataset management, prompt/model versioning, test runs, LLM-as-judge, human review, metrics, trace replay, regression gates, dashboards, and deployment integration. Discuss calibration, cost, reproducibility, and business-specific rubrics.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 5
+    },
+    {
+      "id": "extra-secure-rag-platform",
+      "title": "Design around secure RAG platform.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "around",
+        "secure"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through secure RAG platform for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define secure RAG platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 6
+    },
+    {
+      "id": "extra-multi-agent-research-assistant",
+      "title": "Design around multi-agent research assistant.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "around",
+        "multi"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through multi-agent research assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define multi-agent research assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 7
+    },
+    {
+      "id": "extra-ai-coding-assistant",
+      "title": "Design around AI coding assistant.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "around",
+        "ai"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through AI coding assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define AI coding assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 8
+    },
+    {
+      "id": "extra-customer-support-copilot",
+      "title": "Design around customer support copilot.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "around",
+        "customer"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through customer support copilot for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define customer support copilot, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 9
+    },
+    {
+      "id": "extra-meeting-intelligence-assistant",
+      "title": "Design around meeting intelligence assistant.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "around",
+        "meeting"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through meeting intelligence assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define meeting intelligence assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 10
+    },
+    {
+      "id": "extra-enterprise-knowledge-graph-assistant",
+      "title": "Design around enterprise knowledge graph assistant.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "around",
+        "enterprise"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through enterprise knowledge graph assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define enterprise knowledge graph assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 11
+    },
+    {
+      "id": "extra-personalized-learning-assistant",
+      "title": "Design around personalized learning assistant.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "around",
+        "personalized"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through personalized learning assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define personalized learning assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 12
+    },
+    {
+      "id": "extra-contract-review-assistant",
+      "title": "Design around contract review assistant.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "around",
+        "contract"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through contract review assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define contract review assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 13
+    },
+    {
+      "id": "extra-llm-gateway-platform",
+      "title": "Design around LLM gateway platform.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "around",
+        "llm"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through LLM gateway platform for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define LLM gateway platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 14
+    },
+    {
+      "id": "extra-ai-workflow-automation-platform",
+      "title": "Design around AI workflow automation platform.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "genai-system-design",
+        "system-design",
+        "design",
+        "around",
+        "ai"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through AI workflow automation platform for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define AI workflow automation platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for GenAI System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 15
+    }
+  ]
+}

@@ -23,3 +23,73 @@ export interface ContentManifest {
   posts: PostMeta[]
   generatedAt: string
 }
+
+export type InterviewDifficulty = 'beginner' | 'intermediate' | 'advanced' | 'mixed'
+
+export type InterviewQuestionType =
+  | 'concept'
+  | 'scenario'
+  | 'debugging'
+  | 'tradeoff'
+  | 'system-design'
+  | 'architecture'
+  | 'leadership'
+
+export interface InterviewTopicMeta {
+  slug: string
+  title: string
+  description: string
+  questionCount: number
+  roles: string[]
+  difficulty: InterviewDifficulty
+}
+
+export interface InterviewMockTestMeta {
+  id: string
+  title: string
+  role: string
+  durationMinutes: number
+  questionCount: number
+  topics: string[]
+  difficulty: InterviewDifficulty
+}
+
+export interface InterviewManifest {
+  title: string
+  description: string
+  topics: InterviewTopicMeta[]
+  mockTests: InterviewMockTestMeta[]
+}
+
+export interface InterviewRubric {
+  correctness: number
+  depth: number
+  tradeoffs: number
+  practicality: number
+  clarity: number
+}
+
+export interface InterviewQuestion {
+  id: string
+  title: string
+  difficulty: Exclude<InterviewDifficulty, 'mixed'>
+  type: InterviewQuestionType
+  roles: string[]
+  tags: string[]
+  estimatedMinutes: number
+  points: number
+  scenario: string
+  expectedAnswer: string
+  commonMistakes: string[]
+  followUpQuestions: string[]
+  realWorldExample: string
+  interviewerNotes: string
+  rubric: InterviewRubric
+}
+
+export interface InterviewTopic {
+  slug: string
+  title: string
+  description: string
+  questions: InterviewQuestion[]
+}

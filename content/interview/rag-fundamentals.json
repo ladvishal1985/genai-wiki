@@ -1,0 +1,637 @@
+{
+  "slug": "rag-fundamentals",
+  "title": "RAG Fundamentals",
+  "description": "Retrieval pipelines, chunking, reranking, grounding, citations, and RAG evaluation.",
+  "questions": [
+    {
+      "id": "rag-vs-fine-tuning",
+      "title": "When would you use RAG instead of fine-tuning?",
+      "difficulty": "intermediate",
+      "type": "tradeoff",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "tradeoff",
+        "when",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "You are building an assistant over HR policies, product docs, and customer contracts that change weekly.",
+      "expectedAnswer": "Use RAG when answers depend on external, changing, proprietary, or access-controlled knowledge. RAG retrieves relevant evidence at query time and grounds the answer. Fine-tuning is better for changing model behavior, style, or task performance, but it is not ideal for frequently changing facts.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 1
+    },
+    {
+      "id": "rag-pipeline",
+      "title": "Walk through a basic RAG pipeline.",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "concept",
+        "walk",
+        "through",
+        "a"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "You need to explain the architecture to a team building its first document assistant.",
+      "expectedAnswer": "A basic RAG pipeline ingests documents, parses and cleans content, chunks text, enriches metadata, creates embeddings, indexes vectors, retrieves candidates for a query, optionally reranks them, assembles prompt context, generates an answer, cites sources, and logs traces for evaluation. A strong answer separates offline ingestion from online query flow.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 2
+    },
+    {
+      "id": "chunking-strategy",
+      "title": "How do you choose a chunking strategy for RAG?",
+      "difficulty": "intermediate",
+      "type": "scenario",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "scenario",
+        "how",
+        "do",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A document intelligence system must answer questions across PDFs, contracts, and long policy documents.",
+      "expectedAnswer": "Chunking should preserve semantic meaning while keeping chunks small enough for precise retrieval. Strategy depends on document structure, query patterns, model context, and citation needs. Options include fixed-size chunks, semantic chunks, section-aware chunks, parent-child retrieval, and overlap.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 3
+    },
+    {
+      "id": "reranking-purpose",
+      "title": "Why is reranking useful in RAG?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "concept",
+        "why",
+        "is",
+        "reranking"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A vector search returns many loosely related chunks and answer quality is inconsistent.",
+      "expectedAnswer": "First-stage retrieval optimizes recall and speed. Reranking uses a more precise model, often a cross-encoder or LLM-based scorer, to reorder candidate passages by relevance. This improves context precision and reduces prompt pollution, at the cost of additional latency and compute.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 4
+    },
+    {
+      "id": "rag-evaluation",
+      "title": "How would you evaluate a RAG application?",
+      "difficulty": "intermediate",
+      "type": "architecture",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "Leadership wants proof that an enterprise assistant is accurate enough for internal rollout.",
+      "expectedAnswer": "Evaluate retrieval and generation separately. Retrieval metrics include context recall, context precision, hit rate, and MRR. Generation metrics include groundedness, faithfulness, answer relevance, citation accuracy, refusal quality, and human preference. Use golden datasets, adversarial tests, regression tests, observability, and feedback loops.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 5
+    },
+    {
+      "id": "extra-grounding-and-citations",
+      "title": "How would you explain grounding and citations in a RAG Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through grounding and citations for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define grounding and citations, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 6
+    },
+    {
+      "id": "extra-document-parsing-quality",
+      "title": "How would you explain document parsing quality in a RAG Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "scenario",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through document parsing quality for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define document parsing quality, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 7
+    },
+    {
+      "id": "extra-retrieval-recall",
+      "title": "How would you explain retrieval recall in a RAG Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "tradeoff",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through retrieval recall for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define retrieval recall, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 8
+    },
+    {
+      "id": "extra-retrieval-precision",
+      "title": "How would you explain retrieval precision in a RAG Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "architecture",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through retrieval precision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define retrieval precision, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 9
+    },
+    {
+      "id": "extra-context-packing",
+      "title": "How would you explain context packing in a RAG Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "debugging",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through context packing for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define context packing, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 10
+    },
+    {
+      "id": "extra-answer-refusal-behavior",
+      "title": "How would you explain answer refusal behavior in a RAG Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through answer refusal behavior for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define answer refusal behavior, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 11
+    },
+    {
+      "id": "extra-source-freshness",
+      "title": "How would you explain source freshness in a RAG Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "scenario",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through source freshness for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define source freshness, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 12
+    },
+    {
+      "id": "extra-query-intent-classification",
+      "title": "How would you explain query intent classification in a RAG Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "tradeoff",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through query intent classification for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define query intent classification, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 13
+    },
+    {
+      "id": "extra-rag-observability",
+      "title": "How would you explain RAG observability in a RAG Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "architecture",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through RAG observability for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define RAG observability, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 14
+    },
+    {
+      "id": "extra-user-feedback-loops",
+      "title": "How would you explain user feedback loops in a RAG Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "debugging",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "rag-fundamentals",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through user feedback loops for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define user feedback loops, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for RAG Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise rag fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 15
+    }
+  ]
+}

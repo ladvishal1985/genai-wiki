@@ -1,0 +1,637 @@
+{
+  "slug": "llm-fundamentals",
+  "title": "LLM Fundamentals",
+  "description": "Transformers, tokenization, context windows, alignment, hallucinations, and model tradeoffs.",
+  "questions": [
+    {
+      "id": "what-is-an-llm",
+      "title": "What is a large language model and how does it generate text?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "concept",
+        "what",
+        "is",
+        "a"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A product manager asks why a fluent chatbot can still be wrong.",
+      "expectedAnswer": "An LLM is a neural network trained to predict tokens from large text and code corpora. At inference time it tokenizes the prompt, computes probabilities for next tokens, and selects or samples outputs until completion. It generates plausible continuations, not guaranteed truth, so grounding, evaluation, and guardrails are needed in production.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 1
+    },
+    {
+      "id": "transformer-self-attention",
+      "title": "Why is self-attention important in transformers?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "concept",
+        "why",
+        "is",
+        "self"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "You need to explain why transformers replaced many recurrent architectures for language tasks.",
+      "expectedAnswer": "Self-attention lets each token weigh other tokens in the context when forming its representation. This enables long-range dependencies, parallel training, and context-sensitive meaning. Multi-head attention allows the model to learn different relationships at once, such as syntax, entity references, and semantic associations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 2
+    },
+    {
+      "id": "context-window-tradeoffs",
+      "title": "What is a context window and what tradeoffs does it create?",
+      "difficulty": "intermediate",
+      "type": "tradeoff",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "tradeoff",
+        "what",
+        "is",
+        "a"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A team wants to send every document and chat message into each request.",
+      "expectedAnswer": "The context window is the maximum input and output token budget a model can process. Larger windows can include more evidence but increase cost, latency, and distraction risk. Strong systems manage context through retrieval, ranking, compression, summarization, and prompt structure instead of blindly stuffing all data into the prompt.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 3
+    },
+    {
+      "id": "hallucinations",
+      "title": "Why do LLM hallucinations happen and how can you reduce them?",
+      "difficulty": "intermediate",
+      "type": "scenario",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "scenario",
+        "why",
+        "do",
+        "llm"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An internal support assistant confidently gives an outdated policy answer.",
+      "expectedAnswer": "Hallucinations happen because LLMs generate probable text rather than verify facts by default. They can be reduced with retrieval grounding, citations, constrained outputs, tool use, calibration, refusal policies, eval sets, and human review for high-risk tasks. A strong answer avoids claiming hallucinations can be fully eliminated.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 4
+    },
+    {
+      "id": "open-vs-closed-models",
+      "title": "How do you choose between open-weight and closed API models?",
+      "difficulty": "intermediate",
+      "type": "architecture",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "architecture",
+        "how",
+        "do",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "A regulated enterprise needs a standard model strategy across departments.",
+      "expectedAnswer": "Closed models often offer strong quality, managed scale, and low operational burden. Open-weight models offer deployment control, customization, data residency options, and lower vendor dependency. The choice depends on quality, latency, cost, compliance, data sensitivity, customization, operating maturity, and fallback strategy.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 5
+    },
+    {
+      "id": "extra-tokenization-failure-modes",
+      "title": "How would you explain tokenization failure modes in a LLM Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through tokenization failure modes for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define tokenization failure modes, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 6
+    },
+    {
+      "id": "extra-temperature-and-sampling-controls",
+      "title": "How would you explain temperature and sampling controls in a LLM Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "scenario",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through temperature and sampling controls for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define temperature and sampling controls, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 7
+    },
+    {
+      "id": "extra-instruction-tuning",
+      "title": "How would you explain instruction tuning in a LLM Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "tradeoff",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through instruction tuning for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define instruction tuning, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 8
+    },
+    {
+      "id": "extra-rlhf-versus-dpo",
+      "title": "How would you explain RLHF versus DPO in a LLM Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "architecture",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through RLHF versus DPO for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define RLHF versus DPO, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 9
+    },
+    {
+      "id": "extra-quantization-tradeoffs",
+      "title": "How would you explain quantization tradeoffs in a LLM Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "debugging",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through quantization tradeoffs for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define quantization tradeoffs, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 10
+    },
+    {
+      "id": "extra-model-distillation",
+      "title": "How would you explain model distillation in a LLM Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through model distillation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define model distillation, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 11
+    },
+    {
+      "id": "extra-multimodal-llms",
+      "title": "How would you explain multimodal LLMs in a LLM Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "scenario",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through multimodal LLMs for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define multimodal LLMs, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 12
+    },
+    {
+      "id": "extra-reasoning-models",
+      "title": "How would you explain reasoning models in a LLM Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "tradeoff",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through reasoning models for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define reasoning models, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 13
+    },
+    {
+      "id": "extra-context-length-extension",
+      "title": "How would you explain context length extension in a LLM Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "architecture",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through context length extension for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define context length extension, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 14
+    },
+    {
+      "id": "extra-model-benchmarking",
+      "title": "How would you explain model benchmarking in a LLM Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "debugging",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llm-fundamentals",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through model benchmarking for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define model benchmarking, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLM Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llm fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 15
+    }
+  ]
+}

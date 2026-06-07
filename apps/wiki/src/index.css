@@ -3,6 +3,32 @@
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900 antialiased;
+    @apply text-slate-950 antialiased;
+    background:
+      linear-gradient(180deg, #f8fbff 0%, #eef4f8 48%, #f7faf8 100%);
+  }
+
+  ::selection {
+    background: #bae6fd;
+    color: #0f172a;
+  }
+}
+
+@layer components {
+  .app-panel {
+    @apply border border-slate-200/80 bg-white/85 shadow-sm;
+  }
+
+  .eyebrow {
+    @apply text-xs font-bold uppercase tracking-[0.18em] text-cyan-700;
+  }
+
+  .accent-rule {
+    @apply relative;
+  }
+
+  .accent-rule::before {
+    content: '';
+    @apply absolute left-0 top-0 h-full w-1 rounded-full bg-cyan-500;
   }
 }

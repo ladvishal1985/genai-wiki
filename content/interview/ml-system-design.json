@@ -1,0 +1,637 @@
+{
+  "slug": "ml-system-design",
+  "title": "ML System Design",
+  "description": "Recommendation, fraud, ranking, batch and real-time inference, feature stores, registries, and monitoring.",
+  "questions": [
+    {
+      "id": "recommendation-system",
+      "title": "Design a recommendation system.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "a",
+        "recommendation"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An e-commerce company wants personalized product recommendations.",
+      "expectedAnswer": "A strong design covers candidate generation, ranking, user/item features, feedback loops, online and offline metrics, cold start, exploration, serving latency, feature freshness, experimentation, and monitoring. Candidates should discuss business objectives and guardrails.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 1
+    },
+    {
+      "id": "fraud-detection",
+      "title": "Design a fraud detection system.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "a",
+        "fraud"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "A payments company needs to score transactions in under 100 ms.",
+      "expectedAnswer": "Include real-time feature generation, model scoring, rules, risk thresholds, human review, feedback labels, drift monitoring, adversarial behavior, latency constraints, and explainability. Strong answers balance fraud capture with false-positive customer impact.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 2
+    },
+    {
+      "id": "batch-vs-realtime",
+      "title": "Compare batch inference and real-time inference.",
+      "difficulty": "advanced",
+      "type": "tradeoff",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "tradeoff",
+        "compare",
+        "batch",
+        "inference"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A churn model runs weekly, while fraud detection must run immediately.",
+      "expectedAnswer": "Batch inference is efficient for periodic scoring and high throughput. Real-time inference is needed when predictions must react immediately to user or event context. Tradeoffs include latency, freshness, infrastructure complexity, cost, and monitoring.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 3
+    },
+    {
+      "id": "feature-store",
+      "title": "What problem does a feature store solve?",
+      "difficulty": "advanced",
+      "type": "architecture",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "architecture",
+        "what",
+        "problem",
+        "does"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "Multiple models compute customer risk features differently.",
+      "expectedAnswer": "A feature store manages reusable features, online/offline consistency, feature lineage, freshness, discovery, and access control. It helps avoid training-serving skew and duplicate feature logic. It is valuable when many teams share features across models.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 4
+    },
+    {
+      "id": "model-monitoring",
+      "title": "What should you monitor in production ML?",
+      "difficulty": "advanced",
+      "type": "architecture",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "architecture",
+        "what",
+        "should",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "A model’s accuracy quietly degrades after a market change.",
+      "expectedAnswer": "Monitor service health, latency, throughput, prediction distributions, feature drift, data quality, model performance, fairness, business metrics, feedback labels, and incidents. Monitoring should trigger investigation and retraining workflows when thresholds are breached.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 5
+    },
+    {
+      "id": "extra-search-ranking-system",
+      "title": "Design around search ranking system.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "around",
+        "search"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through search ranking system for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define search ranking system, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 6
+    },
+    {
+      "id": "extra-churn-prediction-system",
+      "title": "Design around churn prediction system.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "around",
+        "churn"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through churn prediction system for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define churn prediction system, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 7
+    },
+    {
+      "id": "extra-predictive-maintenance-system",
+      "title": "Design around predictive maintenance system.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "around",
+        "predictive"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through predictive maintenance system for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define predictive maintenance system, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 8
+    },
+    {
+      "id": "extra-model-registry-design",
+      "title": "Design around model registry design.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "around",
+        "model"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through model registry design for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define model registry design, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 9
+    },
+    {
+      "id": "extra-online-feature-serving",
+      "title": "Design around online feature serving.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "around",
+        "online"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through online feature serving for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define online feature serving, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 10
+    },
+    {
+      "id": "extra-shadow-deployment",
+      "title": "Design around shadow deployment.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "around",
+        "shadow"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through shadow deployment for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define shadow deployment, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 11
+    },
+    {
+      "id": "extra-canary-rollout-for-models",
+      "title": "Design around canary rollout for models.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "around",
+        "canary"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through canary rollout for models for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define canary rollout for models, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 12
+    },
+    {
+      "id": "extra-feedback-label-pipeline",
+      "title": "Design around feedback label pipeline.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "around",
+        "feedback"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through feedback label pipeline for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define feedback label pipeline, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 13
+    },
+    {
+      "id": "extra-training-serving-skew",
+      "title": "Design around training-serving skew.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "around",
+        "training"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through training-serving skew for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define training-serving skew, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 14
+    },
+    {
+      "id": "extra-model-rollback-strategy",
+      "title": "Design around model rollback strategy.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "tags": [
+        "ml-system-design",
+        "system-design",
+        "design",
+        "around",
+        "model"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "An interviewer asks you to reason through model rollback strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define model rollback strategy, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for ML System Design?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise ml system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 15
+    }
+  ]
+}

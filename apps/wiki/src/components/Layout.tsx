@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react'
-import { Outlet, useMatch, Link } from 'react-router-dom'
+import { Outlet, useMatch, Link, useLocation } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { useManifest } from '../hooks/useManifest'
 
@@ -7,8 +7,22 @@ export default function Layout() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const { manifest } = useManifest()
   const match = useMatch('/blog/:slug')
+  const location = useLocation()
   const currentSlug = match?.params?.slug ?? ''
   const posts = manifest?.posts ?? []
+  const inInterview = location.pathname.startsWith('/interview')
+  const inDictionary = location.pathname.startsWith('/dictionary')
+  const inWiki = location.pathname === '/wiki' || location.pathname.startsWith('/blog')
+  const appSurface = inInterview || inDictionary
+  const contentWidth = inInterview
+    ? 'max-w-[1440px] px-3 py-4 sm:px-5 lg:px-8 lg:py-6'
+    : inDictionary
+      ? 'max-w-none h-full p-0'
+    : currentSlug
+      ? 'max-w-[900px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8'
+      : inWiki
+        ? 'max-w-[1120px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8'
+        : 'max-w-[1180px] px-4 py-6 sm:px-6 sm:py-8 lg:px-8'
 
   const [search, setSearch] = useState('')
   const [activeTag, setActiveTag] = useState('ALL')
@@ -22,13 +36,13 @@ export default function Layout() {
   }, [posts, activeTag, search])
 
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col h-screen">
       {/* Header */}
-      <header className="flex-none h-14 border-b border-gray-200 flex items-center justify-between px-4 bg-white z-20">
+      <header className="flex-none h-16 border-b border-slate-200/80 flex items-center justify-between px-4 bg-white/90 backdrop-blur z-20 shadow-sm">
         <div className="flex items-center gap-3">
           {/* Hamburger — mobile only */}
           <button
-            className="md:hidden p-1.5 rounded-md text-gray-500 hover:bg-gray-100"
+            className={`${!inWiki ? 'hidden' : 'md:hidden'} p-1.5 rounded-md text-gray-500 hover:bg-gray-100`}
             onClick={() => setSidebarOpen((o) => !o)}
             aria-label="Toggle sidebar"
           >
@@ -36,16 +50,42 @@ export default function Layout() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
-          <Link to="/" className="flex items-center gap-2 font-semibold text-gray-900">
-            <span className="text-indigo-600 text-xl">⚡</span>
-            <span className="text-lg">GenAI Wiki</span>
+          <Link to="/" className="flex items-center gap-2 font-semibold text-slate-950">
+            <span className="grid h-9 w-9 place-items-center rounded-lg bg-slate-950 text-sm font-bold text-cyan-300 shadow-sm">VL</span>
+            <span className="text-lg">GenAI Hub</span>
           </Link>
+          <nav className="hidden sm:flex items-center gap-1 text-sm">
+            <Link
+              to="/"
+              className={`rounded-md px-3 py-2 font-semibold ${location.pathname === '/' ? 'bg-cyan-50 text-cyan-800 ring-1 ring-cyan-200' : 'text-slate-500 hover:text-slate-950 hover:bg-slate-100'}`}
+            >
+              Portfolio
+            </Link>
+            <Link
+              to="/wiki"
+              className={`rounded-md px-3 py-2 font-semibold ${inWiki ? 'bg-cyan-50 text-cyan-800 ring-1 ring-cyan-200' : 'text-slate-500 hover:text-slate-950 hover:bg-slate-100'}`}
+            >
+              Wiki
+            </Link>
+            <Link
+              to="/dictionary"
+              className={`rounded-md px-3 py-2 font-semibold ${inDictionary ? 'bg-cyan-50 text-cyan-800 ring-1 ring-cyan-200' : 'text-slate-500 hover:text-slate-950 hover:bg-slate-100'}`}
+            >
+              Dictionary
+            </Link>
+            <Link
+              to="/interview"
+              className={`rounded-md px-3 py-2 font-semibold ${inInterview ? 'bg-cyan-50 text-cyan-800 ring-1 ring-cyan-200' : 'text-slate-500 hover:text-slate-950 hover:bg-slate-100'}`}
+            >
+              Interview Prep
+            </Link>
+          </nav>
         </div>
         <a
-          href="https://github.com"
+          href="https://github.com/ladvishal1985"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 text-sm text-gray-500 hover:text-gray-900 transition-colors"
+          className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-sm font-semibold text-slate-500 hover:bg-slate-100 hover:text-slate-950 transition-colors"
         >
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
             <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
@@ -56,7 +96,7 @@ export default function Layout() {
 
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar overlay — mobile */}
-        {sidebarOpen && (
+        {inWiki && sidebarOpen && (
           <div
             className="fixed inset-0 z-10 bg-black/30 md:hidden"
             onClick={() => setSidebarOpen(false)}
@@ -64,31 +104,33 @@ export default function Layout() {
         )}
 
         {/* Sidebar */}
-        <aside
-          className={`
-            fixed md:static z-20 top-14 bottom-0 left-0 w-[280px]
-            bg-white border-r border-gray-200
-            transform transition-transform duration-200
-            ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
-            md:translate-x-0
-          `}
-        >
-          <div className="h-full overflow-y-auto py-4">
-            <Sidebar
-              posts={posts}
-              currentSlug={currentSlug}
-              search={search}
-              setSearch={setSearch}
-              activeTag={activeTag}
-              setActiveTag={setActiveTag}
-              filteredPosts={filteredPosts}
-            />
-          </div>
-        </aside>
+        {inWiki && (
+          <aside
+            className={`
+              fixed md:static z-20 top-16 bottom-0 left-0 w-[280px]
+              bg-white/90 backdrop-blur border-r border-slate-200
+              transform transition-transform duration-200
+              ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
+              md:translate-x-0
+            `}
+          >
+            <div className="h-full overflow-y-auto py-4">
+              <Sidebar
+                posts={posts}
+                currentSlug={currentSlug}
+                search={search}
+                setSearch={setSearch}
+                activeTag={activeTag}
+                setActiveTag={setActiveTag}
+                filteredPosts={filteredPosts}
+              />
+            </div>
+          </aside>
+        )}
 
         {/* Main content */}
         <main className="flex-1 overflow-y-auto">
-          <div className="max-w-[780px] mx-auto px-6 py-10">
+          <div className={`${contentWidth} mx-auto ${appSurface ? 'h-full' : ''}`}>
             <Outlet context={{ posts: filteredPosts, loading: !manifest }} />
           </div>
         </main>

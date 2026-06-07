@@ -1,0 +1,637 @@
+{
+  "slug": "llmops-evaluation",
+  "title": "LLMOps & Evaluation",
+  "description": "Prompt/version management, evaluation sets, groundedness, observability, cost, latency, drift, and feedback loops.",
+  "questions": [
+    {
+      "id": "llmops-basics",
+      "title": "What is LLMOps?",
+      "difficulty": "advanced",
+      "type": "concept",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "concept",
+        "what",
+        "is",
+        "llmops"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A prototype assistant works in demos but fails unpredictably in production.",
+      "expectedAnswer": "LLMOps is the discipline of operating LLM applications reliably. It covers prompt and model versioning, datasets, evaluations, deployment, observability, cost tracking, latency monitoring, safety controls, incident response, and feedback loops. It differs from classic MLOps because prompts, retrieval, tools, and model providers can all change behavior.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 1
+    },
+    {
+      "id": "golden-dataset",
+      "title": "How do you build a golden evaluation dataset?",
+      "difficulty": "advanced",
+      "type": "scenario",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "scenario",
+        "how",
+        "do",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "Leadership asks for repeatable evidence before deploying an internal assistant.",
+      "expectedAnswer": "A golden dataset contains representative user questions, expected answers, relevant context, edge cases, adversarial cases, and acceptance criteria. It should be created from real logs, expert input, and business-critical scenarios. Keep train/test separation and update it as the product evolves.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 2
+    },
+    {
+      "id": "llm-as-judge",
+      "title": "When should you use LLM-as-a-judge?",
+      "difficulty": "advanced",
+      "type": "tradeoff",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "tradeoff",
+        "when",
+        "should",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "Manual evaluation cannot keep up with daily prompt and retrieval changes.",
+      "expectedAnswer": "LLM-as-a-judge helps evaluate open-ended outputs for relevance, faithfulness, tone, or rubric adherence at scale. It should be calibrated against human judgments, use clear rubrics, avoid judging its own outputs when possible, and be monitored for bias or drift. It complements but does not replace human review.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 3
+    },
+    {
+      "id": "observability",
+      "title": "What should you trace in a GenAI application?",
+      "difficulty": "advanced",
+      "type": "architecture",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "architecture",
+        "what",
+        "should",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "A customer reports a bad answer but the team cannot reproduce what happened.",
+      "expectedAnswer": "Trace user input, prompt version, model version, retrieved documents, scores, reranking, final prompt, tool calls, outputs, latency, token counts, cost, safety events, and feedback. Observability should support debugging, evaluation, audit, and incident response while protecting sensitive data.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 4
+    },
+    {
+      "id": "cost-latency-quality",
+      "title": "How do you balance cost, latency, and quality?",
+      "difficulty": "advanced",
+      "type": "tradeoff",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "tradeoff",
+        "how",
+        "do",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "Usage has grown and the monthly LLM bill is now a leadership concern.",
+      "expectedAnswer": "Use model routing, caching, prompt compression, retrieval precision, smaller models for simple tasks, batching, streaming, token budgets, and quality gates. Measure cost per successful task, not just cost per token. Changes should be evaluated to avoid reducing quality or increasing retries.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 5
+    },
+    {
+      "id": "extra-prompt-regression-testing",
+      "title": "How would you explain prompt regression testing in a LLMOps & Evaluation interview?",
+      "difficulty": "advanced",
+      "type": "concept",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through prompt regression testing for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define prompt regression testing, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 6
+    },
+    {
+      "id": "extra-dataset-versioning",
+      "title": "How would you explain dataset versioning in a LLMOps & Evaluation interview?",
+      "difficulty": "advanced",
+      "type": "scenario",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through dataset versioning for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define dataset versioning, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 7
+    },
+    {
+      "id": "extra-groundedness-evaluation",
+      "title": "How would you explain groundedness evaluation in a LLMOps & Evaluation interview?",
+      "difficulty": "advanced",
+      "type": "tradeoff",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through groundedness evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define groundedness evaluation, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 8
+    },
+    {
+      "id": "extra-faithfulness-evaluation",
+      "title": "How would you explain faithfulness evaluation in a LLMOps & Evaluation interview?",
+      "difficulty": "advanced",
+      "type": "architecture",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through faithfulness evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define faithfulness evaluation, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 9
+    },
+    {
+      "id": "extra-answer-relevance-evaluation",
+      "title": "How would you explain answer relevance evaluation in a LLMOps & Evaluation interview?",
+      "difficulty": "advanced",
+      "type": "debugging",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through answer relevance evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define answer relevance evaluation, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 10
+    },
+    {
+      "id": "extra-context-precision-and-recall",
+      "title": "How would you explain context precision and recall in a LLMOps & Evaluation interview?",
+      "difficulty": "advanced",
+      "type": "concept",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through context precision and recall for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define context precision and recall, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 11
+    },
+    {
+      "id": "extra-human-evaluation-workflow",
+      "title": "How would you explain human evaluation workflow in a LLMOps & Evaluation interview?",
+      "difficulty": "advanced",
+      "type": "scenario",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through human evaluation workflow for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define human evaluation workflow, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 12
+    },
+    {
+      "id": "extra-model-drift-in-llm-apps",
+      "title": "How would you explain model drift in LLM apps in a LLMOps & Evaluation interview?",
+      "difficulty": "advanced",
+      "type": "tradeoff",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through model drift in LLM apps for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define model drift in LLM apps, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 13
+    },
+    {
+      "id": "extra-latency-slos",
+      "title": "How would you explain latency SLOs in a LLMOps & Evaluation interview?",
+      "difficulty": "advanced",
+      "type": "architecture",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through latency SLOs for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define latency SLOs, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 14
+    },
+    {
+      "id": "extra-production-incident-response",
+      "title": "How would you explain production incident response in a LLMOps & Evaluation interview?",
+      "difficulty": "advanced",
+      "type": "debugging",
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "tags": [
+        "llmops-evaluation",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through production incident response for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define production incident response, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for LLMOps & Evaluation?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise llmops & evaluation setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 15
+    }
+  ]
+}

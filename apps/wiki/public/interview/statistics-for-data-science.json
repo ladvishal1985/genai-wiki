@@ -1,0 +1,637 @@
+{
+  "slug": "statistics-for-data-science",
+  "title": "Statistics for Data Science",
+  "description": "Probability, distributions, hypothesis testing, confidence intervals, A/B testing, sampling, and correlation.",
+  "questions": [
+    {
+      "id": "p-value",
+      "title": "How do you explain a p-value?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "concept",
+        "how",
+        "do",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An experiment reports p = 0.03 and the product manager says the feature is definitely better.",
+      "expectedAnswer": "A p-value is the probability of observing data at least as extreme as the sample result assuming the null hypothesis is true. It is not the probability that the null hypothesis is true. Candidates should mention significance thresholds, practical significance, multiple testing, and confidence intervals.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 1
+    },
+    {
+      "id": "confidence-interval",
+      "title": "What is a confidence interval?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "concept",
+        "what",
+        "is",
+        "a"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A dashboard shows conversion increased by 2 percent, but the interval crosses zero.",
+      "expectedAnswer": "A confidence interval gives a range of plausible values for a population parameter under repeated sampling assumptions. A 95 percent interval means that the procedure would capture the true parameter in about 95 percent of repeated samples. It communicates uncertainty better than a point estimate alone.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 2
+    },
+    {
+      "id": "correlation-causation",
+      "title": "Why does correlation not imply causation?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "concept",
+        "why",
+        "does",
+        "correlation"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "Users who use an AI feature retain better, and leadership claims the feature caused retention.",
+      "expectedAnswer": "Correlation measures association, not causal effect. Confounders, selection bias, reverse causality, and common causes can create misleading relationships. Establishing causality requires experiment design, natural experiments, causal inference methods, or strong assumptions.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 3
+    },
+    {
+      "id": "ab-testing",
+      "title": "How do you design an A/B test?",
+      "difficulty": "intermediate",
+      "type": "scenario",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "scenario",
+        "how",
+        "do",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A team wants to test an AI-generated recommendation panel.",
+      "expectedAnswer": "Define hypothesis, primary metric, guardrail metrics, randomization unit, sample size, duration, segmentation, and stopping rules. Avoid peeking, novelty effects, interference, and multiple-testing mistakes. Analyze practical and statistical significance before rollout.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 4
+    },
+    {
+      "id": "sampling-bias",
+      "title": "What is sampling bias and why does it matter?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "concept",
+        "what",
+        "is",
+        "sampling"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A model is evaluated only on users who completed a support survey.",
+      "expectedAnswer": "Sampling bias occurs when the sample does not represent the population of interest. It can make model evaluation, experiments, and metrics misleading. Strong answers discuss selection effects, coverage gaps, non-response, survivorship bias, and ways to correct or measure representativeness.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 5
+    },
+    {
+      "id": "extra-bayes-theorem",
+      "title": "How would you explain Bayes theorem in a Statistics for Data Science interview?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through Bayes theorem for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define Bayes theorem, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 6
+    },
+    {
+      "id": "extra-normal-distribution",
+      "title": "How would you explain normal distribution in a Statistics for Data Science interview?",
+      "difficulty": "intermediate",
+      "type": "scenario",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through normal distribution for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define normal distribution, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 7
+    },
+    {
+      "id": "extra-central-limit-theorem",
+      "title": "How would you explain central limit theorem in a Statistics for Data Science interview?",
+      "difficulty": "intermediate",
+      "type": "tradeoff",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through central limit theorem for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define central limit theorem, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 8
+    },
+    {
+      "id": "extra-hypothesis-test-design",
+      "title": "How would you explain hypothesis test design in a Statistics for Data Science interview?",
+      "difficulty": "intermediate",
+      "type": "architecture",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through hypothesis test design for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define hypothesis test design, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 9
+    },
+    {
+      "id": "extra-statistical-power",
+      "title": "How would you explain statistical power in a Statistics for Data Science interview?",
+      "difficulty": "intermediate",
+      "type": "debugging",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through statistical power for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define statistical power, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 10
+    },
+    {
+      "id": "extra-sample-size-calculation",
+      "title": "How would you explain sample size calculation in a Statistics for Data Science interview?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through sample size calculation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define sample size calculation, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 11
+    },
+    {
+      "id": "extra-multiple-comparison-correction",
+      "title": "How would you explain multiple comparison correction in a Statistics for Data Science interview?",
+      "difficulty": "intermediate",
+      "type": "scenario",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through multiple comparison correction for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define multiple comparison correction, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 12
+    },
+    {
+      "id": "extra-covariance-versus-correlation",
+      "title": "How would you explain covariance versus correlation in a Statistics for Data Science interview?",
+      "difficulty": "intermediate",
+      "type": "tradeoff",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through covariance versus correlation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define covariance versus correlation, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 13
+    },
+    {
+      "id": "extra-outlier-treatment",
+      "title": "How would you explain outlier treatment in a Statistics for Data Science interview?",
+      "difficulty": "intermediate",
+      "type": "architecture",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through outlier treatment for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define outlier treatment, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 14
+    },
+    {
+      "id": "extra-experiment-guardrail-metrics",
+      "title": "How would you explain experiment guardrail metrics in a Statistics for Data Science interview?",
+      "difficulty": "intermediate",
+      "type": "debugging",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "statistics-for-data-science",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through experiment guardrail metrics for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define experiment guardrail metrics, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Statistics for Data Science?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 15
+    }
+  ]
+}

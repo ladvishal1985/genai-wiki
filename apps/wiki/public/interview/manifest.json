@@ -1,0 +1,293 @@
+{
+  "title": "GenAI Interview Prep",
+  "description": "Structured question banks, scenarios, practice sessions, and mock tests for GenAI, AI engineering, data science, and architecture interviews.",
+  "topics": [
+    {
+      "slug": "ai-fundamentals",
+      "title": "AI Fundamentals",
+      "description": "Core AI, ML, and GenAI concepts every candidate should be able to explain clearly.",
+      "questionCount": 15,
+      "roles": [
+        "ai-engineer",
+        "data-scientist",
+        "ml-engineer"
+      ],
+      "difficulty": "beginner"
+    },
+    {
+      "slug": "llm-fundamentals",
+      "title": "LLM Fundamentals",
+      "description": "Transformers, tokenization, context windows, alignment, hallucinations, and model tradeoffs.",
+      "questionCount": 15,
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "slug": "prompt-engineering",
+      "title": "Prompt Engineering",
+      "description": "Prompt patterns, structured outputs, function calling, context design, and prompt security.",
+      "questionCount": 15,
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "slug": "embeddings-vector-databases",
+      "title": "Embeddings & Vector Databases",
+      "description": "Embeddings, similarity search, ANN indexes, hybrid retrieval, metadata filtering, and vector database tradeoffs.",
+      "questionCount": 15,
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "slug": "rag-fundamentals",
+      "title": "RAG Fundamentals",
+      "description": "Retrieval pipelines, chunking, reranking, grounding, citations, and RAG evaluation.",
+      "questionCount": 15,
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "slug": "advanced-rag",
+      "title": "Advanced RAG",
+      "description": "Query rewriting, multi-hop retrieval, Graph RAG, agentic RAG, context compression, ACLs, and multi-tenant retrieval.",
+      "questionCount": 15,
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "difficulty": "advanced"
+    },
+    {
+      "slug": "agent-fundamentals",
+      "title": "Agent Fundamentals",
+      "description": "Tool calling, planning, reflection, memory, agent loops, safety, and human-in-the-loop patterns.",
+      "questionCount": 15,
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "slug": "multi-agent-systems",
+      "title": "Multi-Agent Systems",
+      "description": "Supervisor patterns, specialist agents, planner-executor designs, communication, debugging, and anti-patterns.",
+      "questionCount": 15,
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "difficulty": "advanced"
+    },
+    {
+      "slug": "mcp-a2a",
+      "title": "MCP & A2A",
+      "description": "Model Context Protocol, tool integration, agent-to-agent communication, discovery, governance, and security.",
+      "questionCount": 15,
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "difficulty": "advanced"
+    },
+    {
+      "slug": "llmops-evaluation",
+      "title": "LLMOps & Evaluation",
+      "description": "Prompt/version management, evaluation sets, groundedness, observability, cost, latency, drift, and feedback loops.",
+      "questionCount": 15,
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "difficulty": "advanced"
+    },
+    {
+      "slug": "statistics-for-data-science",
+      "title": "Statistics for Data Science",
+      "description": "Probability, distributions, hypothesis testing, confidence intervals, A/B testing, sampling, and correlation.",
+      "questionCount": 15,
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "slug": "machine-learning-fundamentals",
+      "title": "Machine Learning Fundamentals",
+      "description": "Classical ML algorithms, evaluation metrics, model selection, leakage, and production tradeoffs.",
+      "questionCount": 15,
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "slug": "feature-engineering",
+      "title": "Feature Engineering",
+      "description": "Feature selection, encoding, scaling, leakage, missing data, time features, and embedding features.",
+      "questionCount": 15,
+      "roles": [
+        "data-scientist",
+        "ml-engineer"
+      ],
+      "difficulty": "intermediate"
+    },
+    {
+      "slug": "ml-system-design",
+      "title": "ML System Design",
+      "description": "Recommendation, fraud, ranking, batch and real-time inference, feature stores, registries, and monitoring.",
+      "questionCount": 15,
+      "roles": [
+        "ml-engineer",
+        "ai-engineer",
+        "principal-engineer"
+      ],
+      "difficulty": "advanced"
+    },
+    {
+      "slug": "enterprise-genai-architecture",
+      "title": "Enterprise GenAI Architecture",
+      "description": "Multi-tenant platforms, access control, governance, observability, cost, and reliability.",
+      "questionCount": 15,
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "difficulty": "advanced"
+    },
+    {
+      "slug": "genai-system-design",
+      "title": "GenAI System Design",
+      "description": "Design problems for enterprise assistants, document intelligence, AI search, coding assistants, memory, and evaluation platforms.",
+      "questionCount": 15,
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "difficulty": "advanced"
+    },
+    {
+      "slug": "architect-rounds",
+      "title": "Architect Rounds",
+      "description": "Architecture tradeoffs, platform strategy, reliability, observability, governance, vendor selection, and cost.",
+      "questionCount": 15,
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "difficulty": "advanced"
+    },
+    {
+      "slug": "leadership-rounds",
+      "title": "Leadership Rounds",
+      "description": "AI ROI, stakeholder alignment, adoption, governance, risk, vendor management, team enablement, and business impact.",
+      "questionCount": 15,
+      "roles": [
+        "engineering-manager",
+        "principal-engineer",
+        "genai-architect"
+      ],
+      "difficulty": "advanced"
+    },
+    {
+      "slug": "mock-interviews",
+      "title": "Mock Interviews",
+      "description": "Role-specific warm-ups, deep technical questions, system design prompts, scenarios, and scoring rubrics.",
+      "questionCount": 15,
+      "roles": [
+        "ai-engineer",
+        "data-scientist",
+        "ml-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "difficulty": "mixed"
+    },
+    {
+      "slug": "cheat-sheets",
+      "title": "Cheat Sheets",
+      "description": "Concise revision prompts for LLMs, prompting, embeddings, RAG, agents, LLMOps, statistics, ML, and system design.",
+      "questionCount": 15,
+      "roles": [
+        "ai-engineer",
+        "genai-engineer",
+        "genai-architect"
+      ],
+      "difficulty": "mixed"
+    }
+  ],
+  "mockTests": [
+    {
+      "id": "genai-engineer-45",
+      "title": "GenAI Engineer Mock",
+      "role": "genai-engineer",
+      "durationMinutes": 45,
+      "questionCount": 12,
+      "topics": [
+        "llm-fundamentals",
+        "prompt-engineering",
+        "embeddings-vector-databases",
+        "rag-fundamentals",
+        "llmops-evaluation"
+      ],
+      "difficulty": "mixed"
+    },
+    {
+      "id": "genai-architect-60",
+      "title": "GenAI Architect Mock",
+      "role": "genai-architect",
+      "durationMinutes": 60,
+      "questionCount": 15,
+      "topics": [
+        "advanced-rag",
+        "multi-agent-systems",
+        "enterprise-genai-architecture",
+        "genai-system-design",
+        "architect-rounds"
+      ],
+      "difficulty": "advanced"
+    },
+    {
+      "id": "data-scientist-45",
+      "title": "Data Scientist Mock",
+      "role": "data-scientist",
+      "durationMinutes": 45,
+      "questionCount": 10,
+      "topics": [
+        "statistics-for-data-science",
+        "machine-learning-fundamentals",
+        "feature-engineering",
+        "mock-interviews"
+      ],
+      "difficulty": "mixed"
+    }
+  ]
+}

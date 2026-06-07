@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { format } from 'date-fns'
 import { useContent } from '../hooks/useContent'
 import { useManifest } from '../hooks/useManifest'
@@ -84,8 +84,16 @@ export default function ContentPage() {
         jsonLd={jsonLd}
       />
     <article>
+      <Link
+        to="/wiki"
+        className="mb-5 inline-flex items-center gap-2 rounded-md bg-gray-100 px-3 py-2 text-sm font-semibold text-gray-700 hover:bg-gray-200"
+      >
+        <span aria-hidden="true">←</span>
+        Back to posts
+      </Link>
+
       {/* Page header */}
-      <header className="mb-10 pb-8 border-b border-gray-200">
+      <header className="mb-8 pb-7 border-b border-gray-200">
         <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-3">
           {meta?.title ?? slug}
         </h1>

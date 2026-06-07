@@ -1,0 +1,637 @@
+{
+  "slug": "machine-learning-fundamentals",
+  "title": "Machine Learning Fundamentals",
+  "description": "Classical ML algorithms, evaluation metrics, model selection, leakage, and production tradeoffs.",
+  "questions": [
+    {
+      "id": "classification-metrics",
+      "title": "Compare precision, recall, F1, and ROC-AUC.",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "concept",
+        "compare",
+        "precision",
+        "recall"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A fraud model catches more fraud but blocks more legitimate transactions.",
+      "expectedAnswer": "Precision measures correctness among predicted positives. Recall measures coverage of actual positives. F1 balances precision and recall. ROC-AUC measures ranking ability across thresholds. The right metric depends on business cost of false positives and false negatives.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 1
+    },
+    {
+      "id": "linear-vs-logistic",
+      "title": "What is the difference between linear regression and logistic regression?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "concept",
+        "what",
+        "is",
+        "the"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "You need to predict house price versus whether a customer will churn.",
+      "expectedAnswer": "Linear regression predicts continuous values by modeling a linear relationship. Logistic regression predicts class probabilities using a logistic function and is commonly used for binary classification. Candidates should discuss assumptions, loss functions, interpretability, and thresholding.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 2
+    },
+    {
+      "id": "tree-vs-boosting",
+      "title": "Compare decision trees, random forests, and gradient boosting.",
+      "difficulty": "intermediate",
+      "type": "tradeoff",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "tradeoff",
+        "compare",
+        "decision",
+        "trees"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A tabular risk model needs strong performance and reasonable explainability.",
+      "expectedAnswer": "Decision trees are interpretable but can overfit. Random forests reduce variance by averaging many trees. Gradient boosting builds trees sequentially to correct errors and often performs strongly on tabular data, but can require careful tuning and monitoring.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 3
+    },
+    {
+      "id": "data-leakage",
+      "title": "What is data leakage?",
+      "difficulty": "intermediate",
+      "type": "debugging",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "debugging",
+        "what",
+        "is",
+        "data"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "A churn model uses a feature generated after the cancellation request.",
+      "expectedAnswer": "Data leakage happens when training features contain information that would not be available at prediction time or when validation data contaminates training. It produces inflated offline metrics and poor production performance. Detection involves time-based splits, feature audits, pipeline review, and suspicious metric investigation.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 4
+    },
+    {
+      "id": "model-selection",
+      "title": "How do you choose a model for a production ML problem?",
+      "difficulty": "intermediate",
+      "type": "architecture",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "architecture",
+        "how",
+        "do",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "A team asks whether to use XGBoost, a neural network, or an LLM for tabular prediction.",
+      "expectedAnswer": "Choose based on metric fit, data size, feature types, interpretability, latency, cost, maintainability, robustness, fairness, and monitoring needs. Start with simple baselines, compare candidates on validation data, and select the simplest model that meets business and operational requirements.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 5
+    },
+    {
+      "id": "extra-train-validation-test-split",
+      "title": "How would you explain train validation test split in a Machine Learning Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through train validation test split for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define train validation test split, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 6
+    },
+    {
+      "id": "extra-cross-validation",
+      "title": "How would you explain cross validation in a Machine Learning Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "scenario",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through cross validation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define cross validation, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 7
+    },
+    {
+      "id": "extra-regularization",
+      "title": "How would you explain regularization in a Machine Learning Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "tradeoff",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through regularization for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define regularization, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 8
+    },
+    {
+      "id": "extra-class-imbalance",
+      "title": "How would you explain class imbalance in a Machine Learning Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "architecture",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through class imbalance for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define class imbalance, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 9
+    },
+    {
+      "id": "extra-calibration",
+      "title": "How would you explain calibration in a Machine Learning Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "debugging",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through calibration for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define calibration, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 10
+    },
+    {
+      "id": "extra-clustering-evaluation",
+      "title": "How would you explain clustering evaluation in a Machine Learning Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "concept",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through clustering evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define clustering evaluation, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 11
+    },
+    {
+      "id": "extra-pca-dimensionality-reduction",
+      "title": "How would you explain PCA dimensionality reduction in a Machine Learning Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "scenario",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through PCA dimensionality reduction for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define PCA dimensionality reduction, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 12
+    },
+    {
+      "id": "extra-svm-intuition",
+      "title": "How would you explain SVM intuition in a Machine Learning Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "tradeoff",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through SVM intuition for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define SVM intuition, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 13
+    },
+    {
+      "id": "extra-knn-tradeoffs",
+      "title": "How would you explain KNN tradeoffs in a Machine Learning Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "architecture",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through KNN tradeoffs for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define KNN tradeoffs, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 14
+    },
+    {
+      "id": "extra-naive-bayes-assumptions",
+      "title": "How would you explain Naive Bayes assumptions in a Machine Learning Fundamentals interview?",
+      "difficulty": "intermediate",
+      "type": "debugging",
+      "roles": [
+        "data-scientist",
+        "ml-engineer",
+        "ai-engineer"
+      ],
+      "tags": [
+        "machine-learning-fundamentals",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through Naive Bayes assumptions for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define Naive Bayes assumptions, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Machine Learning Fundamentals?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise machine learning fundamentals setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 15
+    }
+  ]
+}

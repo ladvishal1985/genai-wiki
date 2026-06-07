@@ -20,10 +20,10 @@ export default function PostCard({ post }: Props) {
   return (
     <article
       onClick={() => navigate(`/blog/${post.slug}`)}
-      className="group cursor-pointer rounded-xl border border-gray-200 p-6 hover:border-indigo-300 hover:shadow-sm transition-all bg-white"
+      className="group cursor-pointer rounded-xl border border-slate-200/80 bg-white/85 p-4 shadow-sm transition-all hover:border-cyan-300 hover:bg-cyan-50/40 sm:p-5"
     >
       <div className="flex items-start justify-between gap-4 mb-3">
-        <h2 className="text-lg font-semibold text-gray-900 group-hover:text-indigo-700 transition-colors leading-snug">
+        <h2 className="text-lg font-bold text-slate-950 group-hover:text-cyan-800 transition-colors leading-snug">
           {post.title}
         </h2>
         <span
@@ -33,22 +33,22 @@ export default function PostCard({ post }: Props) {
         </span>
       </div>
 
-      <p className="text-sm text-gray-500 leading-relaxed mb-4 line-clamp-2">
+      <p className="text-sm text-slate-600 leading-relaxed mb-4 line-clamp-2">
         {post.description}
       </p>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex flex-wrap gap-1.5">
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-gray-500"
+              className="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-500"
             >
               #{tag}
             </span>
           ))}
         </div>
-        <div className="flex items-center gap-2 text-xs text-gray-400 flex-none ml-3">
+        <div className="flex items-center gap-2 text-xs text-slate-400 flex-none">
           {formattedDate && <span>{formattedDate}</span>}
           <span>·</span>
           <span>{post.readTime} min read</span>

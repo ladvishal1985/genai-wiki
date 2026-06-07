@@ -1,0 +1,637 @@
+{
+  "slug": "enterprise-genai-architecture",
+  "title": "Enterprise GenAI Architecture",
+  "description": "Multi-tenant platforms, access control, governance, observability, cost, and reliability.",
+  "questions": [
+    {
+      "id": "secure-enterprise-rag",
+      "title": "Design a secure enterprise RAG platform.",
+      "difficulty": "advanced",
+      "type": "system-design",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "system-design",
+        "design",
+        "a",
+        "secure"
+      ],
+      "estimatedMinutes": 12,
+      "points": 15,
+      "scenario": "Employees need to ask questions across HR, legal, engineering, and finance documents.",
+      "expectedAnswer": "A strong design includes ingestion, parsing, chunking, metadata, embeddings, indexing, ACL-filtered retrieval, reranking, prompt assembly, generation, citations, logging, evaluation, and feedback. Security includes identity, tenant isolation, encryption, audit logs, PII handling, and prompt injection defenses.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 4,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 1
+    },
+    {
+      "id": "model-gateway",
+      "title": "Why would an enterprise use a model gateway?",
+      "difficulty": "advanced",
+      "type": "architecture",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "architecture",
+        "why",
+        "would",
+        "an"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "Many teams independently call different LLM providers with no shared governance.",
+      "expectedAnswer": "A model gateway centralizes model access, routing, authentication, authorization, logging, rate limits, cost tracking, retries, fallbacks, caching, and policy enforcement. It reduces duplicated integrations and gives platform teams control over quality, latency, and spend.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 2
+    },
+    {
+      "id": "multi-tenancy",
+      "title": "How do you design multi-tenancy for GenAI platforms?",
+      "difficulty": "advanced",
+      "type": "architecture",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "architecture",
+        "how",
+        "do",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "A SaaS company wants one GenAI platform for many customers.",
+      "expectedAnswer": "Multi-tenancy requires tenant isolation in storage, indexes, prompts, logs, credentials, rate limits, and access policies. Strong designs include separate encryption keys where needed, tenant-aware retrieval filters, quota management, audit logs, and tests for cross-tenant leakage.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 3
+    },
+    {
+      "id": "cost-optimization",
+      "title": "How would you reduce GenAI cost without damaging quality?",
+      "difficulty": "advanced",
+      "type": "tradeoff",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An internal assistant becomes expensive as usage grows.",
+      "expectedAnswer": "Use model routing, prompt compression, caching, retrieval precision, smaller models for simple tasks, batching, token budgets, and output length controls. Measure cost per successful task and evaluate quality after each optimization.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 4
+    },
+    {
+      "id": "governance",
+      "title": "What governance does an enterprise GenAI platform need?",
+      "difficulty": "advanced",
+      "type": "architecture",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "architecture",
+        "what",
+        "governance",
+        "does"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "Executives want many teams to build GenAI apps safely and consistently.",
+      "expectedAnswer": "Governance includes model approval, prompt review, data access policies, tool permissions, audit logs, safety standards, evaluation gates, incident response, vendor risk management, and documentation. It should enable teams without creating uncontrolled risk.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 5
+    },
+    {
+      "id": "extra-prompt-registry",
+      "title": "How would you explain prompt registry in a Enterprise GenAI Architecture interview?",
+      "difficulty": "advanced",
+      "type": "concept",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through prompt registry for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define prompt registry, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 6
+    },
+    {
+      "id": "extra-evaluation-service",
+      "title": "How would you explain evaluation service in a Enterprise GenAI Architecture interview?",
+      "difficulty": "advanced",
+      "type": "scenario",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through evaluation service for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define evaluation service, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 7
+    },
+    {
+      "id": "extra-audit-logging",
+      "title": "How would you explain audit logging in a Enterprise GenAI Architecture interview?",
+      "difficulty": "advanced",
+      "type": "tradeoff",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through audit logging for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define audit logging, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 8
+    },
+    {
+      "id": "extra-data-privacy-controls",
+      "title": "How would you explain data privacy controls in a Enterprise GenAI Architecture interview?",
+      "difficulty": "advanced",
+      "type": "architecture",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through data privacy controls for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define data privacy controls, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 9
+    },
+    {
+      "id": "extra-compliance-review-workflow",
+      "title": "How would you explain compliance review workflow in a Enterprise GenAI Architecture interview?",
+      "difficulty": "advanced",
+      "type": "debugging",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through compliance review workflow for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define compliance review workflow, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 10
+    },
+    {
+      "id": "extra-access-control-integration",
+      "title": "How would you explain access control integration in a Enterprise GenAI Architecture interview?",
+      "difficulty": "advanced",
+      "type": "concept",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "concept",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through access control integration for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define access control integration, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 2,
+        "tradeoffs": 1,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 11
+    },
+    {
+      "id": "extra-enterprise-model-routing",
+      "title": "How would you explain enterprise model routing in a Enterprise GenAI Architecture interview?",
+      "difficulty": "advanced",
+      "type": "scenario",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "scenario",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through enterprise model routing for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define enterprise model routing, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 12
+    },
+    {
+      "id": "extra-platform-cost-allocation",
+      "title": "How would you explain platform cost allocation in a Enterprise GenAI Architecture interview?",
+      "difficulty": "advanced",
+      "type": "tradeoff",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "tradeoff",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through platform cost allocation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define platform cost allocation, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 13
+    },
+    {
+      "id": "extra-tenant-aware-observability",
+      "title": "How would you explain tenant-aware observability in a Enterprise GenAI Architecture interview?",
+      "difficulty": "advanced",
+      "type": "architecture",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "architecture",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 8,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through tenant-aware observability for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define tenant-aware observability, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 14
+    },
+    {
+      "id": "extra-genai-platform-operating-model",
+      "title": "How would you explain GenAI platform operating model in a Enterprise GenAI Architecture interview?",
+      "difficulty": "advanced",
+      "type": "debugging",
+      "roles": [
+        "genai-architect",
+        "principal-engineer",
+        "engineering-manager"
+      ],
+      "tags": [
+        "enterprise-genai-architecture",
+        "debugging",
+        "how",
+        "would",
+        "you"
+      ],
+      "estimatedMinutes": 6,
+      "points": 10,
+      "scenario": "An interviewer asks you to reason through GenAI platform operating model for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
+      "expectedAnswer": "A strong answer should define GenAI platform operating model, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "commonMistakes": [
+        "Answering with definitions only and not connecting to a practical system.",
+        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
+        "Failing to mention how the approach would be evaluated in production."
+      ],
+      "followUpQuestions": [
+        "How would you validate this for Enterprise GenAI Architecture?",
+        "What would change at enterprise scale?",
+        "What failure modes would you monitor?"
+      ],
+      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
+      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "rubric": {
+        "correctness": 3,
+        "depth": 3,
+        "tradeoffs": 2,
+        "practicality": 2,
+        "clarity": 1
+      },
+      "order": 15
+    }
+  ]
+}
