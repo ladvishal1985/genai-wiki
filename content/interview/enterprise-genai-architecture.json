@@ -22,13 +22,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "Employees need to ask questions across HR, legal, engineering, and finance documents.",
-      "expectedAnswer": "A strong design includes ingestion, parsing, chunking, metadata, embeddings, indexing, ACL-filtered retrieval, reranking, prompt assembly, generation, citations, logging, evaluation, and feedback. Security includes identity, tenant isolation, encryption, audit logs, PII handling, and prompt injection defenses. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for secure enterprise RAG platform measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "secure enterprise RAG platform needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Milvus or pgvector, OpenSearch BM25, a cross-encoder reranker, and Ragas-style evaluation, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is retrieving plausible but unsupported context; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: Employees need to ask questions across HR, legal, engineering, and finance documents. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for enterprise genai architecture.",
-        "example": "Example: when asked \"Design a secure enterprise RAG platform.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to retrieving plausible but unsupported context. secure enterprise RAG platform addresses that risk through retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with Milvus or pgvector, OpenSearch BM25, a cross-encoder reranker, and Ragas-style evaluation, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -38,18 +38,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining secure enterprise RAG platform as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: retrieving plausible but unsupported context.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that secure enterprise RAG platform improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying secure enterprise RAG platform, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied secure enterprise RAG platform in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from retrieving plausible but unsupported context, causing roughly 25% of reviewed cases to require manual correction. The team implemented retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks using Milvus or pgvector, OpenSearch BM25, a cross-encoder reranker, and Ragas-style evaluation, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for secure enterprise RAG platform, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -78,13 +78,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "Many teams independently call different LLM providers with no shared governance.",
-      "expectedAnswer": "A model gateway centralizes model access, routing, authentication, authorization, logging, rate limits, cost tracking, retries, fallbacks, caching, and policy enforcement. It reduces duplicated integrations and gives platform teams control over quality, latency, and spend. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for Why would an enterprise use a model gateway measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "Why would an enterprise use a model gateway belongs in the architecture discussion because it affects ownership boundaries, controls, observability, and rollout. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is model behavior control through decoding, grounding, evaluation, routing, and observability. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is fluent output that hides uncertainty, cost, or latency problems; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: Many teams independently call different LLM providers with no shared governance. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for enterprise genai architecture.",
-        "example": "Example: when asked \"Why would an enterprise use a model gateway?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to fluent output that hides uncertainty, cost, or latency problems. Why would an enterprise use a model gateway addresses that risk through model behavior control through decoding, grounding, evaluation, routing, and observability, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds model behavior control through decoding, grounding, evaluation, routing, and observability; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -99,18 +99,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining Why would an enterprise use a model gateway as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: fluent output that hides uncertainty, cost, or latency problems.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that Why would an enterprise use a model gateway improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying Why would an enterprise use a model gateway, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied Why would an enterprise use a model gateway in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from fluent output that hides uncertainty, cost, or latency problems, causing roughly 25% of reviewed cases to require manual correction. The team implemented model behavior control through decoding, grounding, evaluation, routing, and observability using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for Why would an enterprise use a model gateway, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -139,13 +139,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "A SaaS company wants one GenAI platform for many customers.",
-      "expectedAnswer": "Multi-tenancy requires tenant isolation in storage, indexes, prompts, logs, credentials, rate limits, and access policies. Strong designs include separate encryption keys where needed, tenant-aware retrieval filters, quota management, audit logs, and tests for cross-tenant leakage. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for design multi-tenancy for GenAI platforms measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "design multi-tenancy for GenAI platforms belongs in the architecture discussion because it affects ownership boundaries, controls, observability, and rollout. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A SaaS company wants one GenAI platform for many customers. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for enterprise genai architecture.",
-        "example": "Example: when asked \"How do you design multi-tenancy for GenAI platforms?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. design multi-tenancy for GenAI platforms addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -165,18 +165,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining design multi-tenancy for GenAI platforms as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that design multi-tenancy for GenAI platforms improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying design multi-tenancy for GenAI platforms, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied design multi-tenancy for GenAI platforms in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for design multi-tenancy for GenAI platforms, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -205,13 +205,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An internal assistant becomes expensive as usage grows.",
-      "expectedAnswer": "Use model routing, prompt compression, caching, retrieval precision, smaller models for simple tasks, batching, token budgets, and output length controls. Measure cost per successful task and evaluate quality after each optimization. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for reduce GenAI cost without damaging quality measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "reduce GenAI cost without damaging quality requires comparing at least two viable choices instead of assuming one technique is universally better. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An internal assistant becomes expensive as usage grows. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you reduce GenAI cost without damaging quality?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. reduce GenAI cost without damaging quality addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -231,18 +231,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining reduce GenAI cost without damaging quality as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that reduce GenAI cost without damaging quality improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying reduce GenAI cost without damaging quality, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied reduce GenAI cost without damaging quality in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for reduce GenAI cost without damaging quality, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -271,13 +271,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "Executives want many teams to build GenAI apps safely and consistently.",
-      "expectedAnswer": "Governance includes model approval, prompt review, data access policies, tool permissions, audit logs, safety standards, evaluation gates, incident response, vendor risk management, and documentation. It should enable teams without creating uncontrolled risk. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for What governance does an enterprise GenAI platform need measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "What governance does an enterprise GenAI platform need belongs in the architecture discussion because it affects ownership boundaries, controls, observability, and rollout. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: Executives want many teams to build GenAI apps safely and consistently. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for enterprise genai architecture.",
-        "example": "Example: when asked \"What governance does an enterprise GenAI platform need?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. What governance does an enterprise GenAI platform need addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -297,18 +297,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining What governance does an enterprise GenAI platform need as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that What governance does an enterprise GenAI platform need improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying What governance does an enterprise GenAI platform need, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied What governance does an enterprise GenAI platform need in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for What governance does an enterprise GenAI platform need, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -337,13 +337,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through prompt registry for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define prompt registry, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for prompt registry measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "prompt registry is important because it changes how the system is designed, measured, and trusted in production. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is clear instruction hierarchy, examples, schema constraints, validation, and regression tests. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using JSON schema, function calling, Promptfoo, LangSmith, and prompt/version registries, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is prompt changes silently breaking output format or tool behavior; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through prompt registry for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain prompt registry in a Enterprise GenAI Architecture interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to prompt changes silently breaking output format or tool behavior. prompt registry addresses that risk through clear instruction hierarchy, examples, schema constraints, validation, and regression tests, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with JSON schema, function calling, Promptfoo, LangSmith, and prompt/version registries, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds clear instruction hierarchy, examples, schema constraints, validation, and regression tests; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -363,18 +363,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining prompt registry as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: prompt changes silently breaking output format or tool behavior.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that prompt registry improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying prompt registry, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied prompt registry in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from prompt changes silently breaking output format or tool behavior, causing roughly 25% of reviewed cases to require manual correction. The team implemented clear instruction hierarchy, examples, schema constraints, validation, and regression tests using JSON schema, function calling, Promptfoo, LangSmith, and prompt/version registries, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for prompt registry, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -403,13 +403,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through evaluation service for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define evaluation service, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for evaluation service measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "evaluation service is best explained by starting from the failure users are seeing and then naming the system change that removes that failure. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through evaluation service for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain evaluation service in a Enterprise GenAI Architecture interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. evaluation service addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -429,18 +429,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining evaluation service as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that evaluation service improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying evaluation service, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied evaluation service in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for evaluation service, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -469,13 +469,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through audit logging for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define audit logging, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for audit logging measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "audit logging requires comparing at least two viable choices instead of assuming one technique is universally better. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through audit logging for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain audit logging in a Enterprise GenAI Architecture interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. audit logging addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -495,18 +495,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining audit logging as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that audit logging improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying audit logging, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied audit logging in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for audit logging, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -535,13 +535,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through data privacy controls for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define data privacy controls, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for data privacy controls measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "data privacy controls belongs in the architecture discussion because it affects ownership boundaries, controls, observability, and rollout. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through data privacy controls for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for enterprise genai architecture.",
-        "example": "Example: when asked \"How would you explain data privacy controls in a Enterprise GenAI Architecture interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. data privacy controls addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -561,18 +561,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining data privacy controls as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that data privacy controls improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying data privacy controls, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied data privacy controls in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for data privacy controls, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -601,13 +601,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through compliance review workflow for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define compliance review workflow, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for compliance review workflow measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "compliance review workflow should be approached as a production failure: reproduce it, isolate the layer, fix the cause, and prevent recurrence. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through compliance review workflow for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain compliance review workflow in a Enterprise GenAI Architecture interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. compliance review workflow addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -627,18 +627,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining compliance review workflow as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that compliance review workflow improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying compliance review workflow, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied compliance review workflow in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for compliance review workflow, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -667,13 +667,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through access control integration for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define access control integration, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for access control integration measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "access control integration is important because it changes how the system is designed, measured, and trusted in production. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through access control integration for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain access control integration in a Enterprise GenAI Architecture interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. access control integration addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -693,18 +693,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining access control integration as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that access control integration improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying access control integration, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied access control integration in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for access control integration, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -733,13 +733,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through enterprise model routing for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define enterprise model routing, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for enterprise model routing measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "enterprise model routing is best explained by starting from the failure users are seeing and then naming the system change that removes that failure. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is model behavior control through decoding, grounding, evaluation, routing, and observability. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is fluent output that hides uncertainty, cost, or latency problems; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through enterprise model routing for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain enterprise model routing in a Enterprise GenAI Architecture interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to fluent output that hides uncertainty, cost, or latency problems. enterprise model routing addresses that risk through model behavior control through decoding, grounding, evaluation, routing, and observability, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds model behavior control through decoding, grounding, evaluation, routing, and observability; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -759,18 +759,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining enterprise model routing as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: fluent output that hides uncertainty, cost, or latency problems.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that enterprise model routing improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying enterprise model routing, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied enterprise model routing in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from fluent output that hides uncertainty, cost, or latency problems, causing roughly 25% of reviewed cases to require manual correction. The team implemented model behavior control through decoding, grounding, evaluation, routing, and observability using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for enterprise model routing, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -799,13 +799,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through platform cost allocation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define platform cost allocation, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for platform cost allocation measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "platform cost allocation requires comparing at least two viable choices instead of assuming one technique is universally better. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through platform cost allocation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain platform cost allocation in a Enterprise GenAI Architecture interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. platform cost allocation addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -825,18 +825,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining platform cost allocation as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that platform cost allocation improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying platform cost allocation, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied platform cost allocation in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for platform cost allocation, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -865,13 +865,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through tenant-aware observability for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define tenant-aware observability, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for tenant-aware observability measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "tenant-aware observability belongs in the architecture discussion because it affects ownership boundaries, controls, observability, and rollout. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through tenant-aware observability for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for enterprise genai architecture.",
-        "example": "Example: when asked \"How would you explain tenant-aware observability in a Enterprise GenAI Architecture interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. tenant-aware observability addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -891,18 +891,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining tenant-aware observability as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that tenant-aware observability improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying tenant-aware observability, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied tenant-aware observability in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for tenant-aware observability, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -931,13 +931,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through GenAI platform operating model for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define GenAI platform operating model, explain why it matters for enterprise genai architecture, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A central enterprise AI platform team runs shared GenAI platform for RAG apps, model gateways, governance, and observability. A recent review found that teams build isolated AI apps without common security, evaluation, and cost controls; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for GenAI platform operating model measured by platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+      "expectedAnswer": "GenAI platform operating model should be approached as a production failure: reproduce it, isolate the layer, fix the cause, and prevent recurrence. In shared GenAI platform for RAG apps, model gateways, governance, and observability, the practical approach is model behavior control through decoding, grounding, evaluation, routing, and observability. The first step is to establish a baseline with representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is fluent output that hides uncertainty, cost, or latency problems; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through GenAI platform operating model for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain GenAI platform operating model in a Enterprise GenAI Architecture interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real enterprise genai architecture setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to fluent output that hides uncertainty, cost, or latency problems. GenAI platform operating model addresses that risk through model behavior control through decoding, grounding, evaluation, routing, and observability, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "howToApply": "Start with 50-200 representative examples from tenant documents, model calls, prompts, traces, safety events, and cost records. Implement the change with OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in shared GenAI platform for RAG apps, model gateways, governance, and observability, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds model behavior control through decoding, grounding, evaluation, routing, and observability; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -952,18 +952,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining GenAI platform operating model as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate.",
+        "Ignoring the main risk: fluent output that hides uncertainty, cost, or latency problems.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Enterprise GenAI Architecture?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that GenAI platform operating model improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying GenAI platform operating model, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise enterprise genai architecture setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A central enterprise AI platform team applied GenAI platform operating model in shared GenAI platform for RAG apps, model gateways, governance, and observability. The baseline suffered from fluent output that hides uncertainty, cost, or latency problems, causing roughly 25% of reviewed cases to require manual correction. The team implemented model behavior control through decoding, grounding, evaluation, routing, and observability using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, then evaluated the change against platform adoption, leakage tests, p95 latency, cost allocation, and eval gate pass rate. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for GenAI platform operating model, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,

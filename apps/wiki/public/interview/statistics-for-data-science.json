@@ -22,13 +22,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An experiment reports p = 0.03 and the product manager says the feature is definitely better.",
-      "expectedAnswer": "A p-value is the probability of observing data at least as extreme as the sample result assuming the null hypothesis is true. It is not the probability that the null hypothesis is true. Candidates should mention significance thresholds, practical significance, multiple testing, and confidence intervals. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for explain a p-value measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "explain a p-value is important because it changes how the system is designed, measured, and trusted in production. In experimentation and metrics platform for AI-powered product features, the practical approach is uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using scipy, statsmodels, bootstrap intervals, power calculators, and experiment notebooks, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is overstating certainty from small samples or misunderstood significance tests; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An experiment reports p = 0.03 and the product manager says the feature is definitely better. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How do you explain a p-value?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to overstating certainty from small samples or misunderstood significance tests. explain a p-value addresses that risk through uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with scipy, statsmodels, bootstrap intervals, power calculators, and experiment notebooks, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -38,18 +38,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining explain a p-value as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: overstating certainty from small samples or misunderstood significance tests.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that explain a p-value improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying explain a p-value, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied explain a p-value in experimentation and metrics platform for AI-powered product features. The baseline suffered from overstating certainty from small samples or misunderstood significance tests, causing roughly 25% of reviewed cases to require manual correction. The team implemented uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance using scipy, statsmodels, bootstrap intervals, power calculators, and experiment notebooks, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for explain a p-value, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -78,13 +78,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "A dashboard shows conversion increased by 2 percent, but the interval crosses zero.",
-      "expectedAnswer": "A confidence interval gives a range of plausible values for a population parameter under repeated sampling assumptions. A 95 percent interval means that the procedure would capture the true parameter in about 95 percent of repeated samples. It communicates uncertainty better than a point estimate alone. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for confidence interval measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "confidence interval is important because it changes how the system is designed, measured, and trusted in production. In experimentation and metrics platform for AI-powered product features, the practical approach is uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using scipy, statsmodels, bootstrap intervals, power calculators, and experiment notebooks, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is overstating certainty from small samples or misunderstood significance tests; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A dashboard shows conversion increased by 2 percent, but the interval crosses zero. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"What is a confidence interval?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to overstating certainty from small samples or misunderstood significance tests. confidence interval addresses that risk through uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with scipy, statsmodels, bootstrap intervals, power calculators, and experiment notebooks, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -99,18 +99,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining confidence interval as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: overstating certainty from small samples or misunderstood significance tests.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that confidence interval improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying confidence interval, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied confidence interval in experimentation and metrics platform for AI-powered product features. The baseline suffered from overstating certainty from small samples or misunderstood significance tests, causing roughly 25% of reviewed cases to require manual correction. The team implemented uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance using scipy, statsmodels, bootstrap intervals, power calculators, and experiment notebooks, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for confidence interval, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -139,13 +139,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "Users who use an AI feature retain better, and leadership claims the feature caused retention.",
-      "expectedAnswer": "Correlation measures association, not causal effect. Confounders, selection bias, reverse causality, and common causes can create misleading relationships. Establishing causality requires experiment design, natural experiments, causal inference methods, or strong assumptions. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for Why does correlation not imply causation measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "Why does correlation not imply causation is important because it changes how the system is designed, measured, and trusted in production. In experimentation and metrics platform for AI-powered product features, the practical approach is statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is claiming causal impact from noisy or biased data; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: Users who use an AI feature retain better, and leadership claims the feature caused retention. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"Why does correlation not imply causation?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to claiming causal impact from noisy or biased data. Why does correlation not imply causation addresses that risk through statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -165,18 +165,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining Why does correlation not imply causation as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: claiming causal impact from noisy or biased data.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that Why does correlation not imply causation improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying Why does correlation not imply causation, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied Why does correlation not imply causation in experimentation and metrics platform for AI-powered product features. The baseline suffered from claiming causal impact from noisy or biased data, causing roughly 25% of reviewed cases to require manual correction. The team implemented statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics using SQL, scipy, statsmodels, experiment platforms, and power analysis, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for Why does correlation not imply causation, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -205,13 +205,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "A team wants to test an AI-generated recommendation panel.",
-      "expectedAnswer": "Define hypothesis, primary metric, guardrail metrics, randomization unit, sample size, duration, segmentation, and stopping rules. Avoid peeking, novelty effects, interference, and multiple-testing mistakes. Analyze practical and statistical significance before rollout. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for A/B test design measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "A/B test design is best explained by starting from the failure users are seeing and then naming the system change that removes that failure. In experimentation and metrics platform for AI-powered product features, the practical approach is randomized assignment, primary and guardrail metrics, sample-size planning, and pre-defined stopping rules. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy or statsmodels, experiment platforms, CUPED where appropriate, and guardrail dashboards, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is mistaking noisy correlation or novelty effects for causal impact; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A team wants to test an AI-generated recommendation panel. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How do you design an A/B test?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to mistaking noisy correlation or novelty effects for causal impact. A/B test design addresses that risk through randomized assignment, primary and guardrail metrics, sample-size planning, and pre-defined stopping rules, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy or statsmodels, experiment platforms, CUPED where appropriate, and guardrail dashboards, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds randomized assignment, primary and guardrail metrics, sample-size planning, and pre-defined stopping rules; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -231,18 +231,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining A/B test design as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: mistaking noisy correlation or novelty effects for causal impact.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that A/B test design improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying A/B test design, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied A/B test design in experimentation and metrics platform for AI-powered product features. The baseline suffered from mistaking noisy correlation or novelty effects for causal impact, causing roughly 25% of reviewed cases to require manual correction. The team implemented randomized assignment, primary and guardrail metrics, sample-size planning, and pre-defined stopping rules using SQL, scipy or statsmodels, experiment platforms, CUPED where appropriate, and guardrail dashboards, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for A/B test design, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -271,13 +271,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "A model is evaluated only on users who completed a support survey.",
-      "expectedAnswer": "Sampling bias occurs when the sample does not represent the population of interest. It can make model evaluation, experiments, and metrics misleading. Strong answers discuss selection effects, coverage gaps, non-response, survivorship bias, and ways to correct or measure representativeness. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for sampling bias measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "sampling bias is important because it changes how the system is designed, measured, and trusted in production. In experimentation and metrics platform for AI-powered product features, the practical approach is statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is claiming causal impact from noisy or biased data; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A model is evaluated only on users who completed a support survey. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"What is sampling bias and why does it matter?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to claiming causal impact from noisy or biased data. sampling bias addresses that risk through statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -297,18 +297,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining sampling bias as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: claiming causal impact from noisy or biased data.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that sampling bias improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying sampling bias, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied sampling bias in experimentation and metrics platform for AI-powered product features. The baseline suffered from claiming causal impact from noisy or biased data, causing roughly 25% of reviewed cases to require manual correction. The team implemented statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics using SQL, scipy, statsmodels, experiment platforms, and power analysis, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for sampling bias, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -337,13 +337,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through Bayes theorem for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define Bayes theorem, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for Bayes theorem measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "Bayes theorem is important because it changes how the system is designed, measured, and trusted in production. In experimentation and metrics platform for AI-powered product features, the practical approach is statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is claiming causal impact from noisy or biased data; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through Bayes theorem for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain Bayes theorem in a Statistics for Data Science interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to claiming causal impact from noisy or biased data. Bayes theorem addresses that risk through statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -363,18 +363,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining Bayes theorem as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: claiming causal impact from noisy or biased data.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that Bayes theorem improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying Bayes theorem, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied Bayes theorem in experimentation and metrics platform for AI-powered product features. The baseline suffered from claiming causal impact from noisy or biased data, causing roughly 25% of reviewed cases to require manual correction. The team implemented statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics using SQL, scipy, statsmodels, experiment platforms, and power analysis, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for Bayes theorem, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -403,13 +403,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through normal distribution for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define normal distribution, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for normal distribution measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "normal distribution is best explained by starting from the failure users are seeing and then naming the system change that removes that failure. In experimentation and metrics platform for AI-powered product features, the practical approach is statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is claiming causal impact from noisy or biased data; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through normal distribution for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain normal distribution in a Statistics for Data Science interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to claiming causal impact from noisy or biased data. normal distribution addresses that risk through statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -429,18 +429,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining normal distribution as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: claiming causal impact from noisy or biased data.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that normal distribution improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying normal distribution, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied normal distribution in experimentation and metrics platform for AI-powered product features. The baseline suffered from claiming causal impact from noisy or biased data, causing roughly 25% of reviewed cases to require manual correction. The team implemented statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics using SQL, scipy, statsmodels, experiment platforms, and power analysis, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for normal distribution, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -469,13 +469,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through central limit theorem for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define central limit theorem, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for central limit theorem measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "central limit theorem requires comparing at least two viable choices instead of assuming one technique is universally better. In experimentation and metrics platform for AI-powered product features, the practical approach is statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is claiming causal impact from noisy or biased data; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through central limit theorem for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain central limit theorem in a Statistics for Data Science interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to claiming causal impact from noisy or biased data. central limit theorem addresses that risk through statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -495,18 +495,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining central limit theorem as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: claiming causal impact from noisy or biased data.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that central limit theorem improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying central limit theorem, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied central limit theorem in experimentation and metrics platform for AI-powered product features. The baseline suffered from claiming causal impact from noisy or biased data, causing roughly 25% of reviewed cases to require manual correction. The team implemented statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics using SQL, scipy, statsmodels, experiment platforms, and power analysis, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for central limit theorem, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -535,13 +535,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through hypothesis test design for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define hypothesis test design, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for hypothesis test design measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "hypothesis test design belongs in the architecture discussion because it affects ownership boundaries, controls, observability, and rollout. In experimentation and metrics platform for AI-powered product features, the practical approach is statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is claiming causal impact from noisy or biased data; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through hypothesis test design for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for statistics for data science.",
-        "example": "Example: when asked \"How would you explain hypothesis test design in a Statistics for Data Science interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to claiming causal impact from noisy or biased data. hypothesis test design addresses that risk through statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -561,18 +561,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining hypothesis test design as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: claiming causal impact from noisy or biased data.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that hypothesis test design improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying hypothesis test design, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied hypothesis test design in experimentation and metrics platform for AI-powered product features. The baseline suffered from claiming causal impact from noisy or biased data, causing roughly 25% of reviewed cases to require manual correction. The team implemented statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics using SQL, scipy, statsmodels, experiment platforms, and power analysis, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for hypothesis test design, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -601,13 +601,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through statistical power for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define statistical power, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for statistical power measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "statistical power should be approached as a production failure: reproduce it, isolate the layer, fix the cause, and prevent recurrence. In experimentation and metrics platform for AI-powered product features, the practical approach is uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using scipy, statsmodels, bootstrap intervals, power calculators, and experiment notebooks, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is overstating certainty from small samples or misunderstood significance tests; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through statistical power for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain statistical power in a Statistics for Data Science interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to overstating certainty from small samples or misunderstood significance tests. statistical power addresses that risk through uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with scipy, statsmodels, bootstrap intervals, power calculators, and experiment notebooks, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -627,18 +627,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining statistical power as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: overstating certainty from small samples or misunderstood significance tests.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that statistical power improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying statistical power, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied statistical power in experimentation and metrics platform for AI-powered product features. The baseline suffered from overstating certainty from small samples or misunderstood significance tests, causing roughly 25% of reviewed cases to require manual correction. The team implemented uncertainty-aware statistical inference with effect sizes, assumptions, sample-size planning, and practical significance using scipy, statsmodels, bootstrap intervals, power calculators, and experiment notebooks, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for statistical power, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -667,13 +667,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through sample size calculation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define sample size calculation, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for sample size calculation measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "sample size calculation is important because it changes how the system is designed, measured, and trusted in production. In experimentation and metrics platform for AI-powered product features, the practical approach is statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is claiming causal impact from noisy or biased data; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through sample size calculation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain sample size calculation in a Statistics for Data Science interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to claiming causal impact from noisy or biased data. sample size calculation addresses that risk through statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -693,18 +693,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining sample size calculation as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: claiming causal impact from noisy or biased data.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that sample size calculation improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying sample size calculation, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied sample size calculation in experimentation and metrics platform for AI-powered product features. The baseline suffered from claiming causal impact from noisy or biased data, causing roughly 25% of reviewed cases to require manual correction. The team implemented statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics using SQL, scipy, statsmodels, experiment platforms, and power analysis, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for sample size calculation, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -733,13 +733,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through multiple comparison correction for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define multiple comparison correction, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for multiple comparison correction measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "multiple comparison correction is best explained by starting from the failure users are seeing and then naming the system change that removes that failure. In experimentation and metrics platform for AI-powered product features, the practical approach is statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is claiming causal impact from noisy or biased data; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through multiple comparison correction for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain multiple comparison correction in a Statistics for Data Science interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to claiming causal impact from noisy or biased data. multiple comparison correction addresses that risk through statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -759,18 +759,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining multiple comparison correction as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: claiming causal impact from noisy or biased data.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that multiple comparison correction improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying multiple comparison correction, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied multiple comparison correction in experimentation and metrics platform for AI-powered product features. The baseline suffered from claiming causal impact from noisy or biased data, causing roughly 25% of reviewed cases to require manual correction. The team implemented statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics using SQL, scipy, statsmodels, experiment platforms, and power analysis, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for multiple comparison correction, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -799,13 +799,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through covariance versus correlation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define covariance versus correlation, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for covariance versus correlation measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "covariance versus correlation requires comparing at least two viable choices instead of assuming one technique is universally better. In experimentation and metrics platform for AI-powered product features, the practical approach is statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is claiming causal impact from noisy or biased data; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through covariance versus correlation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain covariance versus correlation in a Statistics for Data Science interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to claiming causal impact from noisy or biased data. covariance versus correlation addresses that risk through statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -825,18 +825,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining covariance versus correlation as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: claiming causal impact from noisy or biased data.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that covariance versus correlation improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying covariance versus correlation, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied covariance versus correlation in experimentation and metrics platform for AI-powered product features. The baseline suffered from claiming causal impact from noisy or biased data, causing roughly 25% of reviewed cases to require manual correction. The team implemented statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics using SQL, scipy, statsmodels, experiment platforms, and power analysis, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for covariance versus correlation, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -865,13 +865,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through outlier treatment for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define outlier treatment, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for outlier treatment measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "outlier treatment belongs in the architecture discussion because it affects ownership boundaries, controls, observability, and rollout. In experimentation and metrics platform for AI-powered product features, the practical approach is statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is claiming causal impact from noisy or biased data; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through outlier treatment for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for statistics for data science.",
-        "example": "Example: when asked \"How would you explain outlier treatment in a Statistics for Data Science interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to claiming causal impact from noisy or biased data. outlier treatment addresses that risk through statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy, statsmodels, experiment platforms, and power analysis, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -891,18 +891,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining outlier treatment as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: claiming causal impact from noisy or biased data.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that outlier treatment improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying outlier treatment, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied outlier treatment in experimentation and metrics platform for AI-powered product features. The baseline suffered from claiming causal impact from noisy or biased data, causing roughly 25% of reviewed cases to require manual correction. The team implemented statistical reasoning with hypothesis design, uncertainty, sample size, and guardrail metrics using SQL, scipy, statsmodels, experiment platforms, and power analysis, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for outlier treatment, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -931,13 +931,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through experiment guardrail metrics for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define experiment guardrail metrics, explain why it matters for statistics for data science, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product analytics team runs experimentation and metrics platform for AI-powered product features. A recent review found that stakeholders overinterpret noisy metrics or confuse correlation with causal impact; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for experiment guardrail metrics measured by effect size, confidence intervals, statistical power, and guardrail movement.",
+      "expectedAnswer": "experiment guardrail metrics should be approached as a production failure: reproduce it, isolate the layer, fix the cause, and prevent recurrence. In experimentation and metrics platform for AI-powered product features, the practical approach is randomized assignment, primary and guardrail metrics, sample-size planning, and pre-defined stopping rules. The first step is to establish a baseline with representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using SQL, scipy or statsmodels, experiment platforms, CUPED where appropriate, and guardrail dashboards, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is mistaking noisy correlation or novelty effects for causal impact; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use effect size, confidence intervals, statistical power, and guardrail movement, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through experiment guardrail metrics for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain experiment guardrail metrics in a Statistics for Data Science interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real statistics for data science setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to mistaking noisy correlation or novelty effects for causal impact. experiment guardrail metrics addresses that risk through randomized assignment, primary and guardrail metrics, sample-size planning, and pre-defined stopping rules, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using effect size, confidence intervals, statistical power, and guardrail movement.",
+        "howToApply": "Start with 50-200 representative examples from user events, cohorts, conversion metrics, treatment assignment, and guardrail metrics. Implement the change with SQL, scipy or statsmodels, experiment platforms, CUPED where appropriate, and guardrail dashboards, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in experimentation and metrics platform for AI-powered product features, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds randomized assignment, primary and guardrail metrics, sample-size planning, and pre-defined stopping rules; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor effect size, confidence intervals, statistical power, and guardrail movement so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -952,18 +952,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining experiment guardrail metrics as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of effect size, confidence intervals, statistical power, and guardrail movement.",
+        "Ignoring the main risk: mistaking noisy correlation or novelty effects for causal impact.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Statistics for Data Science?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that experiment guardrail metrics improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying experiment guardrail metrics, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise statistics for data science setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A product analytics team applied experiment guardrail metrics in experimentation and metrics platform for AI-powered product features. The baseline suffered from mistaking noisy correlation or novelty effects for causal impact, causing roughly 25% of reviewed cases to require manual correction. The team implemented randomized assignment, primary and guardrail metrics, sample-size planning, and pre-defined stopping rules using SQL, scipy or statsmodels, experiment platforms, CUPED where appropriate, and guardrail dashboards, then evaluated the change against effect size, confidence intervals, statistical power, and guardrail movement. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for experiment guardrail metrics, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,

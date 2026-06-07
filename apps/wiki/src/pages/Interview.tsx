@@ -244,67 +244,93 @@ function QuestionDetail({
       )}
 
       {revealed && (
-        <div className="mt-6 grid gap-4 xl:grid-cols-2">
-          <section className="xl:col-span-2">
-            <h3 className="text-sm font-semibold text-slate-950">Expected Answer</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">{question.expectedAnswer}</p>
-          </section>
-
-          {question.answerFramework && (
-            <section className="rounded-lg bg-white/80 p-4 ring-1 ring-slate-200 xl:col-span-2">
-              <h3 className="text-sm font-bold text-slate-950">Scenario Answer Framework</h3>
-              <div className="mt-3 grid gap-3 md:grid-cols-2">
-                <div className="rounded-md bg-cyan-50/70 p-3">
-                  <p className="text-xs font-bold uppercase tracking-wider text-cyan-800">Respond to scenario</p>
-                  <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.scenarioResponse}</p>
-                </div>
-                <div className="rounded-md bg-slate-50 p-3">
-                  <p className="text-xs font-bold uppercase tracking-wider text-slate-600">Apply it</p>
-                  <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.howToApply}</p>
-                </div>
-                <div className="rounded-md bg-emerald-50/80 p-3">
-                  <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Example</p>
-                  <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.example}</p>
-                </div>
-                <div className="rounded-md bg-amber-50/80 p-3">
-                  <p className="text-xs font-bold uppercase tracking-wider text-amber-800">Tradeoffs</p>
-                  <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.tradeoffs}</p>
-                </div>
-              </div>
+        <div className="mt-6 grid gap-5 xl:grid-cols-[minmax(0,1fr)_320px]">
+          <div className="space-y-4">
+            <section>
+              <h3 className="text-sm font-semibold text-slate-950">Expected Answer</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{question.expectedAnswer}</p>
             </section>
-          )}
 
-          <section>
-            <h3 className="text-sm font-semibold text-slate-950">Common Mistakes</h3>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-600">
-              {question.commonMistakes.map((mistake) => <li key={mistake}>{mistake}</li>)}
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="text-sm font-semibold text-slate-950">Follow-up Questions</h3>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-600">
-              {question.followUpQuestions.map((followUp) => <li key={followUp}>{followUp}</li>)}
-            </ul>
-          </section>
-
-          <section>
-            <h3 className="text-sm font-semibold text-slate-950">Real-world Example</h3>
-            <p className="mt-2 text-sm leading-6 text-slate-600">{question.realWorldExample}</p>
-          </section>
-
-          <section className="rounded-lg border border-slate-200 p-4 xl:col-span-2">
-            <h3 className="text-sm font-semibold text-slate-950">Rubric</h3>
-            <div className="mt-3 grid gap-2 sm:grid-cols-5">
-              {Object.entries(question.rubric).map(([label, value]) => (
-                <div key={label} className="rounded-md bg-slate-50 px-3 py-2 text-center">
-                  <p className="text-xs capitalize text-slate-500">{label}</p>
-                  <p className="text-lg font-bold text-slate-950">{value}</p>
+            {question.answerFramework && (
+              <section className="rounded-lg bg-white/80 p-4 ring-1 ring-slate-200">
+                <h3 className="text-sm font-bold text-slate-950">Scenario-Based Answer</h3>
+                <div className="mt-3 grid gap-3">
+                  <div className="rounded-md bg-cyan-50/70 p-3">
+                    <p className="text-xs font-bold uppercase tracking-wider text-cyan-800">Scenario Response</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.scenarioResponse}</p>
+                  </div>
+                  <div className="rounded-md bg-slate-50 p-3">
+                    <p className="text-xs font-bold uppercase tracking-wider text-slate-600">How To Apply</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.howToApply}</p>
+                  </div>
+                  <div className="rounded-md bg-emerald-50/80 p-3">
+                    <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Example</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.example}</p>
+                  </div>
+                  <div className="rounded-md bg-amber-50/80 p-3">
+                    <p className="text-xs font-bold uppercase tracking-wider text-amber-800">Tradeoffs</p>
+                    <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.tradeoffs}</p>
+                  </div>
                 </div>
-              ))}
-            </div>
-            <p className="mt-3 text-sm leading-6 text-slate-600">{question.interviewerNotes}</p>
-          </section>
+              </section>
+            )}
+
+            <section>
+              <h3 className="text-sm font-semibold text-slate-950">Real-world Example</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-600">{question.realWorldExample}</p>
+            </section>
+          </div>
+
+          <aside className="space-y-3 xl:sticky xl:top-4 xl:self-start">
+            <details className="rounded-lg bg-white/85 p-3 ring-1 ring-slate-200" open>
+              <summary className="cursor-pointer text-sm font-bold text-slate-950">Question Flow</summary>
+              {question.relatedQuestions && question.relatedQuestions.length > 0 ? (
+                <div className="mt-3 grid gap-2">
+                  {question.relatedQuestions.map((related) => (
+                    <Link
+                      key={`${related.relation}-${related.id}`}
+                      to={`/interview/${topicSlug}/${related.id}`}
+                      className="rounded-md bg-slate-50 p-3 text-sm leading-5 text-slate-700 ring-1 ring-slate-200 hover:bg-cyan-50 hover:text-cyan-900"
+                    >
+                      <span className="block text-xs font-bold uppercase tracking-wider text-cyan-700">
+                        {relationLabels[related.relation]}
+                      </span>
+                      <span className="mt-1 block font-semibold">{related.title}</span>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <p className="mt-2 text-sm leading-6 text-slate-500">This is the first question in the topic flow.</p>
+              )}
+            </details>
+
+            <details className="rounded-lg bg-white/85 p-3 ring-1 ring-slate-200">
+              <summary className="cursor-pointer text-sm font-bold text-slate-950">Common Mistakes</summary>
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-600">
+                {question.commonMistakes.map((mistake) => <li key={mistake}>{mistake}</li>)}
+              </ul>
+            </details>
+
+            <details className="rounded-lg bg-white/85 p-3 ring-1 ring-slate-200">
+              <summary className="cursor-pointer text-sm font-bold text-slate-950">Follow-up Questions</summary>
+              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-600">
+                {question.followUpQuestions.map((followUp) => <li key={followUp}>{followUp}</li>)}
+              </ul>
+            </details>
+
+            <details className="rounded-lg bg-white/85 p-3 ring-1 ring-slate-200">
+              <summary className="cursor-pointer text-sm font-bold text-slate-950">Rubric</summary>
+              <div className="mt-3 grid gap-2">
+                {Object.entries(question.rubric).map(([label, value]) => (
+                  <div key={label} className="flex items-center justify-between rounded-md bg-slate-50 px-3 py-2">
+                    <p className="text-xs capitalize text-slate-500">{label}</p>
+                    <p className="text-sm font-bold text-slate-950">{value}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{question.interviewerNotes}</p>
+            </details>
+          </aside>
         </div>
       )}
     </article>

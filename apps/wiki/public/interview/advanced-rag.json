@@ -22,13 +22,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "Users ask follow-up questions like: what about the renewal clause?",
-      "expectedAnswer": "Query rewriting improves retrieval when user questions are vague, conversational, incomplete, or use different vocabulary than documents. The system can rewrite the query, expand acronyms, add domain terms, or generate multiple retrieval queries. It should be evaluated because bad rewrites can drift from user intent. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A legal document assistant performs well on first-turn questions, but follow-up questions like \"what about renewal?\" miss the right clause because the indexed contracts use phrases such as \"extension term\" and \"automatic continuation\". The retrieval team sees NDCG@5 drop from 0.78 on standalone queries to 0.42 on conversational queries.",
+      "expectedAnswer": "Query rewriting is useful when the user query is underspecified, conversational, ambiguous, or written in vocabulary that does not match the indexed documents. In RAG, retrieval quality often fails before generation begins: a vector search for \"renewal\" may not retrieve a clause that says \"automatic continuation period\", and a follow-up like \"what about that clause?\" may have no standalone meaning. A query rewriter uses conversation history, domain vocabulary, and sometimes metadata to produce one or more search-ready queries. For example, the last user message can be rewritten as \"automatic renewal and extension term clauses in the 2023 MSA for Acme\". Implementation is usually a lightweight LLM step before retrieval: pass the last few turns, document domain hints, and strict instructions to produce a standalone search query. In higher-recall systems, generate two or three rewrites and retrieve against all of them before deduplication and reranking. The tradeoff is drift: a rewriter can add facts that were not in the conversation, narrowing retrieval incorrectly. Validation should use a labeled conversational query set and compare recall@k, NDCG@k, grounded answer rate, and rewrite drift rate before and after rewriting.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: Users ask follow-up questions like: what about the renewal clause? In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"When would you use query rewriting in RAG?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The failure is a conversational vocabulary mismatch, not a generation problem. Query rewriting fits because it reconstructs the user intent from prior turns and translates user language into document language before retrieval. The first concrete action is to build a small labeled set of follow-up queries and compare baseline retrieval against rewritten standalone queries.",
+        "howToApply": "Add a pre-retrieval rewrite step using a fast model such as gpt-4o-mini or a smaller internal instruction model. Provide the last 3-5 conversation turns, the current user message, allowed metadata such as document type or contract name, and ask for one standalone query plus optional alternate phrasings. Run retrieval for the rewrite candidates, deduplicate chunk IDs, then rerank with a cross-encoder or LLM reranker. Log original query, rewritten query, retrieved chunk IDs, scores, and final citations for evaluation.",
+        "example": "Input history: \"Show me termination terms in the Acme MSA.\" User: \"what about renewal?\" Rewrite output: \"automatic renewal, extension term, and renewal notice requirements in the Acme MSA\". Retrieval then searches both the rewritten query and an alternate \"contract continuation clause Acme MSA\"; reranking surfaces section 8.2, \"Extension Term\", which the raw query \"renewal\" missed.",
+        "tradeoffs": "A rewrite step typically adds 50-200 ms depending on model and deployment, so it should be used where conversational ambiguity is common. It can improve recall but may reduce precision if it invents constraints such as dates or party names. It is not worth adding for simple keyword-heavy queries like invoice IDs or error codes. Use rewrite confidence, multiple candidates, and retrieval comparison to reduce drift."
       },
       "relatedQuestions": [
         {
@@ -38,18 +38,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Treating query rewriting as prompt polish instead of a retrieval recall technique with measurable impact.",
+        "Rewriting without preserving conversation entities such as document name, date, party, product, or jurisdiction.",
+        "Using only one rewrite and trusting it even when it adds unsupported constraints.",
+        "Evaluating only final answer quality and not measuring retrieval recall or rewrite drift."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you detect that a query rewriter is hallucinating filters or entities?",
+        "When would you generate multiple rewrites instead of a single rewritten query?",
+        "How does query rewriting differ from query expansion and HyDE?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A legal SaaS with 4 million contracts found that 38% of support escalations came from follow-up questions in contract review chat. Adding a gpt-4o-mini rewrite step that used the last four turns improved conversational recall@5 from 0.51 to 0.73 on a 600-query benchmark. Latency increased by 110 ms, but the final answer citation accuracy improved by 18 percentage points after reranking the merged retrieval set.",
+      "interviewerNotes": "A strong candidate separates query rewriting from answer generation and discusses retrieval metrics, drift, and conversation state. Great answers mention multiple rewrite candidates, deduplication, reranking, and logging original versus rewritten queries for debugging.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -78,13 +78,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "A legal assistant retrieves exact clauses but needs surrounding contractual context to answer correctly.",
-      "expectedAnswer": "Parent-child retrieval indexes smaller child chunks for precise matching but returns a larger parent section for context. It balances retrieval precision with answer completeness. Tradeoffs include more complex indexing, duplicated context, citation granularity, and possible prompt bloat. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A policy assistant retrieves the exact sentence about parental leave eligibility, but the answer is wrong because the exception is two paragraphs later in the same section. Increasing chunk size improves completeness but makes retrieval less precise and citations harder to trust.",
+      "expectedAnswer": "Parent-child retrieval is a RAG pattern that indexes small child chunks for precise matching but returns a larger parent unit for generation. The child might be a 150-300 token passage optimized for retrieval, while the parent might be the full section, page, clause, or heading group that contains surrounding context. This is useful when small chunks retrieve accurately but do not contain enough context to answer safely, which happens often in legal, policy, medical, and technical documentation. Implementation starts during ingestion: parse documents into parent sections, split each parent into child chunks, store embeddings for child chunks, and keep a parent_id relationship in metadata. At query time, retrieve child chunks, map the top child hits to their parent sections, optionally deduplicate and rank parents by best child score, then pass the parent context to the model with child-level citation anchors. The tradeoff is prompt size and citation granularity. Returning large parents can add irrelevant text and increase token cost, but returning only child chunks can omit critical exceptions or definitions. Validation should compare answer faithfulness and context recall, not just retrieval similarity score.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A legal assistant retrieves exact clauses but needs surrounding contractual context to answer correctly. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"Explain parent-child retrieval and its tradeoffs.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The assistant is retrieving a relevant sentence but missing the surrounding exception, so parent-child retrieval is a strong fit. The child chunk should find the eligibility sentence, and the parent section should provide the full policy context including exceptions. The first action is to redesign ingestion to preserve section hierarchy and parent IDs.",
+        "howToApply": "Use a parser such as unstructured, LlamaParse, Azure Document Intelligence, or a custom Markdown/HTML parser to identify headings and sections. Create child chunks of roughly 200 tokens with overlap only inside the parent, embed the children, and store parent text separately in object storage or a document store. Retrieval returns child hits, then a join fetches the corresponding parent sections. Rerank parent candidates by best child score plus metadata signals such as heading match and document freshness.",
+        "example": "Child chunk hit: \"Employees are eligible for 16 weeks of parental leave after 12 months of employment.\" Parent section also contains: \"Contractors and interns are excluded unless local law requires otherwise.\" The final prompt includes the full parent section, so the model answers: \"Full-time employees qualify after 12 months; contractors are excluded except where local law overrides the policy.\"",
+        "tradeoffs": "Parent-child retrieval improves answer completeness but can double or triple prompt tokens if parent sections are large. It is weaker when documents have poor structure or when parent sections contain multiple unrelated topics. A practical cap is to return the top 3-5 parent sections and trim parents by heading or paragraph relevance. Citation UX must show the exact child evidence even if the model saw the parent."
       },
       "relatedQuestions": [
         {
@@ -99,18 +99,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Using larger chunks everywhere instead of separating retrieval granularity from generation context.",
+        "Losing parent-child metadata during ingestion, making it impossible to reconstruct section context.",
+        "Returning entire documents as parents and flooding the prompt with irrelevant content.",
+        "Showing parent-level citations only, which makes it hard for users to verify the exact evidence."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you choose child chunk size and parent section size?",
+        "How do you prevent parent context from adding distracting irrelevant paragraphs?",
+        "How would parent-child retrieval interact with reranking?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An HR policy assistant at a multinational company had high retrieval hit rate but poor answer faithfulness for exception-heavy benefits policies. Moving from flat 512-token chunks to 180-token child chunks with section-level parents improved exception recall from 62% to 84% on policy QA tests. Token usage increased by 28%, so the team capped parent sections to the top three and preserved paragraph-level citations.",
+      "interviewerNotes": "Listen for the idea that retrieval and generation need different context sizes. Strong candidates discuss metadata joins, section-aware parsing, citation granularity, and token-budget controls.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -139,13 +139,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "A user asks which vendors affected by a policy also have contracts expiring this quarter.",
-      "expectedAnswer": "Multi-hop retrieval decomposes questions requiring evidence from multiple sources or steps. The system retrieves initial evidence, uses it to form follow-up queries, and combines evidence to answer. It is useful for complex enterprise questions but adds latency, orchestration complexity, and failure points. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A vendor risk assistant must answer \"Which suppliers impacted by the new data residency policy have contracts expiring this quarter?\" The evidence is split across policy documents, vendor profiles, and contract metadata, so single-shot retrieval returns only one part of the answer.",
+      "expectedAnswer": "Multi-hop retrieval is used when answering a question requires evidence from multiple documents, entities, or reasoning steps. A single vector search works well for direct questions like \"what is the refund policy?\", but it often fails when the answer requires joining facts: identify the policy, extract affected regions, map regions to suppliers, then filter suppliers by contract expiration date. A multi-hop RAG system decomposes the question into subqueries, retrieves evidence for each step, and carries intermediate results forward. Implementation can be deterministic for known workflows or agentic for open-ended questions. For the vendor example, the first hop retrieves the new data residency policy and extracts affected countries; the second hop retrieves suppliers operating in those countries; the third hop queries contract metadata for expiration dates. The generator should receive only the final evidence set plus a trace of how it was assembled. Tradeoffs include latency, orchestration complexity, and compounding errors: a wrong first hop poisons later hops. Validation requires step-level evaluation, not only final answer scoring.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A user asks which vendors affected by a policy also have contracts expiring this quarter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"What is multi-hop retrieval?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "This is a multi-hop problem because the answer depends on combining policy scope, supplier geography, and contract dates. Multi-hop retrieval fits better than stuffing all documents into one prompt because each step has a different retrieval target. The first action is to define the hop plan and identify which steps use semantic retrieval versus structured metadata queries.",
+        "howToApply": "Implement a query planner that decomposes the user request into typed steps such as retrieve_policy, extract_entities, lookup_suppliers, and filter_contracts. Use vector or hybrid retrieval for unstructured policy text, then structured queries against a vendor or contract database for dates and regions. Store intermediate results with confidence and provenance. Before generation, rerank and compress the evidence, then cite each supplier back to the policy clause and contract record.",
+        "example": "Question: \"Which suppliers impacted by the EU residency policy expire this quarter?\" Hop 1 retrieves policy section saying EU customer data must stay in Germany or Ireland. Hop 2 maps affected countries to suppliers handling EU data: Vendor A and Vendor C. Hop 3 queries contracts where expiration_date between 2026-04-01 and 2026-06-30, returning Vendor C only. Final answer cites the policy section and Vendor C contract metadata.",
+        "tradeoffs": "Multi-hop retrieval can easily add seconds of latency because each hop may require retrieval, extraction, and validation. It is powerful when facts live in different systems but overkill for single-document questions. Failure handling matters: if entity extraction confidence is low, the system should ask a clarifying question or return partial evidence. Cache intermediate entity lookups where possible."
       },
       "relatedQuestions": [
         {
@@ -165,18 +165,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Assuming multi-hop means simply retrieving more chunks in one query.",
+        "Not separating semantic retrieval from structured filtering when dates, IDs, or statuses are involved.",
+        "Failing to preserve provenance for each intermediate fact.",
+        "Evaluating only final answer text and missing which hop caused the error."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you design traces for a multi-hop RAG answer?",
+        "When should a multi-hop system ask a clarifying question instead of continuing?",
+        "How does multi-hop retrieval relate to Graph RAG and agentic RAG?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A procurement analytics platform used multi-hop retrieval to answer vendor risk questions across policies, supplier profiles, and contract records. A single-query RAG baseline answered only 45% of benchmark questions correctly because it missed structured expiration filters. A three-step planner with SQL lookups improved exact-match answer accuracy to 76%, with median latency rising from 1.1 seconds to 2.8 seconds.",
+      "interviewerNotes": "Strong candidates identify that multi-hop is about evidence composition, not larger context windows. Great answers mention decomposition, typed tools, provenance, step-level evaluation, and structured data access.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -205,13 +205,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An enterprise needs to answer questions about dependencies between applications, owners, vendors, and risks.",
-      "expectedAnswer": "Graph RAG is useful when relationships between entities matter, such as people, systems, policies, vendors, and dependencies. It can improve multi-hop reasoning and explainability by retrieving neighborhoods or paths. It adds graph construction, entity resolution, freshness, and governance complexity. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise architecture assistant needs to answer dependency questions such as \"Which customer-facing applications are exposed if the legacy identity provider is retired?\" Relevant facts are scattered across CMDB records, runbooks, ownership docs, and architecture diagrams.",
+      "expectedAnswer": "Graph RAG is useful when relationships between entities are central to the answer. Standard vector retrieval finds semantically similar text, but it is weak at traversing relationships such as application depends_on service, service owned_by team, team supports region, or database contains regulated data. Graph RAG builds or uses a knowledge graph of entities and edges, then retrieves relevant neighborhoods, paths, or subgraphs to ground the LLM. It is valuable for impact analysis, compliance, fraud networks, biomedical relationships, organizational knowledge, and complex dependency questions. Implementation usually includes entity extraction, entity resolution, edge creation, graph storage such as Neo4j, Neptune, or a property graph in Postgres, and a retrieval layer that combines vector search with graph traversal. The LLM should not invent graph edges; it should explain paths retrieved from the graph. The tradeoff is graph construction cost and freshness. Graph RAG is not worth it when the corpus is mostly independent documents or when entity relationships are not reliable enough to maintain.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An enterprise needs to answer questions about dependencies between applications, owners, vendors, and risks. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"When is Graph RAG useful?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The identity-provider retirement question is relationship-heavy, so Graph RAG is appropriate. The system needs to traverse dependencies from identity provider to services, applications, owners, data stores, and customer exposure. The first action is to model the critical entity types and dependency edges needed for impact analysis.",
+        "howToApply": "Extract entities such as application, service, database, owner, region, and vendor from CMDB records and architecture docs. Resolve aliases so \"Legacy SSO\", \"IDP-v1\", and \"AuthCore\" map to the same node. Store edges in Neo4j or Amazon Neptune and attach source document IDs to each edge. At query time, retrieve the relevant node, traverse bounded paths such as two or three hops, then pass the path evidence and source snippets to the LLM.",
+        "example": "Input question: \"What breaks if Legacy SSO is retired?\" Graph traversal returns Legacy SSO -> Auth Gateway -> Customer Portal -> EU customers and Legacy SSO -> Admin Console -> Finance Ops. The generated answer says Customer Portal and Admin Console are impacted, names owning teams, and cites the CMDB edge plus the migration runbook.",
+        "tradeoffs": "Graph RAG improves relationship reasoning but requires ongoing entity resolution and graph freshness. Stale edges can be more dangerous than missing chunks because they create confident wrong impact analysis. Keep traversals bounded; a five-hop neighborhood can explode into hundreds of nodes. Use graph confidence scores and source citations for every edge."
       },
       "relatedQuestions": [
         {
@@ -231,18 +231,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Using Graph RAG for ordinary document QA where relationships are not the hard part.",
+        "Letting the LLM infer edges instead of retrieving verified graph relationships.",
+        "Ignoring entity resolution, which creates duplicate nodes and broken paths.",
+        "Returning huge graph neighborhoods without ranking paths by relevance."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you keep a Graph RAG index fresh as systems and ownership change?",
+        "How do you evaluate whether graph paths are correct and useful?",
+        "When would hybrid vector plus graph retrieval be better than graph retrieval alone?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A large SaaS company built Graph RAG for incident impact analysis across 12,000 services and 80,000 dependency edges. Before the graph, engineers searched runbooks manually and took 25-40 minutes to identify downstream teams. A Neo4j-backed RAG workflow reduced median impact-analysis time to 6 minutes and improved cited dependency accuracy from 58% to 87% after adding source-backed edges.",
+      "interviewerNotes": "A good answer explains why relationships matter and names graph construction challenges. A great answer covers entity resolution, bounded traversal, edge provenance, graph freshness, and when not to use Graph RAG.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -271,13 +271,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "A bank wants employees to search documents while respecting department and deal-room permissions.",
-      "expectedAnswer": "ACL-aware RAG enforces permissions during retrieval, not after generation. Chunks carry tenant, source, document, and permission metadata. Retrieval filters by user identity, groups, and policy before reranking and prompt assembly. The system must handle permission changes, deletions, audit logs, and tests for leakage. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A bank wants one internal assistant across legal, HR, wealth management, and deal-room documents. In testing, a user without deal-room access receives a summary that includes facts from a restricted M&A document because permission filtering happened only after generation.",
+      "expectedAnswer": "ACL-aware RAG means enforcing access control during retrieval and context assembly, not after the answer is generated. The core rule is simple: the model must never see chunks the user is not allowed to access. Each indexed chunk should carry authorization metadata such as tenant_id, document_id, source system, classification, allowed groups, denied groups, region, and effective permission timestamp. At query time, the retrieval layer applies identity-aware filters before or during vector search, then reranking and prompt assembly operate only on allowed candidates. This is especially important in enterprises because retrieval leakage can happen even when the final answer tries to hide details; the LLM may paraphrase restricted context. Implementation usually integrates with the identity provider and source-system ACLs, syncs permission changes, handles document deletion, and logs user, query, retrieved chunk IDs, permission decision, and answer citations. The tradeoff is search quality and operational complexity: strict filters can reduce recall, and high-cardinality ACL filters can hurt vector database performance. Validation requires adversarial tests with users from different groups and explicit checks for cross-tenant or cross-deal leakage.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A bank wants employees to search documents while respecting department and deal-room permissions. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for advanced rag.",
-        "example": "Example: when asked \"How do you design ACL-aware RAG?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The bug is a security architecture failure: restricted chunks reached the model. ACL-aware RAG fixes it by enforcing permissions before retrieval results are eligible for reranking or generation. The first action is to move permission checks into the retrieval query path and add tests proving restricted documents never enter the prompt.",
+        "howToApply": "During ingestion, attach source ACL metadata to every chunk and store it in the vector database or a sidecar authorization index. At request time, resolve the user identity and groups through Okta, Azure AD, or the enterprise IAM service. Apply filters such as tenant_id, allowed_group, document_classification, and deal_room_id before reranking. For vector stores that struggle with complex filters, pre-partition indexes by tenant or security domain and perform an authorization join before prompt assembly.",
+        "example": "User belongs to HR-General but not DealRoom-ProjectFalcon. The query \"summarize pending acquisition risks\" retrieves only HR policy and public strategy docs; ProjectFalcon chunks are filtered out before reranking. The trace records denied chunk IDs separately for audit but never sends their text to the model.",
+        "tradeoffs": "ACL filtering can reduce recall when permission metadata is stale or overly coarse. Complex group filters may increase query latency by 20-100 ms depending on the vector database and index design. Post-generation redaction is not an acceptable substitute because the model has already consumed restricted data. For highly sensitive domains, separate indexes per tenant or deal room are safer than one global index."
       },
       "relatedQuestions": [
         {
@@ -297,18 +297,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Filtering citations after generation while still sending restricted chunks to the model.",
+        "Indexing documents without chunk-level permission metadata.",
+        "Ignoring permission updates, group removals, legal holds, and document deletion events.",
+        "Testing only happy-path access instead of adversarial cross-group queries."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you design ACL filtering for a vector database with limited metadata filtering support?",
+        "What audit logs would you keep for regulated enterprise RAG?",
+        "How do you handle permission changes after chunks are already indexed?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A financial services firm piloted a single RAG assistant across research and investment banking but failed red-team tests due to cross-wall retrieval. The team moved from global vector search plus answer redaction to tenant and deal-room filtered retrieval with Azure AD group resolution. Leakage tests across 1,200 adversarial queries dropped from 7.4% to 0%, with median retrieval latency increasing by 65 ms.",
+      "interviewerNotes": "A strong candidate says clearly that unauthorized text must not enter the prompt. Great answers discuss source ACL sync, chunk metadata, filtered ANN performance, audit logs, deletion, and adversarial permission testing.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -337,13 +337,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through context compression for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define context compression, explain why it matters for advanced rag, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A customer support copilot retrieves 20 relevant chunks for complex troubleshooting questions, but the final prompt exceeds the token budget and the model misses the decisive log pattern near the middle. Reducing top-k hurts recall, while sending everything increases cost and hallucination risk.",
+      "expectedAnswer": "Context compression reduces retrieved material into a smaller, higher-signal context before generation. It is useful when retrieval returns many partially relevant chunks, documents are verbose, or the model context window is large enough to invite distraction but still expensive. Compression can be extractive, where the system selects the most relevant sentences or spans, or abstractive, where an LLM summarizes evidence while preserving key facts and citations. For RAG, extractive compression is often safer because it keeps source wording intact. Implementation usually runs after initial retrieval and before final prompt assembly: retrieve top 20-50 candidates, rerank them, compress the top results against the user query, then pass compressed snippets with source IDs to the generator. Tools such as LangChain contextual compression retrievers, Cohere Rerank, cross-encoders, or custom LLM extractors can help. The tradeoff is that compression can drop evidence needed for nuance or citations. It should be validated with context precision, context recall, faithfulness, and answer accuracy on long-context queries.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through context compression for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain context compression in a Advanced RAG interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The problem is not lack of retrieval; it is too much low-density context. Context compression fits because the system needs to preserve the decisive troubleshooting evidence while removing repetitive or irrelevant text. The first action is to measure which retrieved chunks actually support correct answers and tune compression against that benchmark.",
+        "howToApply": "Start with retrieval top-k high enough for recall, such as 30 chunks, then rerank to the best 8-12. Run extractive compression that selects only sentences mentioning the product, error code, version, and observed symptom. Preserve source IDs and offsets so citations still point to the original document. Add a maximum compressed token budget, for example 2,000 tokens, and fail open to the original top chunks if compression confidence is low.",
+        "example": "A query asks about \"timeout after upgrading agent 4.8\". Retrieved chunks include release notes, old timeout docs, and unrelated networking advice. Compression keeps: \"Agent 4.8 changes default heartbeat_timeout from 60s to 20s\" and \"increase server keepalive for proxies with idle timeout above 15s\", dropping installation boilerplate. The final answer cites the release note and proxy guide.",
+        "tradeoffs": "Compression saves tokens and can improve focus, but it adds latency and can remove context needed for edge cases. LLM-based compression may cost 5-20% of the final generation call depending on chunk volume. Extractive methods are safer for regulated answers; abstractive summaries are useful for long narratives but require faithfulness checks. Avoid compression for short, already precise retrieval results."
       },
       "relatedQuestions": [
         {
@@ -363,18 +363,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Using summarization that drops citations or changes source meaning.",
+        "Compressing before reranking and wasting work on weak candidates.",
+        "Optimizing for shorter prompts without measuring context recall.",
+        "Assuming larger context windows remove the need for context selection."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you evaluate whether compression removed important evidence?",
+        "When would you prefer extractive compression over abstractive summarization?",
+        "How does context compression interact with reranking and chunk size?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A B2B support platform handled troubleshooting tickets with logs, release notes, and KB articles. Initial RAG prompts averaged 11,000 tokens and still missed version-specific caveats. After adding cross-encoder reranking plus extractive sentence compression, prompt size dropped 54%, answer acceptance rose from 68% to 79%, and average LLM cost per ticket fell by 31%.",
+      "interviewerNotes": "Look for understanding that compression is a precision and cost-control step, not just summarization. Strong answers mention citation preservation, context recall, extractive versus abstractive methods, and where compression sits in the retrieval pipeline.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -403,13 +403,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through agentic RAG for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define agentic RAG, explain why it matters for advanced rag, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise research assistant must answer questions that may require searching policies, querying a SQL warehouse, checking a ticketing system, and asking a clarifying question when the request is ambiguous. A fixed retrieve-then-generate chain gives shallow answers and cannot decide which source to use.",
+      "expectedAnswer": "Agentic RAG uses an LLM-driven controller to decide retrieval actions, tool calls, and follow-up steps instead of running a fixed retrieval pipeline every time. It is useful when questions are open-ended, sources are heterogeneous, and the system must plan: search documents, inspect metadata, query a database, call an API, or ask for clarification. The agent should not be unconstrained. Production agentic RAG needs a bounded action set, tool schemas, step limits, retrieval policies, human approval for risky actions, and detailed traces. A common implementation uses a planner-executor pattern: classify the user intent, choose tools such as vector_search, sql_query, ticket_lookup, or summarize_evidence, then synthesize an answer from cited evidence. LangGraph is often a good fit because it models the agent as a state machine with explicit edges, retries, and termination conditions. The tradeoff is reliability: agents can loop, call unnecessary tools, or over-trust weak evidence. Evaluation should measure task success, tool precision, step count, latency, cost, and groundedness.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through agentic RAG for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain agentic RAG in a Advanced RAG interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "A fixed RAG chain is too rigid because the question may need documents, structured data, or clarification. Agentic RAG fits if the system has multiple tools and the right retrieval path depends on the user intent. The first action is to define safe tools and a state graph rather than giving the model unrestricted autonomy.",
+        "howToApply": "Create tool contracts for vector_search, metadata_filter, sql_query, ticket_lookup, and ask_clarifying_question. Use LangGraph or a similar orchestrator to maintain state, enforce a maximum of 4-6 steps, and stop when enough cited evidence exists. Validate tool arguments before execution and log every decision. Add fallback paths, such as switching to normal RAG if the planner has low confidence.",
+        "example": "User asks: \"Did the new retention policy affect open EU support escalations?\" The agent retrieves the retention policy, extracts \"EU data older than 24 months\", queries the ticket system for open EU escalations older than 24 months, then answers with counts and cited policy text. If the region is missing, it asks a clarifying question instead of guessing.",
+        "tradeoffs": "Agentic RAG improves flexibility but increases latency, cost, and test complexity. Each tool call adds failure modes, so step limits and typed tools matter. It is not appropriate for simple FAQ search where a deterministic pipeline is faster and easier to validate. Use agents when routing and evidence gathering are genuinely dynamic."
       },
       "relatedQuestions": [
         {
@@ -429,18 +429,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Calling any multi-step RAG pipeline an agent even when no decisions are made at runtime.",
+        "Giving the agent broad tools without permission checks or argument validation.",
+        "Forgetting termination rules, which leads to loops and unpredictable cost.",
+        "Evaluating only final answers and ignoring tool-call correctness."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you prevent an agentic RAG workflow from looping?",
+        "Which parts of agentic RAG should be deterministic?",
+        "How would you evaluate tool selection quality?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise IT assistant initially used one vector index for all support questions and failed on questions requiring ticket status or asset inventory. A LangGraph agent with document search, ServiceNow lookup, and CMDB tools improved task completion from 52% to 81% on 300 internal test tasks. Median latency increased from 1.4 seconds to 4.2 seconds, so the team routed simple FAQ queries to deterministic RAG.",
+      "interviewerNotes": "A strong candidate distinguishes agentic RAG from ordinary RAG and talks about bounded autonomy. Great answers mention LangGraph/state machines, tool schemas, step limits, traces, and evaluation of tool decisions.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -469,13 +469,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through adaptive retrieval for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define adaptive retrieval, explain why it matters for advanced rag, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A product documentation assistant uses the same top-k=8 vector retrieval for every query. Simple questions become expensive, while complex comparison questions still miss needed evidence from multiple product versions.",
+      "expectedAnswer": "Adaptive retrieval changes the retrieval strategy based on the query, user context, and intermediate confidence signals. Instead of using one fixed top-k, one index, and one retrieval method for every question, the system can choose between keyword search, vector search, hybrid search, metadata filters, reranking depth, multi-query retrieval, or no retrieval at all. It is useful when query types vary widely: exact error codes need lexical matching, conceptual questions benefit from dense retrieval, and comparison questions may need multiple targeted searches. Implementation starts with query classification or lightweight routing. Signals can include query length, presence of IDs or code terms, user role, conversation state, first-stage retrieval score distribution, and reranker confidence. The system might retrieve top-k=3 for high-confidence direct questions and top-k=30 plus reranking for ambiguous or multi-document questions. The tradeoff is complexity and unpredictable behavior if routing is poorly tested. Validation should segment metrics by query class, not average all questions together.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through adaptive retrieval for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain adaptive retrieval in a Advanced RAG interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The fixed retrieval policy is causing both waste and missed evidence. Adaptive retrieval fits because simple and complex queries need different retrieval depth and methods. The first action is to categorize query types and measure retrieval quality separately for each category.",
+        "howToApply": "Build a router that labels queries as exact lookup, conceptual, troubleshooting, comparison, or multi-document. Use BM25 or hybrid search for exact product codes, dense retrieval for semantic questions, and multi-query retrieval for comparisons. Adjust top-k and reranking depth based on confidence: for example top-k=5 without rerank for high-confidence exact hits, top-k=30 with rerank for ambiguous queries. Log route decisions and compare against an oracle route in evaluation.",
+        "example": "Query \"ERR-1842 in SDK 2.1\" routes to BM25 plus metadata filter version=2.1. Query \"compare OAuth migration steps between v1 and v2\" routes to two searches, one per version, with reranking and section-level context. The system spends more work only where the query needs it.",
+        "tradeoffs": "Adaptive retrieval can reduce average cost and improve hard-query recall, but it creates more branches to test. Bad routing can be worse than a fixed baseline because the right evidence is never searched. Keep a fallback route and monitor per-route hit rate, latency, and answer quality. Start with a few high-value routes before adding many special cases."
       },
       "relatedQuestions": [
         {
@@ -495,18 +495,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Changing top-k dynamically without measuring query classes separately.",
+        "Using an LLM router for every query when simple heuristics would work.",
+        "Forgetting fallback behavior when route confidence is low.",
+        "Optimizing average quality while hiding regressions in exact-match or multi-document queries."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What signals would you use to route a query to lexical versus vector search?",
+        "How would you evaluate an adaptive retrieval router?",
+        "When is a fixed retrieval pipeline preferable?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A developer documentation search system had 40% of traffic from exact error-code lookups and 20% from conceptual migration questions. Replacing fixed vector top-k=10 with adaptive BM25/hybrid/vector routing reduced median retrieval latency by 35% and improved success on migration comparison questions by 14 percentage points. The team kept a fallback hybrid route for low-confidence classifications.",
+      "interviewerNotes": "Strong candidates discuss query segmentation and route-specific evaluation. Great answers mention confidence thresholds, fallbacks, exact-match handling, and avoiding over-engineered routers.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -535,13 +535,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through multi-tenant RAG for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define multi-tenant RAG, explain why it matters for advanced rag, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A SaaS vendor wants one RAG platform for 600 customers, each with private documents, custom terminology, separate retention policies, and different model-provider contracts. A shared vector index is cheaper but raises leakage and noisy-neighbor concerns.",
+      "expectedAnswer": "Multi-tenant RAG is the design of retrieval, generation, storage, observability, and governance so multiple customers or business units can use the same platform without data leakage or unacceptable performance interference. The key design decision is tenant isolation. Small or low-risk tenants may share an index with strict tenant_id filters, while regulated or large tenants may require separate indexes, encryption keys, storage buckets, and model routes. Each chunk should include tenant_id, source_id, permission metadata, embedding version, retention policy, and deletion markers. Query paths must enforce tenant context before retrieval and should include quotas, rate limits, cost attribution, and tenant-aware logging. Prompt templates and glossary terms may also be tenant-specific. The tradeoff is cost versus isolation: separate indexes improve security and performance predictability but increase operational overhead. Validation requires cross-tenant leakage tests, noisy-neighbor load tests, deletion tests, and cost reporting per tenant.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through multi-tenant RAG for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for advanced rag.",
-        "example": "Example: when asked \"How would you explain multi-tenant RAG in a Advanced RAG interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The core problem is isolation across customers with different risk and scale profiles. Multi-tenant RAG should not be treated as only a metadata filter; it affects indexing, keys, routing, observability, and deletion. The first action is to classify tenants by risk and choose shared versus isolated infrastructure accordingly.",
+        "howToApply": "Add tenant context at request authentication and carry it through retrieval, reranking, prompt assembly, logging, and billing. Use separate indexes or namespaces for high-risk tenants and shared indexes with mandatory tenant_id filters for lower-risk tenants. Store tenant-specific prompt configuration, glossary, retention policy, and allowed model providers. Run automated tests that query Tenant A terms while authenticated as Tenant B and verify zero chunk exposure.",
+        "example": "Tenant A is a healthcare customer with HIPAA constraints, so it gets a dedicated Milvus collection, customer-managed key, and Azure OpenAI route. Tenant B is a small internal team and shares a collection with tenant_id filters. Both use the same RAG service API, but policies determine index, model route, retention, and logging behavior.",
+        "tradeoffs": "Shared indexes reduce cost but depend on flawless filtering and can suffer noisy-neighbor effects. Separate indexes cost more and complicate migrations but simplify compliance and deletion guarantees. Metadata filters may reduce ANN performance when tenant filters are highly selective. Use tiered tenancy instead of one design for every customer."
       },
       "relatedQuestions": [
         {
@@ -561,18 +561,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Assuming tenant_id filtering alone solves isolation for all risk levels.",
+        "Logging prompts, retrieved chunks, or traces without tenant-aware access controls.",
+        "Ignoring per-tenant deletion, retention, model routing, and cost attribution.",
+        "Testing functionality but not cross-tenant adversarial retrieval."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "When would you choose separate indexes over shared indexes with tenant filters?",
+        "How would you prove that tenant deletion is complete?",
+        "How do you design observability without leaking tenant data to platform operators?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A B2B knowledge-management SaaS moved from a single Pinecone index to tiered tenancy after enterprise customers requested stronger isolation. Regulated tenants received separate namespaces and encryption keys, while SMB tenants stayed in shared namespaces with strict filters. Cross-tenant red-team retrieval went from 0.6% leakage in early tests to zero observed leaks across 50,000 adversarial queries, with infrastructure cost increasing 22%.",
+      "interviewerNotes": "Look for end-to-end tenant thinking, not just vector-store namespaces. Great candidates cover auth propagation, filtered retrieval, key management, deletion, observability, cost attribution, and noisy-neighbor testing.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -601,13 +601,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through document intelligence RAG for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define document intelligence RAG, explain why it matters for advanced rag, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An insurance claims assistant retrieves policy text correctly but fails on scanned forms because tables, checkboxes, signatures, and handwritten notes are lost during PDF text extraction. Adjusters report that answers omit deductible values in 27% of tested claims.",
+      "expectedAnswer": "Document intelligence RAG extends ordinary text RAG to documents where layout, tables, forms, images, OCR quality, and page structure matter. Basic PDF text extraction often destroys the information needed to answer: table rows lose columns, headers detach from values, and checkboxes become invisible. A robust pipeline uses OCR and layout-aware parsing to extract text blocks, tables, key-value pairs, signatures, page numbers, and document hierarchy. Tools include Azure Document Intelligence, Google Document AI, AWS Textract, Unstructured, LlamaParse, and custom table parsers. The RAG index should preserve modality and layout metadata: page, bounding box, table ID, row/column labels, confidence, and source image reference. Retrieval may need separate indexes for narrative text, tables, and extracted fields. The answer generator should cite page regions or extracted fields, not just text chunks. Tradeoffs include OCR cost, processing latency, and extraction errors that can become grounded but wrong answers. Validation must include document-level tests for tables, forms, low-quality scans, and layout-sensitive questions.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through document intelligence RAG for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain document intelligence RAG in a Advanced RAG interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The issue is not the language model; the ingestion pipeline is losing structured document evidence. Document intelligence RAG fits because the answer depends on tables, checkboxes, and page layout. The first action is to evaluate extraction quality on representative scanned claims before changing retrieval or prompts.",
+        "howToApply": "Run documents through Azure Document Intelligence, Textract, or Google Document AI to extract text, tables, key-value pairs, and layout coordinates. Store table cells as structured records with row and column headers, and keep page/bounding-box metadata for citations. Create separate retrieval paths for narrative clauses and structured claim fields. Use extraction confidence to trigger human review when deductible or coverage values are uncertain.",
+        "example": "A scanned claim form has a table row \"Collision | Deductible | $1,000\" and a checked box for rental coverage. Plain OCR produces \"Collision Deductible Rental $1,000\" ambiguously. Layout-aware extraction stores coverage_type=Collision, field=Deductible, value=$1,000, page=3, bbox=[...], allowing the assistant to answer with a precise page citation.",
+        "tradeoffs": "Document intelligence pipelines cost more than plain text extraction and can add seconds per document during ingestion. OCR confidence varies with scan quality, handwriting, and rotated pages. Layout-aware indexing is worth it for forms, invoices, contracts, and claims, but may be unnecessary for clean Markdown or HTML docs. Always separate extraction confidence from LLM confidence."
       },
       "relatedQuestions": [
         {
@@ -627,18 +627,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Treating PDFs as plain text even when tables and forms carry the answer.",
+        "Ignoring OCR confidence and allowing low-confidence extracted values into final answers.",
+        "Chunking table text without preserving row and column relationships.",
+        "Providing citations to a document but not the page, table, or field that supports the answer."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you represent tables in a RAG index?",
+        "How do you handle low OCR confidence in production answers?",
+        "When should document intelligence use structured extraction instead of vector search?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An insurance carrier processing 2 million claims documents per year added Azure Document Intelligence before RAG indexing. Table-aware extraction reduced deductible-answer errors from 27% to 8% on a 500-claim benchmark. The team added human review for fields below 0.85 OCR confidence, which prevented low-quality scans from producing confident wrong answers.",
+      "interviewerNotes": "Strong answers identify ingestion and extraction as the root problem. Great candidates discuss layout metadata, table representation, OCR confidence, multimodal evidence, and field-level citations.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -667,13 +667,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through retrieval routing for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define retrieval routing, explain why it matters for advanced rag, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A company has separate indexes for HR policies, engineering runbooks, sales contracts, and support tickets. A single global retrieval call often returns popular HR documents for technical queries because they are semantically broad and heavily linked.",
+      "expectedAnswer": "Retrieval routing decides which retrieval source, index, tool, or strategy should handle a query before fetching context. It matters when a RAG system spans multiple domains with different schemas, permissions, update rates, and retrieval methods. Without routing, a global search can return plausible but wrong content from the wrong corpus. Routing can be rule-based, classifier-based, embedding-based, LLM-based, or hybrid. Signals include user role, page context, query terms, detected entities, source permissions, conversation history, and confidence from a small intent classifier. For example, \"VPN error 809 after certificate rotation\" should route to engineering runbooks and support tickets, while \"carryover vacation policy\" should route to HR. Implementation should allow multiple routes when ambiguity is high and should fall back to broad hybrid search if confidence is low. The tradeoff is that routing errors create hard failures because the right index is never searched. Evaluate route accuracy separately from final answer quality.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through retrieval routing for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain retrieval routing in a Advanced RAG interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The system is retrieving from the wrong corpus, so retrieval routing is the right control point. The assistant needs to choose engineering, HR, sales, or support sources before ranking chunks. The first action is to build a labeled routing dataset from real queries and measure global retrieval versus routed retrieval.",
+        "howToApply": "Create source descriptors for each corpus, including allowed users, document types, update frequency, and example queries. Use simple rules for high-precision patterns such as error codes or contract IDs, and a lightweight classifier or LLM router for ambiguous natural-language queries. Permit multi-route retrieval when confidence is below a threshold, for example below 0.75. Log selected routes, skipped routes, route confidence, and final answer citations.",
+        "example": "Query \"VPN error 809 after cert rotation\" contains an error code and infrastructure terms, so it routes to runbooks and support tickets. Query \"What is the PTO carryover limit?\" routes to HR policies. Query \"customer contract renewal support SLA\" routes to both contracts and support knowledge because it spans sales and support domains.",
+        "tradeoffs": "Routing reduces noise and cost but can hide the correct answer if the router is wrong. LLM routers are flexible but add latency and can be inconsistent; rules are fast but brittle. Multi-route fallback improves recall at the cost of more retrieval and reranking work. Monitor route confusion matrices by domain."
       },
       "relatedQuestions": [
         {
@@ -693,18 +693,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Using one global vector index for unrelated corpora and hoping reranking fixes source confusion.",
+        "Failing to evaluate routing accuracy as its own metric.",
+        "Making routing single-label when many enterprise questions span sources.",
+        "Ignoring user permissions when selecting routes."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you design a routing fallback when classifier confidence is low?",
+        "What features would help route technical support queries?",
+        "How is retrieval routing different from adaptive retrieval?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A Fortune 500 internal assistant routed all queries through one enterprise index and produced wrong-source answers in 19% of sampled failures. Adding a router for HR, IT, legal, and engineering sources reduced wrong-corpus retrieval by 63%. Multi-route fallback for low-confidence queries preserved recall, with average retrieval cost increasing only 9%.",
+      "interviewerNotes": "A strong candidate recognizes routing as source selection before retrieval. Great answers include confidence thresholds, multi-route fallback, route metrics, permissions, and source-specific retrieval strategies.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -733,13 +733,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through query expansion for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define query expansion, explain why it matters for advanced rag, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An e-commerce support search system misses relevant articles because customers search for \"refund not showing\" while internal articles use terms like \"settlement delay\", \"charge reversal\", and \"payment processor hold\". Exact search is too brittle and dense retrieval misses rare payment terms.",
+      "expectedAnswer": "Query expansion adds related terms, synonyms, acronyms, product names, or domain vocabulary to improve retrieval recall. It differs from query rewriting: rewriting turns a query into a better standalone query, while expansion broadens the query with alternate expressions that may appear in the corpus. Expansion is useful when users and documents use different vocabulary, when acronyms have long forms, or when rare domain terms matter. Implementation can use curated synonym dictionaries, taxonomy mappings, embedding neighbors, click logs, or an LLM that generates controlled alternatives. In RAG, expansion often works best with hybrid retrieval: send the original query plus expanded terms to BM25 and dense search, then rerank results to restore precision. The danger is query drift. Expanding \"refund\" to \"chargeback fraud\" may retrieve irrelevant or sensitive articles. Good systems keep the original query, cap expansion terms, tag expansions by source, and evaluate recall@k and precision@k. Expansion should be domain-specific; generic thesaurus expansion is usually noisy.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through query expansion for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain query expansion in a Advanced RAG interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The issue is vocabulary mismatch between customers and internal support terminology. Query expansion fits because it can add \"settlement delay\", \"charge reversal\", and \"processor hold\" while preserving the original phrase \"refund not showing\". The first action is to build a payment-domain synonym map from support articles and search logs.",
+        "howToApply": "Start with curated dictionaries for product names, acronyms, and support terminology. Add expansions at retrieval time as weighted terms rather than replacing the original query. Use hybrid search so BM25 benefits from exact expanded terms while dense retrieval captures semantic matches. Rerank the combined result set and track which expansion terms contributed to each retrieved document.",
+        "example": "User query: \"refund not showing\". Expansion terms: \"refund pending\", \"charge reversal\", \"settlement delay\", \"processor hold\", \"ACH return\". BM25 retrieves an article titled \"Card charge reversal delayed by processor hold\", dense search retrieves \"Why refunds take 5-10 business days\", and reranking places the processor-hold article first.",
+        "tradeoffs": "Expansion improves recall but can reduce precision if terms are too broad. Keep expansion lists small, often 3-8 terms, and prefer domain-curated terms over generic synonyms. Expansion is risky for ambiguous terms such as \"hold\" or \"charge\" without context. Use click-through, support resolution, and labeled retrieval tests to tune it."
       },
       "relatedQuestions": [
         {
@@ -759,18 +759,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Replacing the user query with expanded terms instead of preserving the original intent.",
+        "Using generic synonyms that do not match domain vocabulary.",
+        "Adding too many expansion terms and lowering precision.",
+        "Not tracking which expansion term caused a document to be retrieved."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you prevent query expansion from drifting into unrelated topics?",
+        "When would query expansion be better than query rewriting?",
+        "How would click logs help build an expansion dictionary?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A payments support team at an e-commerce marketplace used query expansion for refund and chargeback terminology across 80,000 help articles. Curated expansion terms from ticket tags improved recall@10 for payment-delay queries from 0.61 to 0.82. Precision initially dropped, but adding reranking and limiting expansions to five terms recovered precision@5 to within 2% of baseline.",
+      "interviewerNotes": "Good answers distinguish expansion from rewriting and mention domain vocabulary. Great answers cover weighting, hybrid retrieval, drift control, expansion provenance, and recall-precision evaluation.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -799,13 +799,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through hybrid RAG for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define hybrid RAG, explain why it matters for advanced rag, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A developer assistant must answer both \"How does authentication work?\" and \"What causes ERR_AUTH_042 in SDK 3.2.1?\" Pure vector search handles conceptual questions but misses exact error codes, while pure BM25 misses paraphrased architecture questions.",
+      "expectedAnswer": "Hybrid RAG combines lexical retrieval, usually BM25 or sparse vectors, with dense vector retrieval. It is valuable because different query types need different matching behavior. Dense retrieval captures semantic similarity and paraphrases, while lexical retrieval is better for exact identifiers, error codes, product SKUs, API names, legal clause numbers, and rare domain phrases. A hybrid system retrieves candidates from both methods, merges them using score normalization or reciprocal rank fusion, deduplicates, and usually reranks the combined set. In the SDK example, BM25 should strongly match ERR_AUTH_042 and version 3.2.1, while dense retrieval can find conceptual authentication architecture docs. The tradeoff is complexity: two retrieval systems, score calibration, index freshness, and more evaluation dimensions. Hybrid search should be evaluated by query class because averages hide important behavior. It is often the default production choice for enterprise RAG because real users mix exact lookup and semantic questions.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through hybrid RAG for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain hybrid RAG in a Advanced RAG interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The assistant has mixed query patterns, so neither pure dense nor pure lexical retrieval is sufficient. Hybrid RAG fits because exact error codes need lexical matching and conceptual questions need semantic matching. The first action is to build a test set segmented into exact-ID, troubleshooting, and conceptual queries.",
+        "howToApply": "Run BM25 through Elasticsearch, OpenSearch, Vespa, or a sparse retriever and dense retrieval through a vector database such as Milvus, Pinecone, Weaviate, or pgvector. Merge candidate lists using reciprocal rank fusion or normalized weighted scores. Deduplicate by document and chunk ID, then rerank the top 20-50 candidates with a cross-encoder or LLM reranker. Tune weights by query class rather than using one global value blindly.",
+        "example": "Query \"ERR_AUTH_042 SDK 3.2.1\" returns an exact BM25 hit on a release-note bug entry and dense hits on authentication troubleshooting pages. RRF merges them, reranking puts the release note first, and the answer explains that SDK 3.2.1 rejects rotated JWKS keys unless cache TTL is lowered.",
+        "tradeoffs": "Hybrid retrieval improves robustness but adds infrastructure and tuning. BM25 can over-rank keyword-stuffed pages, while dense retrieval can over-rank semantically broad but non-specific content. Score normalization is tricky because BM25 and vector scores have different meanings. If all queries are clean semantic QA over curated docs, dense-only may be simpler."
       },
       "relatedQuestions": [
         {
@@ -825,18 +825,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Assuming vector search replaces keyword search for IDs, codes, and exact names.",
+        "Combining BM25 and vector scores without normalization or rank fusion.",
+        "Evaluating hybrid retrieval only on semantic questions.",
+        "Skipping reranking after merging two noisy candidate sets."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you tune BM25 versus dense weights for different query classes?",
+        "What is reciprocal rank fusion and why is it useful?",
+        "When would sparse learned retrieval be better than BM25?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A cloud platform documentation assistant served both conceptual architecture questions and exact error-code lookups. Dense-only retrieval missed 31% of error-code answers, while BM25-only underperformed on paraphrased conceptual queries. Hybrid BM25 plus dense retrieval with RRF improved overall answer success from 71% to 84% and raised error-code recall@5 from 0.58 to 0.91.",
+      "interviewerNotes": "Strong candidates know why lexical and dense retrieval complement each other. Great answers mention rank fusion, query-class evaluation, score calibration, reranking, and exact identifier handling.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -865,13 +865,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through semantic chunking at scale for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define semantic chunking at scale, explain why it matters for advanced rag, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A knowledge platform ingests 50 million pages from PDFs, Confluence, HTML docs, and support tickets. Fixed 800-token chunks split procedures in the middle and merge unrelated sections, causing retrieval to return fragments that are individually relevant but not answerable.",
+      "expectedAnswer": "Semantic chunking splits documents according to meaning and structure rather than fixed token windows. At scale, the challenge is doing this consistently, cheaply, and with enough metadata to support retrieval, citations, and updates. Good chunk boundaries often follow headings, paragraphs, list items, table boundaries, code blocks, or topic shifts detected by embeddings. The goal is not to create perfect chunks but to create retrieval units that are coherent, answerable, and not too broad. For large corpora, a practical pipeline starts with structure-aware parsing, then applies token limits inside sections, preserves hierarchy metadata, and uses overlap only where needed. Embedding-based topic-shift detection can help but is expensive across tens of millions of pages, so it is usually reserved for long unstructured documents. Chunk size should be tuned against retrieval evaluation, not chosen by folklore. The tradeoff is operational cost: semantic chunking improves retrieval quality but makes incremental indexing, deduplication, and citation mapping more complex.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through semantic chunking at scale for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for advanced rag.",
-        "example": "Example: when asked \"How would you explain semantic chunking at scale in a Advanced RAG interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The fixed chunker is creating poor retrieval units, so semantic chunking is the right ingestion-level fix. The system needs chunks that preserve procedures, headings, and tables as answerable units. The first action is to sample failed queries and inspect whether the relevant evidence is split, merged, or missing.",
+        "howToApply": "Use document parsers that preserve hierarchy for each source type: Confluence headings, PDF layout, HTML sections, ticket fields, and code blocks. Create chunks at section or paragraph group boundaries with a target range such as 250-700 tokens and a hard cap around 1,000 tokens. Store metadata including heading path, page, source URL, section ID, and chunk version. Run incremental re-chunking only for changed sections to avoid re-embedding the entire corpus.",
+        "example": "A troubleshooting procedure has heading \"Rotate API keys\", steps 1-7, and a warning paragraph. Fixed chunking splits steps 1-4 from steps 5-7. Semantic chunking keeps the full procedure plus warning as one chunk of 620 tokens, making the retrieved context directly answerable.",
+        "tradeoffs": "Semantic chunking improves context coherence but increases ingestion complexity and parser dependency. Too-small chunks improve precision but lose context; too-large chunks increase prompt pollution. At 50 million pages, embedding-based boundary detection for every paragraph may be too expensive, so structure-first heuristics are often the right baseline. Evaluate with recall, answerability, and citation quality."
       },
       "relatedQuestions": [
         {
@@ -891,18 +891,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Choosing chunk size once and never validating it against retrieval failures.",
+        "Ignoring document structure such as headings, tables, and code blocks.",
+        "Using overlap everywhere, which increases duplicate retrieval and index size.",
+        "Re-chunking entire documents on small edits and causing unnecessary embedding churn."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "How would you evaluate whether a chunk is answerable?",
+        "How do you handle tables and code blocks in semantic chunking?",
+        "What metadata should be stored to support incremental re-indexing?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A large enterprise search team migrated 35 million documentation chunks from fixed 750-token windows to structure-aware chunks based on headings and tables. Retrieval answerability judged by human raters improved from 63% to 78%, and duplicate chunk retrieval dropped 22% after reducing blind overlap. Re-indexing cost was controlled by chunking only changed Confluence sections during nightly syncs.",
+      "interviewerNotes": "Good answers connect chunking to retrieval failures and answerability. Great candidates discuss source-specific parsing, metadata, incremental indexing, overlap strategy, and evaluation beyond token count.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -931,13 +931,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through RAG regression testing for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define RAG regression testing, explain why it matters for advanced rag, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A team improves its RAG prompt and upgrades the embedding model, but two days later support agents report that previously correct answers about refund windows are now citing outdated policy pages. There is no test suite showing which retrieval or generation behavior regressed.",
+      "expectedAnswer": "RAG regression testing ensures that changes to prompts, models, embeddings, chunking, reranking, or source data do not silently break known behavior. RAG systems are pipelines, so a regression can come from retrieval, context assembly, generation, citation formatting, safety filters, or data freshness. A good regression suite includes representative queries, expected answer criteria, required source documents or chunks, forbidden sources, and scenario metadata such as user role or tenant. Tests should evaluate retrieval and generation separately. Retrieval checks include hit rate, recall@k, MRR, required-document presence, and forbidden-document absence. Generation checks include groundedness, answer completeness, citation accuracy, refusal behavior, and format compliance. The suite should run before deploying prompt changes, embedding migrations, reranker changes, and ingestion pipeline updates. LLM-as-judge can help but should be calibrated with human-labeled examples. The tradeoff is maintenance: golden datasets go stale when policies change, so tests need ownership and source freshness metadata.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through RAG regression testing for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain RAG regression testing in a Advanced RAG interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real advanced rag setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The team has a classic RAG regression: a pipeline change broke a previously correct answer and nobody knows which layer failed. RAG regression testing fits because it creates repeatable checks for retrieval, citations, and generated answers before deployment. The first action is to turn the refund-window failures into golden test cases with required current policy sources and forbidden outdated sources.",
+        "howToApply": "Create a versioned evaluation dataset with query, user context, expected answer facts, required source IDs, and forbidden source IDs. Run retrieval-only tests after embedding or chunking changes, then generation tests after prompt or model changes. Use tools such as Ragas, DeepEval, LangSmith, Promptfoo, or custom pytest pipelines depending on the stack. Block deployment if required-source recall, citation accuracy, or groundedness drops below agreed thresholds.",
+        "example": "Test query: \"How long do premium customers have to request a refund?\" Required source: policy_2026_refunds section 3. Forbidden source: policy_2024_refunds. The regression test fails if top-5 retrieval misses policy_2026_refunds or if the answer cites the 2024 policy, even if the answer sounds plausible.",
+        "tradeoffs": "Regression tests catch repeat failures but cannot cover every possible user query. LLM judges add flexibility but can be inconsistent, so calibrate them against human labels. Strict golden answers can fail when policies legitimately change; store source freshness and review ownership. Run fast smoke tests on every change and deeper evaluation nightly."
       },
       "relatedQuestions": [
         {
@@ -952,18 +952,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Testing only final generated text and ignoring retrieval regressions.",
+        "Keeping golden answers without tracking source versions or policy freshness.",
+        "Using an LLM judge without calibration or spot checks.",
+        "Running evaluations manually after incidents instead of gating deployments."
       ],
       "followUpQuestions": [
-        "How would you validate this for Advanced RAG?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What should be in a golden dataset for RAG regression testing?",
+        "How would you separate retrieval failures from generation failures?",
+        "How do you handle tests when the underlying policy changes?"
       ],
-      "realWorldExample": "In an enterprise advanced rag setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A customer-support RAG system for a subscription business introduced nightly regression tests after an embedding migration surfaced outdated refund policies. The suite contained 1,200 labeled queries with required and forbidden source IDs. It caught three prompt regressions and one stale-index issue in the first month, reducing policy-related answer incidents by 46%.",
+      "interviewerNotes": "Strong candidates treat RAG as a pipeline with separate failure points. Great answers mention required sources, forbidden sources, dataset versioning, CI gates, LLM judge calibration, and ownership for stale tests.",
       "rubric": {
         "correctness": 3,
         "depth": 3,

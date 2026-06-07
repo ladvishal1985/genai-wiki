@@ -22,13 +22,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "A company wants a conversational assistant over millions of internal documents.",
-      "expectedAnswer": "Cover document ingestion, permissions, parsing, chunking, retrieval, reranking, answer generation, citations, conversation state, feedback, observability, model routing, and governance. Discuss non-functional requirements such as latency, scale, security, cost, availability, and freshness. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for Design ChatGPT for enterprise documents measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "Design ChatGPT for enterprise documents needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A company wants a conversational assistant over millions of internal documents. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design ChatGPT for enterprise documents.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. Design ChatGPT for enterprise documents addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -38,18 +38,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining Design ChatGPT for enterprise documents as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that Design ChatGPT for enterprise documents improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying Design ChatGPT for enterprise documents, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied Design ChatGPT for enterprise documents in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for Design ChatGPT for enterprise documents, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -78,13 +78,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "An insurance company processes claims documents, forms, and invoices.",
-      "expectedAnswer": "Include upload, OCR, layout-aware parsing, table extraction, classification, entity extraction, human review, storage, search, RAG, confidence scoring, and audit logs. Discuss accuracy, throughput, latency, compliance, and integration with downstream workflows. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for document intelligence platform measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "document intelligence platform needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An insurance company processes claims documents, forms, and invoices. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design a document intelligence platform.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. document intelligence platform addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -99,18 +99,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining document intelligence platform as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that document intelligence platform improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying document intelligence platform, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied document intelligence platform in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for document intelligence platform, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -139,13 +139,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "A global enterprise wants semantic and keyword search across all knowledge repositories.",
-      "expectedAnswer": "Discuss ingestion pipelines, sharding, metadata, lexical and vector indexes, hybrid retrieval, reranking, caching, access control, query understanding, evaluation, freshness, and cost. Scale choices should cover index partitioning, recall-latency tradeoffs, and monitoring. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for Design AI search over 500 million documents measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "Design AI search over 500 million documents needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A global enterprise wants semantic and keyword search across all knowledge repositories. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design AI search over 500 million documents.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. Design AI search over 500 million documents addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -165,18 +165,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining Design AI search over 500 million documents as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that Design AI search over 500 million documents improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying Design AI search over 500 million documents, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied Design AI search over 500 million documents in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for Design AI search over 500 million documents, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -205,13 +205,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "A productivity assistant should remember preferences and project context safely.",
-      "expectedAnswer": "Cover memory types, write policies, retrieval policies, consent, privacy, retention, correction, tenant isolation, user controls, summarization, and evaluation. Strong answers avoid storing everything and distinguish user memory from task state. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for enterprise memory system for AI assistants measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "enterprise memory system for AI assistants needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A productivity assistant should remember preferences and project context safely. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design an enterprise memory system for AI assistants.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. enterprise memory system for AI assistants addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -231,18 +231,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining enterprise memory system for AI assistants as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that enterprise memory system for AI assistants improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying enterprise memory system for AI assistants, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied enterprise memory system for AI assistants in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for enterprise memory system for AI assistants, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -271,13 +271,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "Many teams need to compare prompts and models before production rollout.",
-      "expectedAnswer": "Include dataset management, prompt/model versioning, test runs, LLM-as-judge, human review, metrics, trace replay, regression gates, dashboards, and deployment integration. Discuss calibration, cost, reproducibility, and business-specific rubrics. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for evaluation platform for GenAI apps measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "evaluation platform for GenAI apps needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: Many teams need to compare prompts and models before production rollout. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design an evaluation platform for GenAI apps.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. evaluation platform for GenAI apps addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -297,18 +297,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining evaluation platform for GenAI apps as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that evaluation platform for GenAI apps improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying evaluation platform for GenAI apps, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied evaluation platform for GenAI apps in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for evaluation platform for GenAI apps, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -337,13 +337,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "An interviewer asks you to reason through secure RAG platform for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define secure RAG platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for secure RAG platform measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "secure RAG platform needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Milvus or pgvector, OpenSearch BM25, a cross-encoder reranker, and Ragas-style evaluation, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is retrieving plausible but unsupported context; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through secure RAG platform for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design around secure RAG platform.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to retrieving plausible but unsupported context. secure RAG platform addresses that risk through retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Milvus or pgvector, OpenSearch BM25, a cross-encoder reranker, and Ragas-style evaluation, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -363,18 +363,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining secure RAG platform as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: retrieving plausible but unsupported context.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that secure RAG platform improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying secure RAG platform, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied secure RAG platform in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from retrieving plausible but unsupported context, causing roughly 25% of reviewed cases to require manual correction. The team implemented retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks using Milvus or pgvector, OpenSearch BM25, a cross-encoder reranker, and Ragas-style evaluation, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for secure RAG platform, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -403,13 +403,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "An interviewer asks you to reason through multi-agent research assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define multi-agent research assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for multi-agent research assistant measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "multi-agent research assistant needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is bounded planning, typed tool calls, state management, approval gates, and trace-based evaluation. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using LangGraph, tool schemas, ServiceNow/Jira APIs, and LangSmith traces, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is unbounded autonomy, tool misuse, loops, and hidden state corruption; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through multi-agent research assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design around multi-agent research assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to unbounded autonomy, tool misuse, loops, and hidden state corruption. multi-agent research assistant addresses that risk through bounded planning, typed tool calls, state management, approval gates, and trace-based evaluation, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with LangGraph, tool schemas, ServiceNow/Jira APIs, and LangSmith traces, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds bounded planning, typed tool calls, state management, approval gates, and trace-based evaluation; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -429,18 +429,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining multi-agent research assistant as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: unbounded autonomy, tool misuse, loops, and hidden state corruption.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that multi-agent research assistant improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying multi-agent research assistant, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied multi-agent research assistant in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from unbounded autonomy, tool misuse, loops, and hidden state corruption, causing roughly 25% of reviewed cases to require manual correction. The team implemented bounded planning, typed tool calls, state management, approval gates, and trace-based evaluation using LangGraph, tool schemas, ServiceNow/Jira APIs, and LangSmith traces, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for multi-agent research assistant, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -469,13 +469,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "An interviewer asks you to reason through AI coding assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define AI coding assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for AI coding assistant measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "AI coding assistant needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through AI coding assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design around AI coding assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. AI coding assistant addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -495,18 +495,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining AI coding assistant as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that AI coding assistant improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying AI coding assistant, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied AI coding assistant in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for AI coding assistant, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -535,13 +535,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "An interviewer asks you to reason through customer support copilot for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define customer support copilot, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for customer support copilot measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "customer support copilot needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through customer support copilot for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design around customer support copilot.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. customer support copilot addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -561,18 +561,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining customer support copilot as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that customer support copilot improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying customer support copilot, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied customer support copilot in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for customer support copilot, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -601,13 +601,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "An interviewer asks you to reason through meeting intelligence assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define meeting intelligence assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for meeting intelligence assistant measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "meeting intelligence assistant needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through meeting intelligence assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design around meeting intelligence assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. meeting intelligence assistant addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -627,18 +627,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining meeting intelligence assistant as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that meeting intelligence assistant improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying meeting intelligence assistant, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied meeting intelligence assistant in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for meeting intelligence assistant, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -667,13 +667,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "An interviewer asks you to reason through enterprise knowledge graph assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define enterprise knowledge graph assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for enterprise knowledge graph assistant measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "enterprise knowledge graph assistant needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through enterprise knowledge graph assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design around enterprise knowledge graph assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. enterprise knowledge graph assistant addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -693,18 +693,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining enterprise knowledge graph assistant as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that enterprise knowledge graph assistant improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying enterprise knowledge graph assistant, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied enterprise knowledge graph assistant in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for enterprise knowledge graph assistant, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -733,13 +733,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "An interviewer asks you to reason through personalized learning assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define personalized learning assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for personalized learning assistant measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "personalized learning assistant needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through personalized learning assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design around personalized learning assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. personalized learning assistant addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -759,18 +759,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining personalized learning assistant as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that personalized learning assistant improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying personalized learning assistant, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied personalized learning assistant in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for personalized learning assistant, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -799,13 +799,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "An interviewer asks you to reason through contract review assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define contract review assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for contract review assistant measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "contract review assistant needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through contract review assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design around contract review assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. contract review assistant addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -825,18 +825,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining contract review assistant as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that contract review assistant improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying contract review assistant, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied contract review assistant in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for contract review assistant, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -865,13 +865,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "An interviewer asks you to reason through LLM gateway platform for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define LLM gateway platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for LLM gateway platform measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "LLM gateway platform needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is model behavior control through decoding, grounding, evaluation, routing, and observability. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is fluent output that hides uncertainty, cost, or latency problems; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through LLM gateway platform for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design around LLM gateway platform.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to fluent output that hides uncertainty, cost, or latency problems. LLM gateway platform addresses that risk through model behavior control through decoding, grounding, evaluation, routing, and observability, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds model behavior control through decoding, grounding, evaluation, routing, and observability; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -891,18 +891,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining LLM gateway platform as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: fluent output that hides uncertainty, cost, or latency problems.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that LLM gateway platform improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying LLM gateway platform, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied LLM gateway platform in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from fluent output that hides uncertainty, cost, or latency problems, causing roughly 25% of reviewed cases to require manual correction. The team implemented model behavior control through decoding, grounding, evaluation, routing, and observability using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for LLM gateway platform, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,
@@ -931,13 +931,13 @@
       ],
       "estimatedMinutes": 12,
       "points": 15,
-      "scenario": "An interviewer asks you to reason through AI workflow automation platform for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define AI workflow automation platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "An enterprise product engineering group runs large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. A recent review found that the design solves the demo but misses scale, permissions, observability, and evaluation; the system must support 50k daily users with p95 latency under 2.5 seconds, so the team needs a reliable approach for AI workflow automation platform measured by answer quality, availability, latency, cost, safety incidents, and user adoption.",
+      "expectedAnswer": "AI workflow automation platform needs an end-to-end design that covers requirements, data flow, serving path, evaluation, and operations. In large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from documents, user actions, conversations, tool results, traces, and feedback labels, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use answer quality, availability, latency, cost, safety incidents, and user adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through AI workflow automation platform for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
-        "example": "Example: when asked \"Design around AI workflow automation platform.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. AI workflow automation platform addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "howToApply": "Start with 50-200 representative examples from documents, user actions, conversations, tool results, traces, and feedback labels. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor answer quality, availability, latency, cost, safety incidents, and user adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -952,18 +952,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining AI workflow automation platform as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of answer quality, availability, latency, cost, safety incidents, and user adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for GenAI System Design?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that AI workflow automation platform improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying AI workflow automation platform, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise genai system design setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "An enterprise product engineering group applied AI workflow automation platform in large-scale GenAI product with ingestion, retrieval, generation, tools, memory, and evaluation. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against answer quality, availability, latency, cost, safety incidents, and user adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for AI workflow automation platform, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 4,
         "depth": 3,

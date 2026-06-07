@@ -568,19 +568,46 @@ for (const topic of topics) {
 }
 
 function buildAnswerFramework(topic, title, type, expectedAnswer, scenario) {
-  const scenarioResponse = `Start from the scenario: ${scenario} In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.`
+  const scenarioResponse = type === 'tradeoff'
+    ? `In this scenario, I would compare the practical options instead of picking a default. ${expectedAnswer} I would choose the option that best matches the current data freshness, control, cost, latency, and governance needs, then validate the decision with a small production-like evaluation.`
+    : type === 'system-design'
+      ? `In this scenario, I would first clarify scale, users, data sources, latency, security, and quality expectations. Then I would design the flow end to end: ingestion or request handling, core model/retrieval components, evaluation, observability, access control, and rollout. ${expectedAnswer}`
+      : type === 'architecture'
+        ? `In this scenario, I would turn the concept into an architecture decision. ${expectedAnswer} I would define the platform boundary, ownership, controls, operational metrics, and failure handling before recommending it for production.`
+        : type === 'debugging'
+          ? `In this scenario, I would treat the question as a production issue. ${expectedAnswer} I would confirm the symptom, inspect data and traces, isolate the failing layer, fix the immediate problem, and add monitoring or regression tests to prevent recurrence.`
+          : type === 'leadership'
+            ? `In this scenario, I would align stakeholders on the business outcome first. ${expectedAnswer} I would make the risk, adoption plan, governance checkpoints, and success metrics explicit so the AI work is useful beyond the demo.`
+            : type === 'scenario'
+              ? `In this scenario, I would act on the user problem directly. ${expectedAnswer} I would describe the concrete change I would make, why it fits the situation, and how I would verify that the user experience or system behavior improved.`
+              : `In this scenario, I would define the concept briefly and apply it to the actual product, model, workflow, or architecture decision. ${expectedAnswer} I would close by naming the production signal that proves the concept was applied correctly.`
+
   const howToApply = type === 'system-design' || type === 'architecture'
-    ? `Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ${topic.title.toLowerCase()}.`
-    : `Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.`
-  const example = `Example: when asked "${title}", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ${topic.title.toLowerCase()} setting.`
-  const tradeoffs = `Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success.`
+    ? `I would apply this by defining the request/data flow, deciding which components own retrieval, reasoning, validation, storage, and observability, and then adding security, evaluation, and rollout gates before production use.`
+    : type === 'tradeoff'
+      ? `I would apply this by listing two or three viable choices, selecting one for the scenario, naming the risk I accept, and defining the signal that would cause me to revisit the decision.`
+      : type === 'debugging'
+        ? `I would apply this by reproducing the issue, checking the most likely failure points, comparing expected versus actual behavior, and turning the fix into a test or monitor.`
+        : type === 'scenario'
+          ? `I would apply this by making the user question or business problem concrete, selecting the implementation step that removes ambiguity, and validating the improvement through answer quality, retrieval quality, user feedback, or operational metrics.`
+        : `I would apply this by connecting the concept to the user workflow, choosing a practical implementation path, and measuring whether the result improves quality, speed, reliability, or user trust.`
+
+  const example = type === 'system-design'
+    ? `For example, if the scenario is "${scenario}", I would sketch a production design with clear data boundaries, retrieval/model choices, evaluation datasets, fallback paths, and deployment stages rather than only naming technologies.`
+    : type === 'tradeoff'
+      ? `For example, if the scenario is "${scenario}", I would state which option I choose first, why the other option is less suitable right now, and what metric or incident would make me switch.`
+      : type === 'scenario'
+        ? `For example, if the scenario is "${scenario}", I would turn the vague request into a concrete system action, show the expected output, and compare it against a baseline answer or workflow to prove the change helped.`
+      : `For example, if the scenario is "${scenario}", I would describe the first implementation step, the expected improvement, and the evidence I would collect to prove the answer works in practice.`
+
+  const tradeoffs = `The main tradeoffs are quality, latency, cost, maintainability, governance, and user trust. I would avoid optimizing only one dimension; for interview purposes I would explain the choice, the risk, the mitigation, and the metric that shows whether the decision is working.`
 
   return {
     scenarioResponse,
     howToApply,
     example,
     tradeoffs,
-    conciseAnswer: `${expectedAnswer} Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.`
+    conciseAnswer: `${expectedAnswer} In the scenario "${scenario}", I would apply this by choosing the approach that fits the real constraint, explaining the tradeoff, and validating the result with measurable quality, reliability, cost, or adoption signals.`
   }
 }
 
@@ -615,6 +642,34 @@ function buildRelatedQuestions(topic, index) {
   }
 
   return links
+}
+
+function buildRealWorldExample(topic, title, type, scenario) {
+  if (type === 'system-design') {
+    return `A good real-world answer would say: for "${scenario}", I would design the system from user request to final response, define the data and permission boundaries, choose retrieval/model components, add evaluation and tracing, and roll it out behind a measured pilot before expanding usage.`
+  }
+
+  if (type === 'architecture') {
+    return `A good real-world answer would say: for "${scenario}", I would define the architecture boundary, decide what the platform owns versus the application team owns, enforce security and governance at the right layer, and monitor the system with reliability and quality metrics.`
+  }
+
+  if (type === 'tradeoff') {
+    return `A good real-world answer would say: for "${scenario}", I would compare the options, choose the one that fits the current constraints, name the downside I am accepting, and define the metric or user feedback that would make me change the decision.`
+  }
+
+  if (type === 'debugging') {
+    return `A good real-world answer would say: for "${scenario}", I would treat it as an incident, reproduce the symptom, inspect traces and data quality, isolate the failing step, ship the fix, and add a regression test or alert so the issue does not return.`
+  }
+
+  if (type === 'leadership') {
+    return `A good real-world answer would say: for "${scenario}", I would align stakeholders on the business outcome, define what success and failure look like, manage risk through governance, and drive adoption with feedback loops rather than assuming the AI feature will be trusted automatically.`
+  }
+
+  if (type === 'scenario') {
+    return `A good real-world answer would say: for "${scenario}", I would take a concrete action, explain why it fits the situation, show the expected behavior with an example, and measure whether the user outcome improved.`
+  }
+
+  return `A good real-world answer would say: for "${scenario}", I would define the concept briefly, apply it to the product or platform decision, give one implementation example, and state the tradeoff I would watch in production.`
 }
 
 function buildQuestion(topic, item, index) {
@@ -653,7 +708,7 @@ function buildQuestion(topic, item, index) {
       'What would change at enterprise scale?',
       'What failure modes would you monitor?'
     ],
-    realWorldExample: `In an enterprise ${topic.title.toLowerCase()} setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.`,
+    realWorldExample: buildRealWorldExample(topic, title, type, scenario),
     interviewerNotes: `A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.`,
     rubric: {
       correctness: type === 'system-design' ? 4 : 3,

@@ -22,13 +22,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "A CTO asks for one strategy across support, legal, and engineering assistants.",
-      "expectedAnswer": "RAG is for grounding answers in changing or access-controlled knowledge. Fine-tuning is for behavior, style, domain adaptation, or task performance. Architects should consider data freshness, governance, cost, latency, evaluation, and whether a hybrid approach is needed. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for At architecture level, how do you decide between RAG and fine-tuning measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "At architecture level, how do you decide between RAG and fine-tuning requires comparing at least two viable choices instead of assuming one technique is universally better. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Milvus or pgvector, OpenSearch BM25, a cross-encoder reranker, and Ragas-style evaluation, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is retrieving plausible but unsupported context; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A CTO asks for one strategy across support, legal, and engineering assistants. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"At architecture level, how do you decide between RAG and fine-tuning?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to retrieving plausible but unsupported context. At architecture level, how do you decide between RAG and fine-tuning addresses that risk through retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with Milvus or pgvector, OpenSearch BM25, a cross-encoder reranker, and Ragas-style evaluation, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -38,18 +38,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining At architecture level, how do you decide between RAG and fine-tuning as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: retrieving plausible but unsupported context.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that At architecture level, how do you decide between RAG and fine-tuning improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying At architecture level, how do you decide between RAG and fine-tuning, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied At architecture level, how do you decide between RAG and fine-tuning in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from retrieving plausible but unsupported context, causing roughly 25% of reviewed cases to require manual correction. The team implemented retrieval grounding with chunking, hybrid search, reranking, citations, and faithfulness checks using Milvus or pgvector, OpenSearch BM25, a cross-encoder reranker, and Ragas-style evaluation, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for At architecture level, how do you decide between RAG and fine-tuning, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -78,13 +78,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An assistant needs both session context and long-term user preferences.",
-      "expectedAnswer": "Postgres is durable, relational, queryable, and strong for governed long-term memory. Redis is fast and useful for ephemeral session state, caches, and short-lived memory. A strong answer discusses consistency, retention, search needs, scaling, cost, and compliance. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for Postgres vs Redis for AI memory: how do you choose measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "Postgres vs Redis for AI memory: how do you choose requires comparing at least two viable choices instead of assuming one technique is universally better. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is Postgres vs Redis for AI memory: how do you choose applied with clear problem framing, measurable validation, operational controls, and production feedback. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is generic implementation that cannot be measured or operated; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An assistant needs both session context and long-term user preferences. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"Postgres vs Redis for AI memory: how do you choose?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to generic implementation that cannot be measured or operated. Postgres vs Redis for AI memory: how do you choose addresses that risk through Postgres vs Redis for AI memory: how do you choose applied with clear problem framing, measurable validation, operational controls, and production feedback, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds Postgres vs Redis for AI memory: how do you choose applied with clear problem framing, measurable validation, operational controls, and production feedback; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -99,18 +99,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining Postgres vs Redis for AI memory: how do you choose as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: generic implementation that cannot be measured or operated.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that Postgres vs Redis for AI memory: how do you choose improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying Postgres vs Redis for AI memory: how do you choose, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied Postgres vs Redis for AI memory: how do you choose in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from generic implementation that cannot be measured or operated, causing roughly 25% of reviewed cases to require manual correction. The team implemented Postgres vs Redis for AI memory: how do you choose applied with clear problem framing, measurable validation, operational controls, and production feedback using domain datasets, baselines, monitoring, evaluation dashboards, and human review, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for Postgres vs Redis for AI memory: how do you choose, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -139,13 +139,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "A web assistant streams model tokens and occasionally needs client-side interruption.",
-      "expectedAnswer": "SSE is simpler and works well for one-way server-to-client token streaming. WebSockets support bidirectional communication and richer interactive protocols. Choose based on interaction pattern, infrastructure support, reconnection, scale, and operational complexity. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for SSE vs WebSockets for streaming LLM output measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "SSE vs WebSockets for streaming LLM output requires comparing at least two viable choices instead of assuming one technique is universally better. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is model behavior control through decoding, grounding, evaluation, routing, and observability. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is fluent output that hides uncertainty, cost, or latency problems; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A web assistant streams model tokens and occasionally needs client-side interruption. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"SSE vs WebSockets for streaming LLM output?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to fluent output that hides uncertainty, cost, or latency problems. SSE vs WebSockets for streaming LLM output addresses that risk through model behavior control through decoding, grounding, evaluation, routing, and observability, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds model behavior control through decoding, grounding, evaluation, routing, and observability; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -165,18 +165,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining SSE vs WebSockets for streaming LLM output as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: fluent output that hides uncertainty, cost, or latency problems.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that SSE vs WebSockets for streaming LLM output improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying SSE vs WebSockets for streaming LLM output, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied SSE vs WebSockets for streaming LLM output in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from fluent output that hides uncertainty, cost, or latency problems, causing roughly 25% of reviewed cases to require manual correction. The team implemented model behavior control through decoding, grounding, evaluation, routing, and observability using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for SSE vs WebSockets for streaming LLM output, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -205,13 +205,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "A provider outage breaks several internal assistants.",
-      "expectedAnswer": "Reliability requires retries, fallbacks, circuit breakers, rate limits, provider failover, timeouts, graceful degradation, caching, evaluation gates, monitoring, and incident response. Architects should define SLOs and distinguish model errors from system errors. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for design reliable GenAI systems measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "design reliable GenAI systems belongs in the architecture discussion because it affects ownership boundaries, controls, observability, and rollout. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: A provider outage breaks several internal assistants. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for architect rounds.",
-        "example": "Example: when asked \"How do you design reliable GenAI systems?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. design reliable GenAI systems addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -231,18 +231,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining design reliable GenAI systems as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that design reliable GenAI systems improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying design reliable GenAI systems, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied design reliable GenAI systems in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for design reliable GenAI systems, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -271,13 +271,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "Procurement asks how to choose between model providers and AI platforms.",
-      "expectedAnswer": "Evaluate quality on your tasks, security, compliance, data usage terms, latency, uptime, roadmap, pricing, integration fit, observability, support, lock-in risk, and exit strategy. Strong answers include proof-of-concept evaluation and contractual governance. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for evaluate GenAI vendors measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "evaluate GenAI vendors belongs in the architecture discussion because it affects ownership boundaries, controls, observability, and rollout. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is evaluate GenAI vendors applied with clear problem framing, measurable validation, operational controls, and production feedback. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is generic implementation that cannot be measured or operated; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: Procurement asks how to choose between model providers and AI platforms. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for architect rounds.",
-        "example": "Example: when asked \"How do you evaluate GenAI vendors?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to generic implementation that cannot be measured or operated. evaluate GenAI vendors addresses that risk through evaluate GenAI vendors applied with clear problem framing, measurable validation, operational controls, and production feedback, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds evaluate GenAI vendors applied with clear problem framing, measurable validation, operational controls, and production feedback; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -297,18 +297,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining evaluate GenAI vendors as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: generic implementation that cannot be measured or operated.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that evaluate GenAI vendors improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying evaluate GenAI vendors, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied evaluate GenAI vendors in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from generic implementation that cannot be measured or operated, causing roughly 25% of reviewed cases to require manual correction. The team implemented evaluate GenAI vendors applied with clear problem framing, measurable validation, operational controls, and production feedback using domain datasets, baselines, monitoring, evaluation dashboards, and human review, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for evaluate GenAI vendors, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -337,13 +337,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through model routing strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define model routing strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for model routing strategy measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "model routing strategy is important because it changes how the system is designed, measured, and trusted in production. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is model behavior control through decoding, grounding, evaluation, routing, and observability. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is fluent output that hides uncertainty, cost, or latency problems; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through model routing strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain model routing strategy in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to fluent output that hides uncertainty, cost, or latency problems. model routing strategy addresses that risk through model behavior control through decoding, grounding, evaluation, routing, and observability, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds model behavior control through decoding, grounding, evaluation, routing, and observability; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -363,18 +363,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining model routing strategy as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: fluent output that hides uncertainty, cost, or latency problems.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that model routing strategy improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying model routing strategy, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied model routing strategy in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from fluent output that hides uncertainty, cost, or latency problems, causing roughly 25% of reviewed cases to require manual correction. The team implemented model behavior control through decoding, grounding, evaluation, routing, and observability using OpenAI/Azure OpenAI, vLLM, LiteLLM, model gateways, and eval datasets, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for model routing strategy, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -403,13 +403,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through observability architecture for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define observability architecture, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for observability architecture measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "observability architecture is best explained by starting from the failure users are seeing and then naming the system change that removes that failure. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through observability architecture for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain observability architecture in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. observability architecture addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -429,18 +429,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining observability architecture as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that observability architecture improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying observability architecture, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied observability architecture in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for observability architecture, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -469,13 +469,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through governance architecture for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define governance architecture, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for governance architecture measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "governance architecture requires comparing at least two viable choices instead of assuming one technique is universally better. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is demo-oriented design that ignores scale, permissions, cost, or operations; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through governance architecture for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain governance architecture in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to demo-oriented design that ignores scale, permissions, cost, or operations. governance architecture addresses that risk through requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -495,18 +495,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining governance architecture as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: demo-oriented design that ignores scale, permissions, cost, or operations.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that governance architecture improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying governance architecture, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied governance architecture in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from demo-oriented design that ignores scale, permissions, cost, or operations, causing roughly 25% of reviewed cases to require manual correction. The team implemented requirements-driven architecture with clear data flow, failure handling, observability, security, and rollout using Kafka, Kubernetes, Redis, model registries, gateways, and OpenTelemetry, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for governance architecture, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -535,13 +535,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through cost optimization strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define cost optimization strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for cost optimization strategy measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "cost optimization strategy belongs in the architecture discussion because it affects ownership boundaries, controls, observability, and rollout. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is cost optimization strategy applied with clear problem framing, measurable validation, operational controls, and production feedback. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is generic implementation that cannot be measured or operated; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through cost optimization strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for architect rounds.",
-        "example": "Example: when asked \"How would you explain cost optimization strategy in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to generic implementation that cannot be measured or operated. cost optimization strategy addresses that risk through cost optimization strategy applied with clear problem framing, measurable validation, operational controls, and production feedback, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds cost optimization strategy applied with clear problem framing, measurable validation, operational controls, and production feedback; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -561,18 +561,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining cost optimization strategy as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: generic implementation that cannot be measured or operated.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that cost optimization strategy improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying cost optimization strategy, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied cost optimization strategy in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from generic implementation that cannot be measured or operated, causing roughly 25% of reviewed cases to require manual correction. The team implemented cost optimization strategy applied with clear problem framing, measurable validation, operational controls, and production feedback using domain datasets, baselines, monitoring, evaluation dashboards, and human review, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for cost optimization strategy, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -601,13 +601,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through build versus buy platform decision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define build versus buy platform decision, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for build versus buy platform decision measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "build versus buy platform decision should be approached as a production failure: reproduce it, isolate the layer, fix the cause, and prevent recurrence. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is build versus buy platform decision applied with clear problem framing, measurable validation, operational controls, and production feedback. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is generic implementation that cannot be measured or operated; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through build versus buy platform decision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain build versus buy platform decision in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to generic implementation that cannot be measured or operated. build versus buy platform decision addresses that risk through build versus buy platform decision applied with clear problem framing, measurable validation, operational controls, and production feedback, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds build versus buy platform decision applied with clear problem framing, measurable validation, operational controls, and production feedback; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -627,18 +627,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining build versus buy platform decision as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: generic implementation that cannot be measured or operated.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that build versus buy platform decision improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying build versus buy platform decision, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied build versus buy platform decision in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from generic implementation that cannot be measured or operated, causing roughly 25% of reviewed cases to require manual correction. The team implemented build versus buy platform decision applied with clear problem framing, measurable validation, operational controls, and production feedback using domain datasets, baselines, monitoring, evaluation dashboards, and human review, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for build versus buy platform decision, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -667,13 +667,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through data residency strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define data residency strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for data residency strategy measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "data residency strategy is important because it changes how the system is designed, measured, and trusted in production. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is data residency strategy applied with clear problem framing, measurable validation, operational controls, and production feedback. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is generic implementation that cannot be measured or operated; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through data residency strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain data residency strategy in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to generic implementation that cannot be measured or operated. data residency strategy addresses that risk through data residency strategy applied with clear problem framing, measurable validation, operational controls, and production feedback, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds data residency strategy applied with clear problem framing, measurable validation, operational controls, and production feedback; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -693,18 +693,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining data residency strategy as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: generic implementation that cannot be measured or operated.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that data residency strategy improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying data residency strategy, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied data residency strategy in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from generic implementation that cannot be measured or operated, causing roughly 25% of reviewed cases to require manual correction. The team implemented data residency strategy applied with clear problem framing, measurable validation, operational controls, and production feedback using domain datasets, baselines, monitoring, evaluation dashboards, and human review, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for data residency strategy, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 2,
@@ -733,13 +733,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through AI reliability strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define AI reliability strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for AI reliability strategy measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "AI reliability strategy is best explained by starting from the failure users are seeing and then naming the system change that removes that failure. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is AI reliability strategy applied with clear problem framing, measurable validation, operational controls, and production feedback. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is generic implementation that cannot be measured or operated; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through AI reliability strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain AI reliability strategy in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to generic implementation that cannot be measured or operated. AI reliability strategy addresses that risk through AI reliability strategy applied with clear problem framing, measurable validation, operational controls, and production feedback, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds AI reliability strategy applied with clear problem framing, measurable validation, operational controls, and production feedback; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -759,18 +759,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining AI reliability strategy as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: generic implementation that cannot be measured or operated.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that AI reliability strategy improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying AI reliability strategy, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied AI reliability strategy in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from generic implementation that cannot be measured or operated, causing roughly 25% of reviewed cases to require manual correction. The team implemented AI reliability strategy applied with clear problem framing, measurable validation, operational controls, and production feedback using domain datasets, baselines, monitoring, evaluation dashboards, and human review, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for AI reliability strategy, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -799,13 +799,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through security review strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define security review strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for security review strategy measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "security review strategy requires comparing at least two viable choices instead of assuming one technique is universally better. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is security review strategy applied with clear problem framing, measurable validation, operational controls, and production feedback. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is generic implementation that cannot be measured or operated; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through security review strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain security review strategy in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to generic implementation that cannot be measured or operated. security review strategy addresses that risk through security review strategy applied with clear problem framing, measurable validation, operational controls, and production feedback, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds security review strategy applied with clear problem framing, measurable validation, operational controls, and production feedback; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -825,18 +825,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining security review strategy as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: generic implementation that cannot be measured or operated.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that security review strategy improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying security review strategy, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied security review strategy in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from generic implementation that cannot be measured or operated, causing roughly 25% of reviewed cases to require manual correction. The team implemented security review strategy applied with clear problem framing, measurable validation, operational controls, and production feedback using domain datasets, baselines, monitoring, evaluation dashboards, and human review, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for security review strategy, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -865,13 +865,13 @@
       ],
       "estimatedMinutes": 8,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through platform roadmap planning for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define platform roadmap planning, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for platform roadmap planning measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "platform roadmap planning belongs in the architecture discussion because it affects ownership boundaries, controls, observability, and rollout. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is platform roadmap planning applied with clear problem framing, measurable validation, operational controls, and production feedback. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is generic implementation that cannot be measured or operated; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through platform roadmap planning for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for architect rounds.",
-        "example": "Example: when asked \"How would you explain platform roadmap planning in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to generic implementation that cannot be measured or operated. platform roadmap planning addresses that risk through platform roadmap planning applied with clear problem framing, measurable validation, operational controls, and production feedback, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds platform roadmap planning applied with clear problem framing, measurable validation, operational controls, and production feedback; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -891,18 +891,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining platform roadmap planning as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: generic implementation that cannot be measured or operated.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that platform roadmap planning improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying platform roadmap planning, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied platform roadmap planning in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from generic implementation that cannot be measured or operated, causing roughly 25% of reviewed cases to require manual correction. The team implemented platform roadmap planning applied with clear problem framing, measurable validation, operational controls, and production feedback using domain datasets, baselines, monitoring, evaluation dashboards, and human review, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for platform roadmap planning, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
@@ -931,13 +931,13 @@
       ],
       "estimatedMinutes": 6,
       "points": 10,
-      "scenario": "An interviewer asks you to reason through organizational adoption tradeoffs for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define organizational adoption tradeoffs, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "scenario": "A principal architect review board runs enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. A recent review found that architecture choices optimize local delivery but create platform-level risk; the baseline fails on 20-35% of reviewed cases, so the team needs a reliable approach for organizational adoption tradeoffs measured by SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+      "expectedAnswer": "organizational adoption tradeoffs should be approached as a production failure: reproduce it, isolate the layer, fix the cause, and prevent recurrence. In enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the practical approach is organizational adoption tradeoffs applied with clear problem framing, measurable validation, operational controls, and production feedback. The first step is to establish a baseline with representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments, because without a baseline the team cannot distinguish real improvement from a better-looking demo. Next, implement the smallest production-shaped change using domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping enough trace data to inspect inputs, intermediate decisions, outputs, latency, and failures. The main risk is generic implementation that cannot be measured or operated; a strong design makes that risk visible through tests, monitoring, and review workflows. Validation should use SLO compliance, cost per task, incident rate, audit readiness, and adoption, segmented by important user or data groups so averages do not hide regressions. The tradeoff is that stronger controls add complexity, latency, and ownership work, but they also reduce silent failure in production. A good interview answer explains the mechanism, the implementation path, the measurable success criteria, and the condition under which a simpler baseline is preferable.",
       "answerFramework": {
-        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through organizational adoption tradeoffs for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
-        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
-        "example": "Example: when asked \"How would you explain organizational adoption tradeoffs in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
-        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+        "scenarioResponse": "The scenario points to generic implementation that cannot be measured or operated. organizational adoption tradeoffs addresses that risk through organizational adoption tradeoffs applied with clear problem framing, measurable validation, operational controls, and production feedback, so the discussion should start with the observed production failure rather than a textbook definition. The first concrete step is to turn recent failures into a benchmark and compare the baseline against the proposed change using SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "howToApply": "Start with 50-200 representative examples from architecture decisions, provider metrics, cost dashboards, traces, and risk assessments. Implement the change with domain datasets, baselines, monitoring, evaluation dashboards, and human review, keeping the old path available as a baseline. Log inputs, intermediate decisions, outputs, latency, and failures so the team can debug regressions. Roll out behind a feature flag or pilot group, then expand only if quality and operational metrics improve.",
+        "example": "Example: in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance, the baseline path accepts an input, produces a plausible output, but leaves no reliable evidence that the decision is correct. The improved path adds organizational adoption tradeoffs applied with clear problem framing, measurable validation, operational controls, and production feedback; it records the evidence, score, trace, or review status that supports the output. The final result is tied to validated signals instead of model confidence or notebook accuracy alone.",
+        "tradeoffs": "The technique adds engineering overhead, evaluation work, and usually some latency or infrastructure cost. It is worthwhile when the failure affects trust, safety, revenue, or repeated manual effort. It is not worth overengineering for rare, low-risk tasks where a simple baseline already meets the target. Monitor SLO compliance, cost per task, incident rate, audit readiness, and adoption so the team can tell whether the extra complexity pays for itself."
       },
       "relatedQuestions": [
         {
@@ -952,18 +952,18 @@
         }
       ],
       "commonMistakes": [
-        "Answering with definitions only and not connecting to a practical system.",
-        "Skipping the scenario and giving a generic textbook explanation.",
-        "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
-        "Failing to mention how the approach would be evaluated in production."
+        "Explaining organizational adoption tradeoffs as a memorized definition without tying it to a production failure mode.",
+        "Skipping measurement and relying on anecdotal demo quality instead of SLO compliance, cost per task, incident rate, audit readiness, and adoption.",
+        "Ignoring the main risk: generic implementation that cannot be measured or operated.",
+        "Not discussing ownership, rollout, monitoring, and rollback when the approach fails in production."
       ],
       "followUpQuestions": [
-        "How would you validate this for Architect Rounds?",
-        "What would change at enterprise scale?",
-        "What failure modes would you monitor?"
+        "What metric would prove that organizational adoption tradeoffs improved the system rather than just changed it?",
+        "What failure mode would you expect after deploying organizational adoption tradeoffs, and how would you detect it?",
+        "How would your answer change if latency, cost, or compliance became the primary constraint?"
       ],
-      "realWorldExample": "In an enterprise architect rounds setting, the team should connect the answer to user workflow, governance, observability, and measurable business impact.",
-      "interviewerNotes": "A strong candidate should give a structured answer, make assumptions explicit, discuss tradeoffs, and explain how they would test the decision rather than relying on buzzwords.",
+      "realWorldExample": "A principal architect review board applied organizational adoption tradeoffs in enterprise GenAI architecture spanning assistants, RAG, model routing, and governance. The baseline suffered from generic implementation that cannot be measured or operated, causing roughly 25% of reviewed cases to require manual correction. The team implemented organizational adoption tradeoffs applied with clear problem framing, measurable validation, operational controls, and production feedback using domain datasets, baselines, monitoring, evaluation dashboards, and human review, then evaluated the change against SLO compliance, cost per task, incident rate, audit readiness, and adoption. After a limited rollout, manual corrections dropped by 12-18 percentage points and p95 latency stayed within the agreed operating budget.",
+      "interviewerNotes": "A strong candidate gives a concrete mechanism for organizational adoption tradeoffs, names the data and metrics needed to validate it, and explains the operational risk. A great candidate also discusses rollout, observability, ownership, and when the added complexity is not justified.",
       "rubric": {
         "correctness": 3,
         "depth": 3,
