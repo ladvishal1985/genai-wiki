@@ -23,9 +23,23 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A team proposes five agents for a simple FAQ assistant.",
-      "expectedAnswer": "Use multi-agent systems when tasks benefit from specialization, parallel work, independent critique, or separate responsibilities. Avoid them when a single workflow or model call is enough. Multi-agent designs add coordination overhead, latency, cost, debugging difficulty, and emergent failure modes.",
+      "expectedAnswer": "Use multi-agent systems when tasks benefit from specialization, parallel work, independent critique, or separate responsibilities. Avoid them when a single workflow or model call is enough. Multi-agent designs add coordination overhead, latency, cost, debugging difficulty, and emergent failure modes. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A team proposes five agents for a simple FAQ assistant. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"When should you use a multi-agent system?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "supervisor-pattern",
+          "title": "Explain the supervisor agent pattern.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "A research assistant needs search, summarization, fact-checking, and report-writing specialists.",
-      "expectedAnswer": "A supervisor agent routes tasks to specialist agents, monitors progress, aggregates results, and decides when work is complete. It centralizes coordination but can become a bottleneck or single point of failure. Strong answers include routing criteria, state management, guardrails, and tracing.",
+      "expectedAnswer": "A supervisor agent routes tasks to specialist agents, monitors progress, aggregates results, and decides when work is complete. It centralizes coordination but can become a bottleneck or single point of failure. Strong answers include routing criteria, state management, guardrails, and tracing. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A research assistant needs search, summarization, fact-checking, and report-writing specialists. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for multi-agent systems.",
+        "example": "Example: when asked \"Explain the supervisor agent pattern.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "previous"
+        },
+        {
+          "id": "planner-executor",
+          "title": "What is the planner-executor pattern?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An agent must gather information, compare options, and produce a recommendation.",
-      "expectedAnswer": "The planner decomposes a task into steps while executor agents or tools perform each step. This separates strategy from action and improves controllability. Risks include bad plans, stale plans, excessive steps, and poor feedback between execution and replanning.",
+      "expectedAnswer": "The planner decomposes a task into steps while executor agents or tools perform each step. This separates strategy from action and improves controllability. Risks include bad plans, stale plans, excessive steps, and poor feedback between execution and replanning. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An agent must gather information, compare options, and produce a recommendation. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"What is the planner-executor pattern?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "supervisor-pattern",
+          "title": "Explain the supervisor agent pattern.",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "agent-communication",
+          "title": "How should agents communicate?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "Two specialist agents keep debating and never produce a final answer.",
-      "expectedAnswer": "Agents should communicate through structured messages with task state, assumptions, outputs, confidence, and required next actions. Avoid unbounded chat loops. Use schemas, shared memory, event logs, and explicit termination criteria to make communication testable.",
+      "expectedAnswer": "Agents should communicate through structured messages with task state, assumptions, outputs, confidence, and required next actions. Avoid unbounded chat loops. Use schemas, shared memory, event logs, and explicit termination criteria to make communication testable. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Two specialist agents keep debating and never produce a final answer. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How should agents communicate?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "planner-executor",
+          "title": "What is the planner-executor pattern?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "debugging-multi-agent",
+          "title": "How do you debug multi-agent systems?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A multi-agent workflow is expensive and occasionally returns contradictory conclusions.",
-      "expectedAnswer": "Debugging requires traces of messages, tool calls, state changes, decisions, costs, and outputs. Replayable runs, deterministic seeds where possible, scenario tests, per-agent metrics, and failure taxonomies help identify routing errors, loops, tool misuse, or context loss.",
+      "expectedAnswer": "Debugging requires traces of messages, tool calls, state changes, decisions, costs, and outputs. Replayable runs, deterministic seeds where possible, scenario tests, per-agent metrics, and failure taxonomies help identify routing errors, loops, tool misuse, or context loss. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A multi-agent workflow is expensive and occasionally returns contradictory conclusions. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How do you debug multi-agent systems?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "agent-communication",
+          "title": "How should agents communicate?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-specialist-agent-design",
+          "title": "How would you explain specialist agent design in a Multi-Agent Systems interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through specialist agent design for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define specialist agent design, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define specialist agent design, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through specialist agent design for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain specialist agent design in a Multi-Agent Systems interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "debugging-multi-agent",
+          "title": "How do you debug multi-agent systems?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-agent-handoff",
+          "title": "How would you explain agent handoff in a Multi-Agent Systems interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through agent handoff for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define agent handoff, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define agent handoff, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through agent handoff for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain agent handoff in a Multi-Agent Systems interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-specialist-agent-design",
+          "title": "How would you explain specialist agent design in a Multi-Agent Systems interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-agent-registry",
+          "title": "How would you explain agent registry in a Multi-Agent Systems interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through agent registry for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define agent registry, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define agent registry, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through agent registry for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain agent registry in a Multi-Agent Systems interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-agent-handoff",
+          "title": "How would you explain agent handoff in a Multi-Agent Systems interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-agent-marketplace-governance",
+          "title": "How would you explain agent marketplace governance in a Multi-Agent Systems interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through agent marketplace governance for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define agent marketplace governance, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define agent marketplace governance, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through agent marketplace governance for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for multi-agent systems.",
+        "example": "Example: when asked \"How would you explain agent marketplace governance in a Multi-Agent Systems interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-agent-registry",
+          "title": "How would you explain agent registry in a Multi-Agent Systems interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-multi-agent-memory",
+          "title": "How would you explain multi-agent memory in a Multi-Agent Systems interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through multi-agent memory for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define multi-agent memory, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define multi-agent memory, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through multi-agent memory for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain multi-agent memory in a Multi-Agent Systems interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-agent-marketplace-governance",
+          "title": "How would you explain agent marketplace governance in a Multi-Agent Systems interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-conflict-resolution-between-agents",
+          "title": "How would you explain conflict resolution between agents in a Multi-Agent Systems interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through conflict resolution between agents for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define conflict resolution between agents, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define conflict resolution between agents, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through conflict resolution between agents for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain conflict resolution between agents in a Multi-Agent Systems interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-multi-agent-memory",
+          "title": "How would you explain multi-agent memory in a Multi-Agent Systems interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-parallel-agent-execution",
+          "title": "How would you explain parallel agent execution in a Multi-Agent Systems interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through parallel agent execution for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define parallel agent execution, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define parallel agent execution, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through parallel agent execution for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain parallel agent execution in a Multi-Agent Systems interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-conflict-resolution-between-agents",
+          "title": "How would you explain conflict resolution between agents in a Multi-Agent Systems interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-multi-agent-evaluation",
+          "title": "How would you explain multi-agent evaluation in a Multi-Agent Systems interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through multi-agent evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define multi-agent evaluation, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define multi-agent evaluation, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through multi-agent evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain multi-agent evaluation in a Multi-Agent Systems interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-parallel-agent-execution",
+          "title": "How would you explain parallel agent execution in a Multi-Agent Systems interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-agent-federation",
+          "title": "How would you explain agent federation in a Multi-Agent Systems interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through agent federation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define agent federation, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define agent federation, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through agent federation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for multi-agent systems.",
+        "example": "Example: when asked \"How would you explain agent federation in a Multi-Agent Systems interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-multi-agent-evaluation",
+          "title": "How would you explain multi-agent evaluation in a Multi-Agent Systems interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-multi-agent-anti-patterns",
+          "title": "How would you explain multi-agent anti-patterns in a Multi-Agent Systems interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through multi-agent anti-patterns for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define multi-agent anti-patterns, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define multi-agent anti-patterns, explain why it matters for multi-agent systems, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through multi-agent anti-patterns for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain multi-agent anti-patterns in a Multi-Agent Systems interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real multi-agent systems setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-agent-federation",
+          "title": "How would you explain agent federation in a Multi-Agent Systems interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "when-multi-agent",
+          "title": "When should you use a multi-agent system?",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

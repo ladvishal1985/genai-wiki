@@ -23,9 +23,23 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You need users to find policy documents even when they use different wording than the document.",
-      "expectedAnswer": "Embeddings are numeric vector representations that place semantically related items close together in vector space. They enable semantic search, clustering, recommendations, deduplication, and retrieval for RAG. A good answer mentions that embedding quality depends on model choice, domain fit, normalization, and evaluation.",
+      "expectedAnswer": "Embeddings are numeric vector representations that place semantically related items close together in vector space. They enable semantic search, clustering, recommendations, deduplication, and retrieval for RAG. A good answer mentions that embedding quality depends on model choice, domain fit, normalization, and evaluation. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You need users to find policy documents even when they use different wording than the document. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"What are embeddings and why are they useful?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "similarity-metrics",
+          "title": "Compare cosine similarity, dot product, and Euclidean distance.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "Search quality drops after switching embedding providers without changing index settings.",
-      "expectedAnswer": "Cosine similarity compares vector direction and is common for normalized embeddings. Dot product is sensitive to both direction and magnitude and is often used by retrieval models trained for it. Euclidean distance measures straight-line distance and can be sensitive to magnitude. The right metric should match the embedding model and index configuration.",
+      "expectedAnswer": "Cosine similarity compares vector direction and is common for normalized embeddings. Dot product is sensitive to both direction and magnitude and is often used by retrieval models trained for it. Euclidean distance measures straight-line distance and can be sensitive to magnitude. The right metric should match the embedding model and index configuration. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Search quality drops after switching embedding providers without changing index settings. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Compare cosine similarity, dot product, and Euclidean distance.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "previous"
+        },
+        {
+          "id": "ann-hnsw-ivf",
+          "title": "What is approximate nearest neighbor search and why is it used?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A product search system must query 100 million vectors under tight latency targets.",
-      "expectedAnswer": "ANN search trades perfect exhaustive search for speed and scale. Indexes like HNSW, IVF, and DiskANN retrieve likely nearest vectors efficiently across millions or billions of embeddings. Candidates should discuss recall-latency tradeoffs, index build cost, memory, filtering, and evaluation against exact search samples.",
+      "expectedAnswer": "ANN search trades perfect exhaustive search for speed and scale. Indexes like HNSW, IVF, and DiskANN retrieve likely nearest vectors efficiently across millions or billions of embeddings. Candidates should discuss recall-latency tradeoffs, index build cost, memory, filtering, and evaluation against exact search samples. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A product search system must query 100 million vectors under tight latency targets. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"What is approximate nearest neighbor search and why is it used?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "similarity-metrics",
+          "title": "Compare cosine similarity, dot product, and Euclidean distance.",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "metadata-filtering",
+          "title": "How should metadata filtering work in vector search?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An enterprise assistant must retrieve only documents the current user can access.",
-      "expectedAnswer": "Metadata filtering constrains retrieval by fields such as tenant, document type, language, freshness, source, or access control. It can happen before or during ANN search depending on the database. Strong answers mention ACL filtering, filter selectivity, index design, and avoiding post-generation permission checks.",
+      "expectedAnswer": "Metadata filtering constrains retrieval by fields such as tenant, document type, language, freshness, source, or access control. It can happen before or during ANN search depending on the database. Strong answers mention ACL filtering, filter selectivity, index design, and avoiding post-generation permission checks. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An enterprise assistant must retrieve only documents the current user can access. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How should metadata filtering work in vector search?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "ann-hnsw-ivf",
+          "title": "What is approximate nearest neighbor search and why is it used?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "hybrid-search",
+          "title": "When is hybrid search better than pure vector search?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "Users search for product SKUs, policy names, and vague semantic questions in the same system.",
-      "expectedAnswer": "Hybrid search combines dense semantic retrieval with sparse lexical methods like BM25. It helps when exact terms, IDs, error codes, names, or rare domain phrases matter. A strong answer explains score fusion, reranking, query intent, and evaluation instead of assuming one retrieval method always wins.",
+      "expectedAnswer": "Hybrid search combines dense semantic retrieval with sparse lexical methods like BM25. It helps when exact terms, IDs, error codes, names, or rare domain phrases matter. A strong answer explains score fusion, reranking, query intent, and evaluation instead of assuming one retrieval method always wins. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Users search for product SKUs, policy names, and vague semantic questions in the same system. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"When is hybrid search better than pure vector search?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "metadata-filtering",
+          "title": "How should metadata filtering work in vector search?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-embedding-model-selection",
+          "title": "How would you explain embedding model selection in a Embeddings & Vector Databases interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through embedding model selection for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define embedding model selection, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define embedding model selection, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through embedding model selection for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain embedding model selection in a Embeddings & Vector Databases interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "hybrid-search",
+          "title": "When is hybrid search better than pure vector search?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-embedding-dimensionality",
+          "title": "How would you explain embedding dimensionality in a Embeddings & Vector Databases interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through embedding dimensionality for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define embedding dimensionality, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define embedding dimensionality, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through embedding dimensionality for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain embedding dimensionality in a Embeddings & Vector Databases interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-embedding-model-selection",
+          "title": "How would you explain embedding model selection in a Embeddings & Vector Databases interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-index-refresh-strategy",
+          "title": "How would you explain index refresh strategy in a Embeddings & Vector Databases interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through index refresh strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define index refresh strategy, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define index refresh strategy, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through index refresh strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain index refresh strategy in a Embeddings & Vector Databases interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-embedding-dimensionality",
+          "title": "How would you explain embedding dimensionality in a Embeddings & Vector Databases interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-vector-database-sharding",
+          "title": "How would you explain vector database sharding in a Embeddings & Vector Databases interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through vector database sharding for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define vector database sharding, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define vector database sharding, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through vector database sharding for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for embeddings & vector databases.",
+        "example": "Example: when asked \"How would you explain vector database sharding in a Embeddings & Vector Databases interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-index-refresh-strategy",
+          "title": "How would you explain index refresh strategy in a Embeddings & Vector Databases interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-filter-first-versus-search-first-retrieval",
+          "title": "How would you explain filter-first versus search-first retrieval in a Embeddings & Vector Databases interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through filter-first versus search-first retrieval for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define filter-first versus search-first retrieval, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define filter-first versus search-first retrieval, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through filter-first versus search-first retrieval for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain filter-first versus search-first retrieval in a Embeddings & Vector Databases interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-vector-database-sharding",
+          "title": "How would you explain vector database sharding in a Embeddings & Vector Databases interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-reranking-after-vector-search",
+          "title": "How would you explain reranking after vector search in a Embeddings & Vector Databases interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through reranking after vector search for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define reranking after vector search, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define reranking after vector search, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through reranking after vector search for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain reranking after vector search in a Embeddings & Vector Databases interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-filter-first-versus-search-first-retrieval",
+          "title": "How would you explain filter-first versus search-first retrieval in a Embeddings & Vector Databases interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-embedding-versioning",
+          "title": "How would you explain embedding versioning in a Embeddings & Vector Databases interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through embedding versioning for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define embedding versioning, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define embedding versioning, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through embedding versioning for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain embedding versioning in a Embeddings & Vector Databases interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-reranking-after-vector-search",
+          "title": "How would you explain reranking after vector search in a Embeddings & Vector Databases interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-cold-start-indexing",
+          "title": "How would you explain cold start indexing in a Embeddings & Vector Databases interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through cold start indexing for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define cold start indexing, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define cold start indexing, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through cold start indexing for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain cold start indexing in a Embeddings & Vector Databases interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-embedding-versioning",
+          "title": "How would you explain embedding versioning in a Embeddings & Vector Databases interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-duplicate-document-handling",
+          "title": "How would you explain duplicate document handling in a Embeddings & Vector Databases interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through duplicate document handling for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define duplicate document handling, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define duplicate document handling, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through duplicate document handling for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for embeddings & vector databases.",
+        "example": "Example: when asked \"How would you explain duplicate document handling in a Embeddings & Vector Databases interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-cold-start-indexing",
+          "title": "How would you explain cold start indexing in a Embeddings & Vector Databases interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-vector-database-vendor-selection",
+          "title": "How would you explain vector database vendor selection in a Embeddings & Vector Databases interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through vector database vendor selection for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define vector database vendor selection, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define vector database vendor selection, explain why it matters for embeddings & vector databases, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through vector database vendor selection for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain vector database vendor selection in a Embeddings & Vector Databases interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real embeddings & vector databases setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-duplicate-document-handling",
+          "title": "How would you explain duplicate document handling in a Embeddings & Vector Databases interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-are-embeddings",
+          "title": "What are embeddings and why are they useful?",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

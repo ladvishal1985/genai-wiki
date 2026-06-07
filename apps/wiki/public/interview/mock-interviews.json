@@ -25,9 +25,23 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A candidate has 7 days to prepare for an AI Engineer onsite.",
-      "expectedAnswer": "Start by clarifying role expectations, then prepare fundamentals, applied ML, GenAI basics, coding, system design, and production tradeoffs. In the interview, structure answers, state assumptions, discuss alternatives, and connect choices to business constraints.",
+      "expectedAnswer": "Start by clarifying role expectations, then prepare fundamentals, applied ML, GenAI basics, coding, system design, and production tradeoffs. In the interview, structure answers, state assumptions, discuss alternatives, and connect choices to business constraints. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A candidate has 7 days to prepare for an AI Engineer onsite. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"AI Engineer mock interview: how would you approach the round?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "data-scientist-mock",
+          "title": "Data Scientist mock interview: what should you demonstrate?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -69,9 +83,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to evaluate whether an AI feature improved retention.",
-      "expectedAnswer": "Demonstrate statistical reasoning, experiment design, metric selection, modeling judgment, communication, and business framing. Strong candidates explain assumptions, uncertainty, causality limits, and how analysis changes decisions.",
+      "expectedAnswer": "Demonstrate statistical reasoning, experiment design, metric selection, modeling judgment, communication, and business framing. Strong candidates explain assumptions, uncertainty, causality limits, and how analysis changes decisions. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to evaluate whether an AI feature improved retention. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Data Scientist mock interview: what should you demonstrate?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "previous"
+        },
+        {
+          "id": "ml-engineer-mock",
+          "title": "ML Engineer mock interview: what should you emphasize?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -113,9 +146,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You are asked to design a fraud detection platform.",
-      "expectedAnswer": "Emphasize production ML systems, data pipelines, feature stores, model serving, monitoring, scalability, reliability, and tradeoffs. Be ready to design real-time and batch inference systems and explain how models fail in production.",
+      "expectedAnswer": "Emphasize production ML systems, data pipelines, feature stores, model serving, monitoring, scalability, reliability, and tradeoffs. Be ready to design real-time and batch inference systems and explain how models fail in production. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You are asked to design a fraud detection platform. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"ML Engineer mock interview: what should you emphasize?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "data-scientist-mock",
+          "title": "Data Scientist mock interview: what should you demonstrate?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "genai-engineer-mock",
+          "title": "GenAI Engineer mock interview: what should you prepare?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -157,9 +214,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You are asked to build a RAG assistant over enterprise policies.",
-      "expectedAnswer": "Prepare LLM fundamentals, prompting, RAG, embeddings, vector search, tool calling, evaluations, safety, cost, latency, and observability. Strong candidates discuss end-to-end application behavior rather than only model APIs.",
+      "expectedAnswer": "Prepare LLM fundamentals, prompting, RAG, embeddings, vector search, tool calling, evaluations, safety, cost, latency, and observability. Strong candidates discuss end-to-end application behavior rather than only model APIs. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You are asked to build a RAG assistant over enterprise policies. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"GenAI Engineer mock interview: what should you prepare?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "ml-engineer-mock",
+          "title": "ML Engineer mock interview: what should you emphasize?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "genai-architect-mock",
+          "title": "GenAI Architect mock interview: what should you demonstrate?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -201,9 +282,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A panel asks for a GenAI platform strategy across multiple business units.",
-      "expectedAnswer": "Demonstrate platform thinking, governance, security, multi-tenancy, model strategy, evaluation, cost controls, reliability, and organizational adoption. Architects should navigate ambiguity and make tradeoffs explicit.",
+      "expectedAnswer": "Demonstrate platform thinking, governance, security, multi-tenancy, model strategy, evaluation, cost controls, reliability, and organizational adoption. Architects should navigate ambiguity and make tradeoffs explicit. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A panel asks for a GenAI platform strategy across multiple business units. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"GenAI Architect mock interview: what should you demonstrate?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "genai-engineer-mock",
+          "title": "GenAI Engineer mock interview: what should you prepare?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-warm-up-question-strategy",
+          "title": "How would you explain warm-up question strategy in a Mock Interviews interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -245,9 +350,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through warm-up question strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define warm-up question strategy, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define warm-up question strategy, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through warm-up question strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain warm-up question strategy in a Mock Interviews interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "genai-architect-mock",
+          "title": "GenAI Architect mock interview: what should you demonstrate?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-deep-technical-question-strategy",
+          "title": "How would you explain deep technical question strategy in a Mock Interviews interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -289,9 +418,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through deep technical question strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define deep technical question strategy, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define deep technical question strategy, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through deep technical question strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain deep technical question strategy in a Mock Interviews interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-warm-up-question-strategy",
+          "title": "How would you explain warm-up question strategy in a Mock Interviews interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-system-design-question-strategy",
+          "title": "How would you explain system design question strategy in a Mock Interviews interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -333,9 +486,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through system design question strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define system design question strategy, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define system design question strategy, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through system design question strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain system design question strategy in a Mock Interviews interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-deep-technical-question-strategy",
+          "title": "How would you explain deep technical question strategy in a Mock Interviews interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-scenario-question-strategy",
+          "title": "How would you explain scenario question strategy in a Mock Interviews interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -377,9 +554,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through scenario question strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define scenario question strategy, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define scenario question strategy, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through scenario question strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for mock interviews.",
+        "example": "Example: when asked \"How would you explain scenario question strategy in a Mock Interviews interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-system-design-question-strategy",
+          "title": "How would you explain system design question strategy in a Mock Interviews interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-answer-structuring",
+          "title": "How would you explain answer structuring in a Mock Interviews interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -421,9 +622,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through answer structuring for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define answer structuring, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define answer structuring, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through answer structuring for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain answer structuring in a Mock Interviews interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-scenario-question-strategy",
+          "title": "How would you explain scenario question strategy in a Mock Interviews interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-handling-unknown-questions",
+          "title": "How would you explain handling unknown questions in a Mock Interviews interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -465,9 +690,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through handling unknown questions for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define handling unknown questions, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define handling unknown questions, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through handling unknown questions for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain handling unknown questions in a Mock Interviews interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-answer-structuring",
+          "title": "How would you explain answer structuring in a Mock Interviews interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-whiteboard-communication",
+          "title": "How would you explain whiteboard communication in a Mock Interviews interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -509,9 +758,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through whiteboard communication for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define whiteboard communication, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define whiteboard communication, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through whiteboard communication for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain whiteboard communication in a Mock Interviews interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-handling-unknown-questions",
+          "title": "How would you explain handling unknown questions in a Mock Interviews interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-tradeoff-explanation",
+          "title": "How would you explain tradeoff explanation in a Mock Interviews interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -553,9 +826,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through tradeoff explanation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define tradeoff explanation, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define tradeoff explanation, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through tradeoff explanation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain tradeoff explanation in a Mock Interviews interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-whiteboard-communication",
+          "title": "How would you explain whiteboard communication in a Mock Interviews interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-post-interview-review",
+          "title": "How would you explain post-interview review in a Mock Interviews interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -597,9 +894,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through post-interview review for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define post-interview review, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define post-interview review, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through post-interview review for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for mock interviews.",
+        "example": "Example: when asked \"How would you explain post-interview review in a Mock Interviews interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-tradeoff-explanation",
+          "title": "How would you explain tradeoff explanation in a Mock Interviews interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-role-specific-study-plan",
+          "title": "How would you explain role-specific study plan in a Mock Interviews interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -641,9 +962,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through role-specific study plan for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define role-specific study plan, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define role-specific study plan, explain why it matters for mock interviews, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through role-specific study plan for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain role-specific study plan in a Mock Interviews interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mock interviews setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-post-interview-review",
+          "title": "How would you explain post-interview review in a Mock Interviews interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-engineer-mock",
+          "title": "AI Engineer mock interview: how would you approach the round?",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

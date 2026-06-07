@@ -567,8 +567,59 @@ for (const topic of topics) {
   topic.questions.push(...extras.slice(0, needed).map((concept, index) => buildExpansionItem(topic, concept, index)))
 }
 
+function buildAnswerFramework(topic, title, type, expectedAnswer, scenario) {
+  const scenarioResponse = `Start from the scenario: ${scenario} In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.`
+  const howToApply = type === 'system-design' || type === 'architecture'
+    ? `Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ${topic.title.toLowerCase()}.`
+    : `Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.`
+  const example = `Example: when asked "${title}", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ${topic.title.toLowerCase()} setting.`
+  const tradeoffs = `Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success.`
+
+  return {
+    scenarioResponse,
+    howToApply,
+    example,
+    tradeoffs,
+    conciseAnswer: `${expectedAnswer} Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.`
+  }
+}
+
+function buildRelatedQuestions(topic, index) {
+  const links = []
+  const previous = topic.questions[index - 1]
+  const next = topic.questions[index + 1]
+  const foundation = topic.questions[0]
+
+  if (previous) {
+    links.push({
+      id: previous[0],
+      title: previous[1],
+      relation: 'previous'
+    })
+  }
+
+  if (foundation && foundation[0] !== topic.questions[index][0] && !links.some((link) => link.id === foundation[0])) {
+    links.push({
+      id: foundation[0],
+      title: foundation[1],
+      relation: 'foundation'
+    })
+  }
+
+  if (next) {
+    links.push({
+      id: next[0],
+      title: next[1],
+      relation: 'next'
+    })
+  }
+
+  return links
+}
+
 function buildQuestion(topic, item, index) {
   const [id, title, type, expectedAnswer, scenario] = item
+  const answerFramework = buildAnswerFramework(topic, title, type, expectedAnswer, scenario)
   const difficulty = topic.difficulty === 'mixed'
     ? (type === 'concept' ? 'intermediate' : 'advanced')
     : topic.difficulty
@@ -583,9 +634,17 @@ function buildQuestion(topic, item, index) {
     estimatedMinutes: type === 'system-design' ? 12 : type === 'architecture' ? 8 : 6,
     points: type === 'system-design' ? 15 : 10,
     scenario,
-    expectedAnswer,
+    expectedAnswer: answerFramework.conciseAnswer,
+    answerFramework: {
+      scenarioResponse: answerFramework.scenarioResponse,
+      howToApply: answerFramework.howToApply,
+      example: answerFramework.example,
+      tradeoffs: answerFramework.tradeoffs
+    },
+    relatedQuestions: buildRelatedQuestions(topic, index),
     commonMistakes: [
       'Answering with definitions only and not connecting to a practical system.',
+      'Skipping the scenario and giving a generic textbook explanation.',
       'Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.',
       'Failing to mention how the approach would be evaluated in production.'
     ],

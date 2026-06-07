@@ -23,9 +23,23 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An e-commerce company wants personalized product recommendations.",
-      "expectedAnswer": "A strong design covers candidate generation, ranking, user/item features, feedback loops, online and offline metrics, cold start, exploration, serving latency, feature freshness, experimentation, and monitoring. Candidates should discuss business objectives and guardrails.",
+      "expectedAnswer": "A strong design covers candidate generation, ranking, user/item features, feedback loops, online and offline metrics, cold start, exploration, serving latency, feature freshness, experimentation, and monitoring. Candidates should discuss business objectives and guardrails. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An e-commerce company wants personalized product recommendations. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design a recommendation system.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "fraud-detection",
+          "title": "Design a fraud detection system.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "A payments company needs to score transactions in under 100 ms.",
-      "expectedAnswer": "Include real-time feature generation, model scoring, rules, risk thresholds, human review, feedback labels, drift monitoring, adversarial behavior, latency constraints, and explainability. Strong answers balance fraud capture with false-positive customer impact.",
+      "expectedAnswer": "Include real-time feature generation, model scoring, rules, risk thresholds, human review, feedback labels, drift monitoring, adversarial behavior, latency constraints, and explainability. Strong answers balance fraud capture with false-positive customer impact. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A payments company needs to score transactions in under 100 ms. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design a fraud detection system.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "previous"
+        },
+        {
+          "id": "batch-vs-realtime",
+          "title": "Compare batch inference and real-time inference.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A churn model runs weekly, while fraud detection must run immediately.",
-      "expectedAnswer": "Batch inference is efficient for periodic scoring and high throughput. Real-time inference is needed when predictions must react immediately to user or event context. Tradeoffs include latency, freshness, infrastructure complexity, cost, and monitoring.",
+      "expectedAnswer": "Batch inference is efficient for periodic scoring and high throughput. Real-time inference is needed when predictions must react immediately to user or event context. Tradeoffs include latency, freshness, infrastructure complexity, cost, and monitoring. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A churn model runs weekly, while fraud detection must run immediately. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Compare batch inference and real-time inference.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "fraud-detection",
+          "title": "Design a fraud detection system.",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "feature-store",
+          "title": "What problem does a feature store solve?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "Multiple models compute customer risk features differently.",
-      "expectedAnswer": "A feature store manages reusable features, online/offline consistency, feature lineage, freshness, discovery, and access control. It helps avoid training-serving skew and duplicate feature logic. It is valuable when many teams share features across models.",
+      "expectedAnswer": "A feature store manages reusable features, online/offline consistency, feature lineage, freshness, discovery, and access control. It helps avoid training-serving skew and duplicate feature logic. It is valuable when many teams share features across models. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Multiple models compute customer risk features differently. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"What problem does a feature store solve?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "batch-vs-realtime",
+          "title": "Compare batch inference and real-time inference.",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "model-monitoring",
+          "title": "What should you monitor in production ML?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "A model’s accuracy quietly degrades after a market change.",
-      "expectedAnswer": "Monitor service health, latency, throughput, prediction distributions, feature drift, data quality, model performance, fairness, business metrics, feedback labels, and incidents. Monitoring should trigger investigation and retraining workflows when thresholds are breached.",
+      "expectedAnswer": "Monitor service health, latency, throughput, prediction distributions, feature drift, data quality, model performance, fairness, business metrics, feedback labels, and incidents. Monitoring should trigger investigation and retraining workflows when thresholds are breached. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A model’s accuracy quietly degrades after a market change. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"What should you monitor in production ML?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "feature-store",
+          "title": "What problem does a feature store solve?",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-search-ranking-system",
+          "title": "Design around search ranking system.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through search ranking system for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define search ranking system, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define search ranking system, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through search ranking system for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design around search ranking system.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "model-monitoring",
+          "title": "What should you monitor in production ML?",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-churn-prediction-system",
+          "title": "Design around churn prediction system.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through churn prediction system for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define churn prediction system, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define churn prediction system, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through churn prediction system for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design around churn prediction system.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-search-ranking-system",
+          "title": "Design around search ranking system.",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-predictive-maintenance-system",
+          "title": "Design around predictive maintenance system.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through predictive maintenance system for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define predictive maintenance system, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define predictive maintenance system, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through predictive maintenance system for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design around predictive maintenance system.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-churn-prediction-system",
+          "title": "Design around churn prediction system.",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-model-registry-design",
+          "title": "Design around model registry design.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through model registry design for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define model registry design, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define model registry design, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through model registry design for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design around model registry design.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-predictive-maintenance-system",
+          "title": "Design around predictive maintenance system.",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-online-feature-serving",
+          "title": "Design around online feature serving.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through online feature serving for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define online feature serving, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define online feature serving, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through online feature serving for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design around online feature serving.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-model-registry-design",
+          "title": "Design around model registry design.",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-shadow-deployment",
+          "title": "Design around shadow deployment.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through shadow deployment for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define shadow deployment, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define shadow deployment, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through shadow deployment for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design around shadow deployment.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-online-feature-serving",
+          "title": "Design around online feature serving.",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-canary-rollout-for-models",
+          "title": "Design around canary rollout for models.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through canary rollout for models for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define canary rollout for models, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define canary rollout for models, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through canary rollout for models for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design around canary rollout for models.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-shadow-deployment",
+          "title": "Design around shadow deployment.",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-feedback-label-pipeline",
+          "title": "Design around feedback label pipeline.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through feedback label pipeline for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define feedback label pipeline, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define feedback label pipeline, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through feedback label pipeline for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design around feedback label pipeline.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-canary-rollout-for-models",
+          "title": "Design around canary rollout for models.",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-training-serving-skew",
+          "title": "Design around training-serving skew.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through training-serving skew for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define training-serving skew, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define training-serving skew, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through training-serving skew for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design around training-serving skew.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-feedback-label-pipeline",
+          "title": "Design around feedback label pipeline.",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-model-rollback-strategy",
+          "title": "Design around model rollback strategy.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through model rollback strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define model rollback strategy, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define model rollback strategy, explain why it matters for ml system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through model rollback strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ml system design.",
+        "example": "Example: when asked \"Design around model rollback strategy.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ml system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-training-serving-skew",
+          "title": "Design around training-serving skew.",
+          "relation": "previous"
+        },
+        {
+          "id": "recommendation-system",
+          "title": "Design a recommendation system.",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

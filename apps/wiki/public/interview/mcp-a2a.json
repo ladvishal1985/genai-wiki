@@ -23,9 +23,23 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An enterprise has many internal tools that each assistant currently integrates with differently.",
-      "expectedAnswer": "MCP provides a standard way for AI applications to connect models or agents to tools, data sources, and context providers. It reduces custom integration work by standardizing capabilities, resources, and tool invocation patterns. Strong answers mention governance, permissions, discovery, and safe tool execution.",
+      "expectedAnswer": "MCP provides a standard way for AI applications to connect models or agents to tools, data sources, and context providers. It reduces custom integration work by standardizing capabilities, resources, and tool invocation patterns. Strong answers mention governance, permissions, discovery, and safe tool execution. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An enterprise has many internal tools that each assistant currently integrates with differently. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"What is MCP and what problem does it solve?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "mcp-tool-security",
+          "title": "What security controls matter for MCP tool integration?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An assistant can query tickets, create records, and access document repositories through tools.",
-      "expectedAnswer": "Important controls include authentication, authorization, scoped permissions, input validation, output filtering, audit logs, rate limits, sandboxing, user confirmation for risky actions, and clear separation between trusted instructions and untrusted tool data.",
+      "expectedAnswer": "Important controls include authentication, authorization, scoped permissions, input validation, output filtering, audit logs, rate limits, sandboxing, user confirmation for risky actions, and clear separation between trusted instructions and untrusted tool data. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An assistant can query tickets, create records, and access document repositories through tools. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for mcp & a2a.",
+        "example": "Example: when asked \"What security controls matter for MCP tool integration?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-a2a",
+          "title": "What is agent-to-agent communication?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A procurement agent needs a compliance agent and a finance agent to complete a vendor review.",
-      "expectedAnswer": "Agent-to-agent communication lets agents discover, request work from, and exchange structured results with other agents. It is useful when specialized agents exist across systems or organizations. Candidates should discuss identity, capabilities, contracts, trust, context sharing, and termination.",
+      "expectedAnswer": "Agent-to-agent communication lets agents discover, request work from, and exchange structured results with other agents. It is useful when specialized agents exist across systems or organizations. Candidates should discuss identity, capabilities, contracts, trust, context sharing, and termination. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A procurement agent needs a compliance agent and a finance agent to complete a vendor review. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"What is agent-to-agent communication?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "mcp-tool-security",
+          "title": "What security controls matter for MCP tool integration?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "mcp-vs-a2a",
+          "title": "How do MCP and A2A differ?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A platform team is deciding whether tool integrations and agent collaboration need the same protocol.",
-      "expectedAnswer": "MCP focuses on connecting models or agents to tools, resources, and context. A2A focuses on communication and coordination between agents. They can complement each other: agents may communicate with peers while each uses MCP-style tool servers to access systems.",
+      "expectedAnswer": "MCP focuses on connecting models or agents to tools, resources, and context. A2A focuses on communication and coordination between agents. They can complement each other: agents may communicate with peers while each uses MCP-style tool servers to access systems. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A platform team is deciding whether tool integrations and agent collaboration need the same protocol. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How do MCP and A2A differ?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "what-is-a2a",
+          "title": "What is agent-to-agent communication?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "enterprise-adoption",
+          "title": "How would an enterprise adopt MCP and A2A safely?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "A CIO wants reusable AI integrations without creating uncontrolled automation risk.",
-      "expectedAnswer": "Start with low-risk read-only tools, central registries, identity integration, audit logging, policy enforcement, approval workflows, and test environments. Expand gradually to write actions with stronger review. Define ownership, versioning, SLAs, and incident processes for tools and agents.",
+      "expectedAnswer": "Start with low-risk read-only tools, central registries, identity integration, audit logging, policy enforcement, approval workflows, and test environments. Expand gradually to write actions with stronger review. Define ownership, versioning, SLAs, and incident processes for tools and agents. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A CIO wants reusable AI integrations without creating uncontrolled automation risk. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for mcp & a2a.",
+        "example": "Example: when asked \"How would an enterprise adopt MCP and A2A safely?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "mcp-vs-a2a",
+          "title": "How do MCP and A2A differ?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-mcp-server-design",
+          "title": "How would you explain MCP server design in a MCP & A2A interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through MCP server design for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define MCP server design, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define MCP server design, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through MCP server design for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain MCP server design in a MCP & A2A interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "enterprise-adoption",
+          "title": "How would an enterprise adopt MCP and A2A safely?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-mcp-resource-exposure",
+          "title": "How would you explain MCP resource exposure in a MCP & A2A interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through MCP resource exposure for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define MCP resource exposure, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define MCP resource exposure, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through MCP resource exposure for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain MCP resource exposure in a MCP & A2A interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-mcp-server-design",
+          "title": "How would you explain MCP server design in a MCP & A2A interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-mcp-tool-versioning",
+          "title": "How would you explain MCP tool versioning in a MCP & A2A interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through MCP tool versioning for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define MCP tool versioning, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define MCP tool versioning, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through MCP tool versioning for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain MCP tool versioning in a MCP & A2A interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-mcp-resource-exposure",
+          "title": "How would you explain MCP resource exposure in a MCP & A2A interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-agent-discovery",
+          "title": "How would you explain agent discovery in a MCP & A2A interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through agent discovery for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define agent discovery, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define agent discovery, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through agent discovery for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for mcp & a2a.",
+        "example": "Example: when asked \"How would you explain agent discovery in a MCP & A2A interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-mcp-tool-versioning",
+          "title": "How would you explain MCP tool versioning in a MCP & A2A interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-capability-negotiation",
+          "title": "How would you explain capability negotiation in a MCP & A2A interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through capability negotiation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define capability negotiation, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define capability negotiation, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through capability negotiation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain capability negotiation in a MCP & A2A interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-agent-discovery",
+          "title": "How would you explain agent discovery in a MCP & A2A interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-cross-agent-authentication",
+          "title": "How would you explain cross-agent authentication in a MCP & A2A interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through cross-agent authentication for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define cross-agent authentication, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define cross-agent authentication, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through cross-agent authentication for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain cross-agent authentication in a MCP & A2A interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-capability-negotiation",
+          "title": "How would you explain capability negotiation in a MCP & A2A interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-tool-registry-governance",
+          "title": "How would you explain tool registry governance in a MCP & A2A interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through tool registry governance for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define tool registry governance, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define tool registry governance, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through tool registry governance for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain tool registry governance in a MCP & A2A interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-cross-agent-authentication",
+          "title": "How would you explain cross-agent authentication in a MCP & A2A interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-a2a-failure-handling",
+          "title": "How would you explain A2A failure handling in a MCP & A2A interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through A2A failure handling for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define A2A failure handling, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define A2A failure handling, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through A2A failure handling for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain A2A failure handling in a MCP & A2A interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-tool-registry-governance",
+          "title": "How would you explain tool registry governance in a MCP & A2A interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-enterprise-audit-requirements",
+          "title": "How would you explain enterprise audit requirements in a MCP & A2A interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through enterprise audit requirements for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define enterprise audit requirements, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define enterprise audit requirements, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through enterprise audit requirements for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for mcp & a2a.",
+        "example": "Example: when asked \"How would you explain enterprise audit requirements in a MCP & A2A interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-a2a-failure-handling",
+          "title": "How would you explain A2A failure handling in a MCP & A2A interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-protocol-adoption-roadmap",
+          "title": "How would you explain protocol adoption roadmap in a MCP & A2A interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through protocol adoption roadmap for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define protocol adoption roadmap, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define protocol adoption roadmap, explain why it matters for mcp & a2a, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through protocol adoption roadmap for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain protocol adoption roadmap in a MCP & A2A interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real mcp & a2a setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-enterprise-audit-requirements",
+          "title": "How would you explain enterprise audit requirements in a MCP & A2A interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "What is MCP and what problem does it solve?",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

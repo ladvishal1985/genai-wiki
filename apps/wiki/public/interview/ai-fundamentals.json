@@ -23,9 +23,23 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A business stakeholder asks whether every AI roadmap item should use an LLM.",
-      "expectedAnswer": "A strong answer separates the broad field of AI from machine learning systems that learn patterns from data, deep learning models based on neural networks, and Generative AI systems that create text, code, images, or structured outputs. The candidate should also explain that not every AI feature needs an LLM; classification, forecasting, anomaly detection, and ranking may be better solved with traditional ML.",
+      "expectedAnswer": "A strong answer separates the broad field of AI from machine learning systems that learn patterns from data, deep learning models based on neural networks, and Generative AI systems that create text, code, images, or structured outputs. The candidate should also explain that not every AI feature needs an LLM; classification, forecasting, anomaly detection, and ranking may be better solved with traditional ML. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A business stakeholder asks whether every AI roadmap item should use an LLM. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Explain the difference between AI, ML, deep learning, and Generative AI.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "supervised-unsupervised-rl",
+          "title": "Compare supervised learning, unsupervised learning, and reinforcement learning.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You need to select an approach for fraud labels, customer segmentation, and an agent optimizing a workflow.",
-      "expectedAnswer": "Supervised learning uses labeled examples to learn input-output mappings. Unsupervised learning discovers patterns without labels, such as clusters or lower-dimensional structure. Reinforcement learning trains an agent to choose actions that maximize reward through interaction with an environment. A good answer includes where each approach fits and why data availability drives the choice.",
+      "expectedAnswer": "Supervised learning uses labeled examples to learn input-output mappings. Unsupervised learning discovers patterns without labels, such as clusters or lower-dimensional structure. Reinforcement learning trains an agent to choose actions that maximize reward through interaction with an environment. A good answer includes where each approach fits and why data availability drives the choice. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You need to select an approach for fraud labels, customer segmentation, and an agent optimizing a workflow. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Compare supervised learning, unsupervised learning, and reinforcement learning.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "previous"
+        },
+        {
+          "id": "training-vs-inference",
+          "title": "What is the difference between training and inference?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "Your team trained a model offline and now needs to expose it through an API.",
-      "expectedAnswer": "Training is the offline or iterative process of learning model parameters from data. Inference is using the trained model to make predictions or generate outputs for new inputs. Production inference emphasizes latency, throughput, cost, reliability, monitoring, and safety, while training emphasizes data quality, optimization, validation, and experimentation.",
+      "expectedAnswer": "Training is the offline or iterative process of learning model parameters from data. Inference is using the trained model to make predictions or generate outputs for new inputs. Production inference emphasizes latency, throughput, cost, reliability, monitoring, and safety, while training emphasizes data quality, optimization, validation, and experimentation. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Your team trained a model offline and now needs to expose it through an API. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"What is the difference between training and inference?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "supervised-unsupervised-rl",
+          "title": "Compare supervised learning, unsupervised learning, and reinforcement learning.",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "overfitting-underfitting",
+          "title": "How do you explain overfitting and underfitting?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A model has excellent training accuracy but poor validation accuracy.",
-      "expectedAnswer": "Overfitting happens when a model learns noise or overly specific training patterns and fails to generalize. Underfitting happens when the model is too simple, poorly trained, or missing important features. Candidates should discuss train-validation gaps, regularization, validation design, leakage detection, and remedies such as more data, better features, early stopping, or simpler models.",
+      "expectedAnswer": "Overfitting happens when a model learns noise or overly specific training patterns and fails to generalize. Underfitting happens when the model is too simple, poorly trained, or missing important features. Candidates should discuss train-validation gaps, regularization, validation design, leakage detection, and remedies such as more data, better features, early stopping, or simpler models. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A model has excellent training accuracy but poor validation accuracy. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How do you explain overfitting and underfitting?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "training-vs-inference",
+          "title": "What is the difference between training and inference?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "build-vs-buy-ai",
+          "title": "How do you decide whether to build or buy an AI solution?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "Leadership asks whether to buy a vendor AI assistant or build an internal enterprise assistant.",
-      "expectedAnswer": "The decision depends on strategic differentiation, data sensitivity, integration complexity, time to market, cost, compliance, quality requirements, vendor lock-in, and internal operating maturity. Buy when the use case is commodity and speed matters. Build when the data, workflow, model behavior, or governance requirements create durable differentiation.",
+      "expectedAnswer": "The decision depends on strategic differentiation, data sensitivity, integration complexity, time to market, cost, compliance, quality requirements, vendor lock-in, and internal operating maturity. Buy when the use case is commodity and speed matters. Build when the data, workflow, model behavior, or governance requirements create durable differentiation. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Leadership asks whether to buy a vendor AI assistant or build an internal enterprise assistant. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How do you decide whether to build or buy an AI solution?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "overfitting-underfitting",
+          "title": "How do you explain overfitting and underfitting?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-bias-variance-tradeoff",
+          "title": "How would you explain bias-variance tradeoff in a AI Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through bias-variance tradeoff for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define bias-variance tradeoff, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define bias-variance tradeoff, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through bias-variance tradeoff for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain bias-variance tradeoff in a AI Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "build-vs-buy-ai",
+          "title": "How do you decide whether to build or buy an AI solution?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-ai-project-failure-reasons",
+          "title": "How would you explain AI project failure reasons in a AI Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through AI project failure reasons for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define AI project failure reasons, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define AI project failure reasons, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through AI project failure reasons for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain AI project failure reasons in a AI Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-bias-variance-tradeoff",
+          "title": "How would you explain bias-variance tradeoff in a AI Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-data-quality-versus-model-complexity",
+          "title": "How would you explain data quality versus model complexity in a AI Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through data quality versus model complexity for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define data quality versus model complexity, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define data quality versus model complexity, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through data quality versus model complexity for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain data quality versus model complexity in a AI Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-ai-project-failure-reasons",
+          "title": "How would you explain AI project failure reasons in a AI Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-model-interpretability",
+          "title": "How would you explain model interpretability in a AI Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through model interpretability for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define model interpretability, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define model interpretability, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through model interpretability for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ai fundamentals.",
+        "example": "Example: when asked \"How would you explain model interpretability in a AI Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-data-quality-versus-model-complexity",
+          "title": "How would you explain data quality versus model complexity in a AI Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-ai-ethics-and-fairness",
+          "title": "How would you explain AI ethics and fairness in a AI Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through AI ethics and fairness for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define AI ethics and fairness, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define AI ethics and fairness, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through AI ethics and fairness for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain AI ethics and fairness in a AI Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-model-interpretability",
+          "title": "How would you explain model interpretability in a AI Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-baseline-model-selection",
+          "title": "How would you explain baseline model selection in a AI Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through baseline model selection for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define baseline model selection, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define baseline model selection, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through baseline model selection for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain baseline model selection in a AI Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-ai-ethics-and-fairness",
+          "title": "How would you explain AI ethics and fairness in a AI Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-offline-metrics-versus-business-metrics",
+          "title": "How would you explain offline metrics versus business metrics in a AI Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through offline metrics versus business metrics for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define offline metrics versus business metrics, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define offline metrics versus business metrics, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through offline metrics versus business metrics for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain offline metrics versus business metrics in a AI Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-baseline-model-selection",
+          "title": "How would you explain baseline model selection in a AI Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-human-review-in-ai-systems",
+          "title": "How would you explain human review in AI systems in a AI Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through human review in AI systems for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define human review in AI systems, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define human review in AI systems, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through human review in AI systems for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain human review in AI systems in a AI Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-offline-metrics-versus-business-metrics",
+          "title": "How would you explain offline metrics versus business metrics in a AI Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-model-drift",
+          "title": "How would you explain model drift in a AI Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through model drift for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define model drift, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define model drift, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through model drift for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for ai fundamentals.",
+        "example": "Example: when asked \"How would you explain model drift in a AI Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-human-review-in-ai-systems",
+          "title": "How would you explain human review in AI systems in a AI Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-ai-risk-assessment",
+          "title": "How would you explain AI risk assessment in a AI Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through AI risk assessment for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define AI risk assessment, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define AI risk assessment, explain why it matters for ai fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through AI risk assessment for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain AI risk assessment in a AI Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real ai fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-model-drift",
+          "title": "How would you explain model drift in a AI Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-vs-ml-dl-genai",
+          "title": "Explain the difference between AI, ML, deep learning, and Generative AI.",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

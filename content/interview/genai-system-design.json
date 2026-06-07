@@ -23,9 +23,23 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "A company wants a conversational assistant over millions of internal documents.",
-      "expectedAnswer": "Cover document ingestion, permissions, parsing, chunking, retrieval, reranking, answer generation, citations, conversation state, feedback, observability, model routing, and governance. Discuss non-functional requirements such as latency, scale, security, cost, availability, and freshness.",
+      "expectedAnswer": "Cover document ingestion, permissions, parsing, chunking, retrieval, reranking, answer generation, citations, conversation state, feedback, observability, model routing, and governance. Discuss non-functional requirements such as latency, scale, security, cost, availability, and freshness. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A company wants a conversational assistant over millions of internal documents. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design ChatGPT for enterprise documents.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "document-intelligence-platform",
+          "title": "Design a document intelligence platform.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An insurance company processes claims documents, forms, and invoices.",
-      "expectedAnswer": "Include upload, OCR, layout-aware parsing, table extraction, classification, entity extraction, human review, storage, search, RAG, confidence scoring, and audit logs. Discuss accuracy, throughput, latency, compliance, and integration with downstream workflows.",
+      "expectedAnswer": "Include upload, OCR, layout-aware parsing, table extraction, classification, entity extraction, human review, storage, search, RAG, confidence scoring, and audit logs. Discuss accuracy, throughput, latency, compliance, and integration with downstream workflows. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An insurance company processes claims documents, forms, and invoices. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design a document intelligence platform.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "previous"
+        },
+        {
+          "id": "ai-search-500m-docs",
+          "title": "Design AI search over 500 million documents.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "A global enterprise wants semantic and keyword search across all knowledge repositories.",
-      "expectedAnswer": "Discuss ingestion pipelines, sharding, metadata, lexical and vector indexes, hybrid retrieval, reranking, caching, access control, query understanding, evaluation, freshness, and cost. Scale choices should cover index partitioning, recall-latency tradeoffs, and monitoring.",
+      "expectedAnswer": "Discuss ingestion pipelines, sharding, metadata, lexical and vector indexes, hybrid retrieval, reranking, caching, access control, query understanding, evaluation, freshness, and cost. Scale choices should cover index partitioning, recall-latency tradeoffs, and monitoring. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A global enterprise wants semantic and keyword search across all knowledge repositories. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design AI search over 500 million documents.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "document-intelligence-platform",
+          "title": "Design a document intelligence platform.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "enterprise-memory-system",
+          "title": "Design an enterprise memory system for AI assistants.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "A productivity assistant should remember preferences and project context safely.",
-      "expectedAnswer": "Cover memory types, write policies, retrieval policies, consent, privacy, retention, correction, tenant isolation, user controls, summarization, and evaluation. Strong answers avoid storing everything and distinguish user memory from task state.",
+      "expectedAnswer": "Cover memory types, write policies, retrieval policies, consent, privacy, retention, correction, tenant isolation, user controls, summarization, and evaluation. Strong answers avoid storing everything and distinguish user memory from task state. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A productivity assistant should remember preferences and project context safely. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design an enterprise memory system for AI assistants.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "ai-search-500m-docs",
+          "title": "Design AI search over 500 million documents.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "evaluation-platform",
+          "title": "Design an evaluation platform for GenAI apps.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "Many teams need to compare prompts and models before production rollout.",
-      "expectedAnswer": "Include dataset management, prompt/model versioning, test runs, LLM-as-judge, human review, metrics, trace replay, regression gates, dashboards, and deployment integration. Discuss calibration, cost, reproducibility, and business-specific rubrics.",
+      "expectedAnswer": "Include dataset management, prompt/model versioning, test runs, LLM-as-judge, human review, metrics, trace replay, regression gates, dashboards, and deployment integration. Discuss calibration, cost, reproducibility, and business-specific rubrics. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Many teams need to compare prompts and models before production rollout. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design an evaluation platform for GenAI apps.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "enterprise-memory-system",
+          "title": "Design an enterprise memory system for AI assistants.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-secure-rag-platform",
+          "title": "Design around secure RAG platform.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through secure RAG platform for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define secure RAG platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define secure RAG platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through secure RAG platform for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design around secure RAG platform.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "evaluation-platform",
+          "title": "Design an evaluation platform for GenAI apps.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-multi-agent-research-assistant",
+          "title": "Design around multi-agent research assistant.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through multi-agent research assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define multi-agent research assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define multi-agent research assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through multi-agent research assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design around multi-agent research assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-secure-rag-platform",
+          "title": "Design around secure RAG platform.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-ai-coding-assistant",
+          "title": "Design around AI coding assistant.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through AI coding assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define AI coding assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define AI coding assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through AI coding assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design around AI coding assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-multi-agent-research-assistant",
+          "title": "Design around multi-agent research assistant.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-customer-support-copilot",
+          "title": "Design around customer support copilot.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through customer support copilot for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define customer support copilot, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define customer support copilot, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through customer support copilot for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design around customer support copilot.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-ai-coding-assistant",
+          "title": "Design around AI coding assistant.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-meeting-intelligence-assistant",
+          "title": "Design around meeting intelligence assistant.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through meeting intelligence assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define meeting intelligence assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define meeting intelligence assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through meeting intelligence assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design around meeting intelligence assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-customer-support-copilot",
+          "title": "Design around customer support copilot.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-enterprise-knowledge-graph-assistant",
+          "title": "Design around enterprise knowledge graph assistant.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through enterprise knowledge graph assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define enterprise knowledge graph assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define enterprise knowledge graph assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through enterprise knowledge graph assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design around enterprise knowledge graph assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-meeting-intelligence-assistant",
+          "title": "Design around meeting intelligence assistant.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-personalized-learning-assistant",
+          "title": "Design around personalized learning assistant.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through personalized learning assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define personalized learning assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define personalized learning assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through personalized learning assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design around personalized learning assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-enterprise-knowledge-graph-assistant",
+          "title": "Design around enterprise knowledge graph assistant.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-contract-review-assistant",
+          "title": "Design around contract review assistant.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through contract review assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define contract review assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define contract review assistant, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through contract review assistant for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design around contract review assistant.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-personalized-learning-assistant",
+          "title": "Design around personalized learning assistant.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-llm-gateway-platform",
+          "title": "Design around LLM gateway platform.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through LLM gateway platform for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define LLM gateway platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define LLM gateway platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through LLM gateway platform for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design around LLM gateway platform.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-contract-review-assistant",
+          "title": "Design around contract review assistant.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-ai-workflow-automation-platform",
+          "title": "Design around AI workflow automation platform.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 12,
       "points": 15,
       "scenario": "An interviewer asks you to reason through AI workflow automation platform for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define AI workflow automation platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define AI workflow automation platform, explain why it matters for genai system design, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through AI workflow automation platform for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for genai system design.",
+        "example": "Example: when asked \"Design around AI workflow automation platform.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real genai system design setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-llm-gateway-platform",
+          "title": "Design around LLM gateway platform.",
+          "relation": "previous"
+        },
+        {
+          "id": "enterprise-doc-assistant",
+          "title": "Design ChatGPT for enterprise documents.",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

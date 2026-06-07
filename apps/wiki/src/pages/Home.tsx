@@ -82,15 +82,24 @@ export default function Home() {
                 <p><a className="text-slate-300 hover:text-cyan-300" href="https://linkedin.com/in/ladvishal1985" target="_blank" rel="noopener noreferrer">linkedin.com/in/ladvishal1985</a></p>
                 <p><a className="text-slate-300 hover:text-cyan-300" href="https://github.com/ladvishal1985" target="_blank" rel="noopener noreferrer">github.com/ladvishal1985</a></p>
               </div>
-              <div className="mt-8 grid grid-cols-2 gap-3">
+              <div className="mt-8">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-cyan-300">At a glance</p>
+                <div className="mt-3 grid grid-cols-2 gap-3">
                 <div className="rounded-lg bg-white/10 p-3">
                   <p className="text-2xl font-bold text-white">18+</p>
-                  <p className="text-xs text-slate-300">years</p>
+                  <p className="text-xs text-slate-300">years of architecture and engineering experience</p>
                 </div>
                 <div className="rounded-lg bg-white/10 p-3">
                   <p className="text-2xl font-bold text-white">300</p>
-                  <p className="text-xs text-slate-300">Q&A entries</p>
+                  <p className="text-xs text-slate-300">interview-prep Q&A entries in GenAI Hub</p>
                 </div>
+                </div>
+              </div>
+              <div className="mt-6 rounded-lg border border-cyan-400/20 bg-cyan-400/10 p-3">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-cyan-300">Transparency</p>
+                <p className="mt-2 text-xs leading-5 text-slate-300">
+                  This website is vibe-coded and its learning/interview content was created with AI assistance, then structured and reviewed for portfolio use.
+                </p>
               </div>
             </aside>
           </div>
@@ -110,6 +119,9 @@ export default function Home() {
           </div>
           <p className="mt-3 max-w-5xl text-sm leading-6 text-slate-600">
             A single deployable GenAI learning hub combining practical wiki articles, a searchable technical dictionary with 244 terms, and a structured interview-prep system with 300 JSON-driven Q&A entries across 20 topics.
+          </p>
+          <p className="mt-3 rounded-lg bg-amber-50 px-3 py-2 text-xs leading-5 text-amber-800 ring-1 ring-amber-100">
+            Disclaimer: this site is vibe-coded, and the educational content is generated with AI assistance. Treat examples and interview answers as study material, not authoritative professional advice.
           </p>
         </section>
 

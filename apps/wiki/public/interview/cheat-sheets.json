@@ -23,9 +23,23 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You have 15 minutes before an LLM fundamentals screen.",
-      "expectedAnswer": "Know tokens, transformers, attention, context windows, pretraining, instruction tuning, RLHF or DPO, sampling, hallucinations, grounding, and model selection. Always connect model behavior to production risks: cost, latency, reliability, and evaluation.",
+      "expectedAnswer": "Know tokens, transformers, attention, context windows, pretraining, instruction tuning, RLHF or DPO, sampling, hallucinations, grounding, and model selection. Always connect model behavior to production risks: cost, latency, reliability, and evaluation. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You have 15 minutes before an LLM fundamentals screen. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Give a concise LLM fundamentals cheat sheet.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "rag-cheat-sheet",
+          "title": "Give a concise RAG cheat sheet.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You need a final review before a RAG design round.",
-      "expectedAnswer": "Remember ingestion, parsing, chunking, embeddings, indexing, retrieval, reranking, prompt assembly, generation, citations, and evaluation. Key metrics include context recall, context precision, faithfulness, groundedness, answer relevance, and citation accuracy.",
+      "expectedAnswer": "Remember ingestion, parsing, chunking, embeddings, indexing, retrieval, reranking, prompt assembly, generation, citations, and evaluation. Key metrics include context recall, context precision, faithfulness, groundedness, answer relevance, and citation accuracy. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You need a final review before a RAG design round. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Give a concise RAG cheat sheet.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "previous"
+        },
+        {
+          "id": "agents-cheat-sheet",
+          "title": "Give a concise agents cheat sheet.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You are preparing for an agent architecture discussion.",
-      "expectedAnswer": "Know agent versus workflow, tool calling, planning, memory, reflection, human review, safety, evaluation, and tracing. Use agents for open-ended dynamic tasks; use deterministic workflows when steps are known and reliability matters.",
+      "expectedAnswer": "Know agent versus workflow, tool calling, planning, memory, reflection, human review, safety, evaluation, and tracing. Use agents for open-ended dynamic tasks; use deterministic workflows when steps are known and reliability matters. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You are preparing for an agent architecture discussion. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Give a concise agents cheat sheet.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "rag-cheat-sheet",
+          "title": "Give a concise RAG cheat sheet.",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "llmops-cheat-sheet",
+          "title": "Give a concise LLMOps cheat sheet.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You need to explain how to operate a GenAI app after launch.",
-      "expectedAnswer": "Track prompt versions, model versions, datasets, evals, traces, costs, latency, safety events, user feedback, and deployment history. Use golden datasets, regression tests, observability, and rollback paths before production rollout.",
+      "expectedAnswer": "Track prompt versions, model versions, datasets, evals, traces, costs, latency, safety events, user feedback, and deployment history. Use golden datasets, regression tests, observability, and rollback paths before production rollout. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You need to explain how to operate a GenAI app after launch. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Give a concise LLMOps cheat sheet.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "agents-cheat-sheet",
+          "title": "Give a concise agents cheat sheet.",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "stats-ml-cheat-sheet",
+          "title": "Give a concise statistics and ML cheat sheet.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You are preparing for a mixed data science and ML engineering interview.",
-      "expectedAnswer": "Review p-values, confidence intervals, A/B tests, sampling bias, leakage, train-validation-test splits, precision, recall, F1, ROC-AUC, overfitting, underfitting, feature engineering, and monitoring. Tie every metric to business impact.",
+      "expectedAnswer": "Review p-values, confidence intervals, A/B tests, sampling bias, leakage, train-validation-test splits, precision, recall, F1, ROC-AUC, overfitting, underfitting, feature engineering, and monitoring. Tie every metric to business impact. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You are preparing for a mixed data science and ML engineering interview. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Give a concise statistics and ML cheat sheet.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "llmops-cheat-sheet",
+          "title": "Give a concise LLMOps cheat sheet.",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-prompt-engineering-revision",
+          "title": "How would you explain prompt engineering revision in a Cheat Sheets interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through prompt engineering revision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define prompt engineering revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define prompt engineering revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through prompt engineering revision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain prompt engineering revision in a Cheat Sheets interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "stats-ml-cheat-sheet",
+          "title": "Give a concise statistics and ML cheat sheet.",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-embeddings-revision",
+          "title": "How would you explain embeddings revision in a Cheat Sheets interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through embeddings revision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define embeddings revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define embeddings revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through embeddings revision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain embeddings revision in a Cheat Sheets interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-prompt-engineering-revision",
+          "title": "How would you explain prompt engineering revision in a Cheat Sheets interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-vector-database-revision",
+          "title": "How would you explain vector database revision in a Cheat Sheets interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through vector database revision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define vector database revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define vector database revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through vector database revision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain vector database revision in a Cheat Sheets interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-embeddings-revision",
+          "title": "How would you explain embeddings revision in a Cheat Sheets interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-advanced-rag-revision",
+          "title": "How would you explain advanced RAG revision in a Cheat Sheets interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through advanced RAG revision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define advanced RAG revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define advanced RAG revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through advanced RAG revision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for cheat sheets.",
+        "example": "Example: when asked \"How would you explain advanced RAG revision in a Cheat Sheets interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-vector-database-revision",
+          "title": "How would you explain vector database revision in a Cheat Sheets interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-multi-agent-revision",
+          "title": "How would you explain multi-agent revision in a Cheat Sheets interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through multi-agent revision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define multi-agent revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define multi-agent revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through multi-agent revision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain multi-agent revision in a Cheat Sheets interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-advanced-rag-revision",
+          "title": "How would you explain advanced RAG revision in a Cheat Sheets interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-mcp-versus-a2a-revision",
+          "title": "How would you explain MCP versus A2A revision in a Cheat Sheets interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through MCP versus A2A revision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define MCP versus A2A revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define MCP versus A2A revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through MCP versus A2A revision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain MCP versus A2A revision in a Cheat Sheets interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-multi-agent-revision",
+          "title": "How would you explain multi-agent revision in a Cheat Sheets interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-enterprise-architecture-revision",
+          "title": "How would you explain enterprise architecture revision in a Cheat Sheets interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through enterprise architecture revision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define enterprise architecture revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define enterprise architecture revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through enterprise architecture revision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain enterprise architecture revision in a Cheat Sheets interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-mcp-versus-a2a-revision",
+          "title": "How would you explain MCP versus A2A revision in a Cheat Sheets interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-system-design-revision",
+          "title": "How would you explain system design revision in a Cheat Sheets interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through system design revision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define system design revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define system design revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through system design revision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain system design revision in a Cheat Sheets interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-enterprise-architecture-revision",
+          "title": "How would you explain enterprise architecture revision in a Cheat Sheets interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-statistics-revision",
+          "title": "How would you explain statistics revision in a Cheat Sheets interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through statistics revision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define statistics revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define statistics revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through statistics revision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for cheat sheets.",
+        "example": "Example: when asked \"How would you explain statistics revision in a Cheat Sheets interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-system-design-revision",
+          "title": "How would you explain system design revision in a Cheat Sheets interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-ml-fundamentals-revision",
+          "title": "How would you explain ML fundamentals revision in a Cheat Sheets interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through ML fundamentals revision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define ML fundamentals revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define ML fundamentals revision, explain why it matters for cheat sheets, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through ML fundamentals revision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain ML fundamentals revision in a Cheat Sheets interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real cheat sheets setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-statistics-revision",
+          "title": "How would you explain statistics revision in a Cheat Sheets interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-cheat-sheet",
+          "title": "Give a concise LLM fundamentals cheat sheet.",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

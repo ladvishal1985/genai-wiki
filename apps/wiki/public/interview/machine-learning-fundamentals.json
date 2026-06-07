@@ -23,9 +23,23 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A fraud model catches more fraud but blocks more legitimate transactions.",
-      "expectedAnswer": "Precision measures correctness among predicted positives. Recall measures coverage of actual positives. F1 balances precision and recall. ROC-AUC measures ranking ability across thresholds. The right metric depends on business cost of false positives and false negatives.",
+      "expectedAnswer": "Precision measures correctness among predicted positives. Recall measures coverage of actual positives. F1 balances precision and recall. ROC-AUC measures ranking ability across thresholds. The right metric depends on business cost of false positives and false negatives. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A fraud model catches more fraud but blocks more legitimate transactions. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Compare precision, recall, F1, and ROC-AUC.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "linear-vs-logistic",
+          "title": "What is the difference between linear regression and logistic regression?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You need to predict house price versus whether a customer will churn.",
-      "expectedAnswer": "Linear regression predicts continuous values by modeling a linear relationship. Logistic regression predicts class probabilities using a logistic function and is commonly used for binary classification. Candidates should discuss assumptions, loss functions, interpretability, and thresholding.",
+      "expectedAnswer": "Linear regression predicts continuous values by modeling a linear relationship. Logistic regression predicts class probabilities using a logistic function and is commonly used for binary classification. Candidates should discuss assumptions, loss functions, interpretability, and thresholding. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You need to predict house price versus whether a customer will churn. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"What is the difference between linear regression and logistic regression?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "previous"
+        },
+        {
+          "id": "tree-vs-boosting",
+          "title": "Compare decision trees, random forests, and gradient boosting.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A tabular risk model needs strong performance and reasonable explainability.",
-      "expectedAnswer": "Decision trees are interpretable but can overfit. Random forests reduce variance by averaging many trees. Gradient boosting builds trees sequentially to correct errors and often performs strongly on tabular data, but can require careful tuning and monitoring.",
+      "expectedAnswer": "Decision trees are interpretable but can overfit. Random forests reduce variance by averaging many trees. Gradient boosting builds trees sequentially to correct errors and often performs strongly on tabular data, but can require careful tuning and monitoring. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A tabular risk model needs strong performance and reasonable explainability. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Compare decision trees, random forests, and gradient boosting.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "linear-vs-logistic",
+          "title": "What is the difference between linear regression and logistic regression?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "data-leakage",
+          "title": "What is data leakage?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A churn model uses a feature generated after the cancellation request.",
-      "expectedAnswer": "Data leakage happens when training features contain information that would not be available at prediction time or when validation data contaminates training. It produces inflated offline metrics and poor production performance. Detection involves time-based splits, feature audits, pipeline review, and suspicious metric investigation.",
+      "expectedAnswer": "Data leakage happens when training features contain information that would not be available at prediction time or when validation data contaminates training. It produces inflated offline metrics and poor production performance. Detection involves time-based splits, feature audits, pipeline review, and suspicious metric investigation. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A churn model uses a feature generated after the cancellation request. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"What is data leakage?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "tree-vs-boosting",
+          "title": "Compare decision trees, random forests, and gradient boosting.",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "model-selection",
+          "title": "How do you choose a model for a production ML problem?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "A team asks whether to use XGBoost, a neural network, or an LLM for tabular prediction.",
-      "expectedAnswer": "Choose based on metric fit, data size, feature types, interpretability, latency, cost, maintainability, robustness, fairness, and monitoring needs. Start with simple baselines, compare candidates on validation data, and select the simplest model that meets business and operational requirements.",
+      "expectedAnswer": "Choose based on metric fit, data size, feature types, interpretability, latency, cost, maintainability, robustness, fairness, and monitoring needs. Start with simple baselines, compare candidates on validation data, and select the simplest model that meets business and operational requirements. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A team asks whether to use XGBoost, a neural network, or an LLM for tabular prediction. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for machine learning fundamentals.",
+        "example": "Example: when asked \"How do you choose a model for a production ML problem?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "data-leakage",
+          "title": "What is data leakage?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-train-validation-test-split",
+          "title": "How would you explain train validation test split in a Machine Learning Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through train validation test split for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define train validation test split, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define train validation test split, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through train validation test split for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain train validation test split in a Machine Learning Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "model-selection",
+          "title": "How do you choose a model for a production ML problem?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-cross-validation",
+          "title": "How would you explain cross validation in a Machine Learning Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through cross validation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define cross validation, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define cross validation, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through cross validation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain cross validation in a Machine Learning Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-train-validation-test-split",
+          "title": "How would you explain train validation test split in a Machine Learning Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-regularization",
+          "title": "How would you explain regularization in a Machine Learning Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through regularization for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define regularization, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define regularization, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through regularization for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain regularization in a Machine Learning Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-cross-validation",
+          "title": "How would you explain cross validation in a Machine Learning Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-class-imbalance",
+          "title": "How would you explain class imbalance in a Machine Learning Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through class imbalance for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define class imbalance, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define class imbalance, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through class imbalance for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for machine learning fundamentals.",
+        "example": "Example: when asked \"How would you explain class imbalance in a Machine Learning Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-regularization",
+          "title": "How would you explain regularization in a Machine Learning Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-calibration",
+          "title": "How would you explain calibration in a Machine Learning Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through calibration for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define calibration, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define calibration, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through calibration for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain calibration in a Machine Learning Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-class-imbalance",
+          "title": "How would you explain class imbalance in a Machine Learning Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-clustering-evaluation",
+          "title": "How would you explain clustering evaluation in a Machine Learning Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through clustering evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define clustering evaluation, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define clustering evaluation, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through clustering evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain clustering evaluation in a Machine Learning Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-calibration",
+          "title": "How would you explain calibration in a Machine Learning Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-pca-dimensionality-reduction",
+          "title": "How would you explain PCA dimensionality reduction in a Machine Learning Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through PCA dimensionality reduction for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define PCA dimensionality reduction, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define PCA dimensionality reduction, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through PCA dimensionality reduction for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain PCA dimensionality reduction in a Machine Learning Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-clustering-evaluation",
+          "title": "How would you explain clustering evaluation in a Machine Learning Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-svm-intuition",
+          "title": "How would you explain SVM intuition in a Machine Learning Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through SVM intuition for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define SVM intuition, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define SVM intuition, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through SVM intuition for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain SVM intuition in a Machine Learning Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-pca-dimensionality-reduction",
+          "title": "How would you explain PCA dimensionality reduction in a Machine Learning Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-knn-tradeoffs",
+          "title": "How would you explain KNN tradeoffs in a Machine Learning Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through KNN tradeoffs for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define KNN tradeoffs, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define KNN tradeoffs, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through KNN tradeoffs for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for machine learning fundamentals.",
+        "example": "Example: when asked \"How would you explain KNN tradeoffs in a Machine Learning Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-svm-intuition",
+          "title": "How would you explain SVM intuition in a Machine Learning Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-naive-bayes-assumptions",
+          "title": "How would you explain Naive Bayes assumptions in a Machine Learning Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through Naive Bayes assumptions for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define Naive Bayes assumptions, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define Naive Bayes assumptions, explain why it matters for machine learning fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through Naive Bayes assumptions for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain Naive Bayes assumptions in a Machine Learning Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real machine learning fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-knn-tradeoffs",
+          "title": "How would you explain KNN tradeoffs in a Machine Learning Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "classification-metrics",
+          "title": "Compare precision, recall, F1, and ROC-AUC.",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

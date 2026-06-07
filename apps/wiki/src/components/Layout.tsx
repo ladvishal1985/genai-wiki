@@ -132,6 +132,11 @@ export default function Layout() {
         <main className="flex-1 overflow-y-auto">
           <div className={`${contentWidth} mx-auto ${appSurface ? 'h-full' : ''}`}>
             <Outlet context={{ posts: filteredPosts, loading: !manifest }} />
+            {!appSurface && (
+              <footer className="mt-10 border-t border-slate-200 py-5 text-xs leading-5 text-slate-500">
+                Built as a vibe-coded portfolio and GenAI learning hub. Content is created with AI assistance and should be reviewed before professional use.
+              </footer>
+            )}
           </div>
         </main>
       </div>

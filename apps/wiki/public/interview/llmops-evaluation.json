@@ -23,9 +23,23 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A prototype assistant works in demos but fails unpredictably in production.",
-      "expectedAnswer": "LLMOps is the discipline of operating LLM applications reliably. It covers prompt and model versioning, datasets, evaluations, deployment, observability, cost tracking, latency monitoring, safety controls, incident response, and feedback loops. It differs from classic MLOps because prompts, retrieval, tools, and model providers can all change behavior.",
+      "expectedAnswer": "LLMOps is the discipline of operating LLM applications reliably. It covers prompt and model versioning, datasets, evaluations, deployment, observability, cost tracking, latency monitoring, safety controls, incident response, and feedback loops. It differs from classic MLOps because prompts, retrieval, tools, and model providers can all change behavior. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A prototype assistant works in demos but fails unpredictably in production. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"What is LLMOps?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "golden-dataset",
+          "title": "How do you build a golden evaluation dataset?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "Leadership asks for repeatable evidence before deploying an internal assistant.",
-      "expectedAnswer": "A golden dataset contains representative user questions, expected answers, relevant context, edge cases, adversarial cases, and acceptance criteria. It should be created from real logs, expert input, and business-critical scenarios. Keep train/test separation and update it as the product evolves.",
+      "expectedAnswer": "A golden dataset contains representative user questions, expected answers, relevant context, edge cases, adversarial cases, and acceptance criteria. It should be created from real logs, expert input, and business-critical scenarios. Keep train/test separation and update it as the product evolves. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Leadership asks for repeatable evidence before deploying an internal assistant. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How do you build a golden evaluation dataset?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "previous"
+        },
+        {
+          "id": "llm-as-judge",
+          "title": "When should you use LLM-as-a-judge?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "Manual evaluation cannot keep up with daily prompt and retrieval changes.",
-      "expectedAnswer": "LLM-as-a-judge helps evaluate open-ended outputs for relevance, faithfulness, tone, or rubric adherence at scale. It should be calibrated against human judgments, use clear rubrics, avoid judging its own outputs when possible, and be monitored for bias or drift. It complements but does not replace human review.",
+      "expectedAnswer": "LLM-as-a-judge helps evaluate open-ended outputs for relevance, faithfulness, tone, or rubric adherence at scale. It should be calibrated against human judgments, use clear rubrics, avoid judging its own outputs when possible, and be monitored for bias or drift. It complements but does not replace human review. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Manual evaluation cannot keep up with daily prompt and retrieval changes. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"When should you use LLM-as-a-judge?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "golden-dataset",
+          "title": "How do you build a golden evaluation dataset?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "observability",
+          "title": "What should you trace in a GenAI application?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "A customer reports a bad answer but the team cannot reproduce what happened.",
-      "expectedAnswer": "Trace user input, prompt version, model version, retrieved documents, scores, reranking, final prompt, tool calls, outputs, latency, token counts, cost, safety events, and feedback. Observability should support debugging, evaluation, audit, and incident response while protecting sensitive data.",
+      "expectedAnswer": "Trace user input, prompt version, model version, retrieved documents, scores, reranking, final prompt, tool calls, outputs, latency, token counts, cost, safety events, and feedback. Observability should support debugging, evaluation, audit, and incident response while protecting sensitive data. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A customer reports a bad answer but the team cannot reproduce what happened. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for llmops & evaluation.",
+        "example": "Example: when asked \"What should you trace in a GenAI application?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "llm-as-judge",
+          "title": "When should you use LLM-as-a-judge?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "cost-latency-quality",
+          "title": "How do you balance cost, latency, and quality?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "Usage has grown and the monthly LLM bill is now a leadership concern.",
-      "expectedAnswer": "Use model routing, caching, prompt compression, retrieval precision, smaller models for simple tasks, batching, streaming, token budgets, and quality gates. Measure cost per successful task, not just cost per token. Changes should be evaluated to avoid reducing quality or increasing retries.",
+      "expectedAnswer": "Use model routing, caching, prompt compression, retrieval precision, smaller models for simple tasks, batching, streaming, token budgets, and quality gates. Measure cost per successful task, not just cost per token. Changes should be evaluated to avoid reducing quality or increasing retries. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Usage has grown and the monthly LLM bill is now a leadership concern. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How do you balance cost, latency, and quality?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "observability",
+          "title": "What should you trace in a GenAI application?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-prompt-regression-testing",
+          "title": "How would you explain prompt regression testing in a LLMOps & Evaluation interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through prompt regression testing for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define prompt regression testing, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define prompt regression testing, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through prompt regression testing for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain prompt regression testing in a LLMOps & Evaluation interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "cost-latency-quality",
+          "title": "How do you balance cost, latency, and quality?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-dataset-versioning",
+          "title": "How would you explain dataset versioning in a LLMOps & Evaluation interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through dataset versioning for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define dataset versioning, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define dataset versioning, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through dataset versioning for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain dataset versioning in a LLMOps & Evaluation interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-prompt-regression-testing",
+          "title": "How would you explain prompt regression testing in a LLMOps & Evaluation interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-groundedness-evaluation",
+          "title": "How would you explain groundedness evaluation in a LLMOps & Evaluation interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through groundedness evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define groundedness evaluation, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define groundedness evaluation, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through groundedness evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain groundedness evaluation in a LLMOps & Evaluation interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-dataset-versioning",
+          "title": "How would you explain dataset versioning in a LLMOps & Evaluation interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-faithfulness-evaluation",
+          "title": "How would you explain faithfulness evaluation in a LLMOps & Evaluation interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through faithfulness evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define faithfulness evaluation, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define faithfulness evaluation, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through faithfulness evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for llmops & evaluation.",
+        "example": "Example: when asked \"How would you explain faithfulness evaluation in a LLMOps & Evaluation interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-groundedness-evaluation",
+          "title": "How would you explain groundedness evaluation in a LLMOps & Evaluation interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-answer-relevance-evaluation",
+          "title": "How would you explain answer relevance evaluation in a LLMOps & Evaluation interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through answer relevance evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define answer relevance evaluation, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define answer relevance evaluation, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through answer relevance evaluation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain answer relevance evaluation in a LLMOps & Evaluation interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-faithfulness-evaluation",
+          "title": "How would you explain faithfulness evaluation in a LLMOps & Evaluation interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-context-precision-and-recall",
+          "title": "How would you explain context precision and recall in a LLMOps & Evaluation interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through context precision and recall for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define context precision and recall, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define context precision and recall, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through context precision and recall for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain context precision and recall in a LLMOps & Evaluation interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-answer-relevance-evaluation",
+          "title": "How would you explain answer relevance evaluation in a LLMOps & Evaluation interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-human-evaluation-workflow",
+          "title": "How would you explain human evaluation workflow in a LLMOps & Evaluation interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through human evaluation workflow for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define human evaluation workflow, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define human evaluation workflow, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through human evaluation workflow for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain human evaluation workflow in a LLMOps & Evaluation interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-context-precision-and-recall",
+          "title": "How would you explain context precision and recall in a LLMOps & Evaluation interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-model-drift-in-llm-apps",
+          "title": "How would you explain model drift in LLM apps in a LLMOps & Evaluation interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through model drift in LLM apps for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define model drift in LLM apps, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define model drift in LLM apps, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through model drift in LLM apps for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain model drift in LLM apps in a LLMOps & Evaluation interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-human-evaluation-workflow",
+          "title": "How would you explain human evaluation workflow in a LLMOps & Evaluation interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-latency-slos",
+          "title": "How would you explain latency SLOs in a LLMOps & Evaluation interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through latency SLOs for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define latency SLOs, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define latency SLOs, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through latency SLOs for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for llmops & evaluation.",
+        "example": "Example: when asked \"How would you explain latency SLOs in a LLMOps & Evaluation interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-model-drift-in-llm-apps",
+          "title": "How would you explain model drift in LLM apps in a LLMOps & Evaluation interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-production-incident-response",
+          "title": "How would you explain production incident response in a LLMOps & Evaluation interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through production incident response for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define production incident response, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define production incident response, explain why it matters for llmops & evaluation, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through production incident response for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain production incident response in a LLMOps & Evaluation interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llmops & evaluation setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-latency-slos",
+          "title": "How would you explain latency SLOs in a LLMOps & Evaluation interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "llmops-basics",
+          "title": "What is LLMOps?",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

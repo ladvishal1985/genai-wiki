@@ -69,6 +69,19 @@ export interface InterviewRubric {
   clarity: number
 }
 
+export interface InterviewQuestionLink {
+  id: string
+  title: string
+  relation: 'previous' | 'next' | 'foundation' | 'application'
+}
+
+export interface InterviewAnswerFramework {
+  scenarioResponse: string
+  howToApply: string
+  example: string
+  tradeoffs: string
+}
+
 export interface InterviewQuestion {
   id: string
   title: string
@@ -83,6 +96,8 @@ export interface InterviewQuestion {
   commonMistakes: string[]
   followUpQuestions: string[]
   realWorldExample: string
+  answerFramework?: InterviewAnswerFramework
+  relatedQuestions?: InterviewQuestionLink[]
   interviewerNotes: string
   rubric: InterviewRubric
 }

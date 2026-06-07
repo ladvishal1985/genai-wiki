@@ -23,9 +23,23 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You are building an assistant over HR policies, product docs, and customer contracts that change weekly.",
-      "expectedAnswer": "Use RAG when answers depend on external, changing, proprietary, or access-controlled knowledge. RAG retrieves relevant evidence at query time and grounds the answer. Fine-tuning is better for changing model behavior, style, or task performance, but it is not ideal for frequently changing facts.",
+      "expectedAnswer": "Use RAG when answers depend on external, changing, proprietary, or access-controlled knowledge. RAG retrieves relevant evidence at query time and grounds the answer. Fine-tuning is better for changing model behavior, style, or task performance, but it is not ideal for frequently changing facts. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You are building an assistant over HR policies, product docs, and customer contracts that change weekly. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"When would you use RAG instead of fine-tuning?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "rag-pipeline",
+          "title": "Walk through a basic RAG pipeline.",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You need to explain the architecture to a team building its first document assistant.",
-      "expectedAnswer": "A basic RAG pipeline ingests documents, parses and cleans content, chunks text, enriches metadata, creates embeddings, indexes vectors, retrieves candidates for a query, optionally reranks them, assembles prompt context, generates an answer, cites sources, and logs traces for evaluation. A strong answer separates offline ingestion from online query flow.",
+      "expectedAnswer": "A basic RAG pipeline ingests documents, parses and cleans content, chunks text, enriches metadata, creates embeddings, indexes vectors, retrieves candidates for a query, optionally reranks them, assembles prompt context, generates an answer, cites sources, and logs traces for evaluation. A strong answer separates offline ingestion from online query flow. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You need to explain the architecture to a team building its first document assistant. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Walk through a basic RAG pipeline.\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "previous"
+        },
+        {
+          "id": "chunking-strategy",
+          "title": "How do you choose a chunking strategy for RAG?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A document intelligence system must answer questions across PDFs, contracts, and long policy documents.",
-      "expectedAnswer": "Chunking should preserve semantic meaning while keeping chunks small enough for precise retrieval. Strategy depends on document structure, query patterns, model context, and citation needs. Options include fixed-size chunks, semantic chunks, section-aware chunks, parent-child retrieval, and overlap.",
+      "expectedAnswer": "Chunking should preserve semantic meaning while keeping chunks small enough for precise retrieval. Strategy depends on document structure, query patterns, model context, and citation needs. Options include fixed-size chunks, semantic chunks, section-aware chunks, parent-child retrieval, and overlap. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A document intelligence system must answer questions across PDFs, contracts, and long policy documents. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How do you choose a chunking strategy for RAG?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "rag-pipeline",
+          "title": "Walk through a basic RAG pipeline.",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "reranking-purpose",
+          "title": "Why is reranking useful in RAG?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A vector search returns many loosely related chunks and answer quality is inconsistent.",
-      "expectedAnswer": "First-stage retrieval optimizes recall and speed. Reranking uses a more precise model, often a cross-encoder or LLM-based scorer, to reorder candidate passages by relevance. This improves context precision and reduces prompt pollution, at the cost of additional latency and compute.",
+      "expectedAnswer": "First-stage retrieval optimizes recall and speed. Reranking uses a more precise model, often a cross-encoder or LLM-based scorer, to reorder candidate passages by relevance. This improves context precision and reduces prompt pollution, at the cost of additional latency and compute. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A vector search returns many loosely related chunks and answer quality is inconsistent. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Why is reranking useful in RAG?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "chunking-strategy",
+          "title": "How do you choose a chunking strategy for RAG?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "rag-evaluation",
+          "title": "How would you evaluate a RAG application?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "Leadership wants proof that an enterprise assistant is accurate enough for internal rollout.",
-      "expectedAnswer": "Evaluate retrieval and generation separately. Retrieval metrics include context recall, context precision, hit rate, and MRR. Generation metrics include groundedness, faithfulness, answer relevance, citation accuracy, refusal quality, and human preference. Use golden datasets, adversarial tests, regression tests, observability, and feedback loops.",
+      "expectedAnswer": "Evaluate retrieval and generation separately. Retrieval metrics include context recall, context precision, hit rate, and MRR. Generation metrics include groundedness, faithfulness, answer relevance, citation accuracy, refusal quality, and human preference. Use golden datasets, adversarial tests, regression tests, observability, and feedback loops. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Leadership wants proof that an enterprise assistant is accurate enough for internal rollout. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for rag fundamentals.",
+        "example": "Example: when asked \"How would you evaluate a RAG application?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "reranking-purpose",
+          "title": "Why is reranking useful in RAG?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-grounding-and-citations",
+          "title": "How would you explain grounding and citations in a RAG Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through grounding and citations for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define grounding and citations, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define grounding and citations, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through grounding and citations for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain grounding and citations in a RAG Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "rag-evaluation",
+          "title": "How would you evaluate a RAG application?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-document-parsing-quality",
+          "title": "How would you explain document parsing quality in a RAG Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through document parsing quality for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define document parsing quality, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define document parsing quality, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through document parsing quality for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain document parsing quality in a RAG Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-grounding-and-citations",
+          "title": "How would you explain grounding and citations in a RAG Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-retrieval-recall",
+          "title": "How would you explain retrieval recall in a RAG Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through retrieval recall for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define retrieval recall, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define retrieval recall, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through retrieval recall for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain retrieval recall in a RAG Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-document-parsing-quality",
+          "title": "How would you explain document parsing quality in a RAG Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-retrieval-precision",
+          "title": "How would you explain retrieval precision in a RAG Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through retrieval precision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define retrieval precision, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define retrieval precision, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through retrieval precision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for rag fundamentals.",
+        "example": "Example: when asked \"How would you explain retrieval precision in a RAG Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-retrieval-recall",
+          "title": "How would you explain retrieval recall in a RAG Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-context-packing",
+          "title": "How would you explain context packing in a RAG Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through context packing for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define context packing, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define context packing, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through context packing for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain context packing in a RAG Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-retrieval-precision",
+          "title": "How would you explain retrieval precision in a RAG Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-answer-refusal-behavior",
+          "title": "How would you explain answer refusal behavior in a RAG Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through answer refusal behavior for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define answer refusal behavior, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define answer refusal behavior, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through answer refusal behavior for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain answer refusal behavior in a RAG Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-context-packing",
+          "title": "How would you explain context packing in a RAG Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-source-freshness",
+          "title": "How would you explain source freshness in a RAG Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through source freshness for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define source freshness, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define source freshness, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through source freshness for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain source freshness in a RAG Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-answer-refusal-behavior",
+          "title": "How would you explain answer refusal behavior in a RAG Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-query-intent-classification",
+          "title": "How would you explain query intent classification in a RAG Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through query intent classification for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define query intent classification, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define query intent classification, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through query intent classification for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain query intent classification in a RAG Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-source-freshness",
+          "title": "How would you explain source freshness in a RAG Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-rag-observability",
+          "title": "How would you explain RAG observability in a RAG Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through RAG observability for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define RAG observability, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define RAG observability, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through RAG observability for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for rag fundamentals.",
+        "example": "Example: when asked \"How would you explain RAG observability in a RAG Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-query-intent-classification",
+          "title": "How would you explain query intent classification in a RAG Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-user-feedback-loops",
+          "title": "How would you explain user feedback loops in a RAG Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through user feedback loops for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define user feedback loops, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define user feedback loops, explain why it matters for rag fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through user feedback loops for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain user feedback loops in a RAG Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real rag fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-rag-observability",
+          "title": "How would you explain RAG observability in a RAG Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-fine-tuning",
+          "title": "When would you use RAG instead of fine-tuning?",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

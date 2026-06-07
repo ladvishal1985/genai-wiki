@@ -23,9 +23,23 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A product manager asks why a fluent chatbot can still be wrong.",
-      "expectedAnswer": "An LLM is a neural network trained to predict tokens from large text and code corpora. At inference time it tokenizes the prompt, computes probabilities for next tokens, and selects or samples outputs until completion. It generates plausible continuations, not guaranteed truth, so grounding, evaluation, and guardrails are needed in production.",
+      "expectedAnswer": "An LLM is a neural network trained to predict tokens from large text and code corpora. At inference time it tokenizes the prompt, computes probabilities for next tokens, and selects or samples outputs until completion. It generates plausible continuations, not guaranteed truth, so grounding, evaluation, and guardrails are needed in production. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A product manager asks why a fluent chatbot can still be wrong. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"What is a large language model and how does it generate text?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "transformer-self-attention",
+          "title": "Why is self-attention important in transformers?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "You need to explain why transformers replaced many recurrent architectures for language tasks.",
-      "expectedAnswer": "Self-attention lets each token weigh other tokens in the context when forming its representation. This enables long-range dependencies, parallel training, and context-sensitive meaning. Multi-head attention allows the model to learn different relationships at once, such as syntax, entity references, and semantic associations.",
+      "expectedAnswer": "Self-attention lets each token weigh other tokens in the context when forming its representation. This enables long-range dependencies, parallel training, and context-sensitive meaning. Multi-head attention allows the model to learn different relationships at once, such as syntax, entity references, and semantic associations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: You need to explain why transformers replaced many recurrent architectures for language tasks. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Why is self-attention important in transformers?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "previous"
+        },
+        {
+          "id": "context-window-tradeoffs",
+          "title": "What is a context window and what tradeoffs does it create?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A team wants to send every document and chat message into each request.",
-      "expectedAnswer": "The context window is the maximum input and output token budget a model can process. Larger windows can include more evidence but increase cost, latency, and distraction risk. Strong systems manage context through retrieval, ranking, compression, summarization, and prompt structure instead of blindly stuffing all data into the prompt.",
+      "expectedAnswer": "The context window is the maximum input and output token budget a model can process. Larger windows can include more evidence but increase cost, latency, and distraction risk. Strong systems manage context through retrieval, ranking, compression, summarization, and prompt structure instead of blindly stuffing all data into the prompt. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A team wants to send every document and chat message into each request. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"What is a context window and what tradeoffs does it create?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "transformer-self-attention",
+          "title": "Why is self-attention important in transformers?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "hallucinations",
+          "title": "Why do LLM hallucinations happen and how can you reduce them?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An internal support assistant confidently gives an outdated policy answer.",
-      "expectedAnswer": "Hallucinations happen because LLMs generate probable text rather than verify facts by default. They can be reduced with retrieval grounding, citations, constrained outputs, tool use, calibration, refusal policies, eval sets, and human review for high-risk tasks. A strong answer avoids claiming hallucinations can be fully eliminated.",
+      "expectedAnswer": "Hallucinations happen because LLMs generate probable text rather than verify facts by default. They can be reduced with retrieval grounding, citations, constrained outputs, tool use, calibration, refusal policies, eval sets, and human review for high-risk tasks. A strong answer avoids claiming hallucinations can be fully eliminated. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An internal support assistant confidently gives an outdated policy answer. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Why do LLM hallucinations happen and how can you reduce them?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "context-window-tradeoffs",
+          "title": "What is a context window and what tradeoffs does it create?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "open-vs-closed-models",
+          "title": "How do you choose between open-weight and closed API models?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "A regulated enterprise needs a standard model strategy across departments.",
-      "expectedAnswer": "Closed models often offer strong quality, managed scale, and low operational burden. Open-weight models offer deployment control, customization, data residency options, and lower vendor dependency. The choice depends on quality, latency, cost, compliance, data sensitivity, customization, operating maturity, and fallback strategy.",
+      "expectedAnswer": "Closed models often offer strong quality, managed scale, and low operational burden. Open-weight models offer deployment control, customization, data residency options, and lower vendor dependency. The choice depends on quality, latency, cost, compliance, data sensitivity, customization, operating maturity, and fallback strategy. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A regulated enterprise needs a standard model strategy across departments. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for llm fundamentals.",
+        "example": "Example: when asked \"How do you choose between open-weight and closed API models?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "hallucinations",
+          "title": "Why do LLM hallucinations happen and how can you reduce them?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-tokenization-failure-modes",
+          "title": "How would you explain tokenization failure modes in a LLM Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through tokenization failure modes for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define tokenization failure modes, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define tokenization failure modes, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through tokenization failure modes for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain tokenization failure modes in a LLM Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "open-vs-closed-models",
+          "title": "How do you choose between open-weight and closed API models?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-temperature-and-sampling-controls",
+          "title": "How would you explain temperature and sampling controls in a LLM Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through temperature and sampling controls for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define temperature and sampling controls, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define temperature and sampling controls, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through temperature and sampling controls for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain temperature and sampling controls in a LLM Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-tokenization-failure-modes",
+          "title": "How would you explain tokenization failure modes in a LLM Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-instruction-tuning",
+          "title": "How would you explain instruction tuning in a LLM Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through instruction tuning for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define instruction tuning, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define instruction tuning, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through instruction tuning for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain instruction tuning in a LLM Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-temperature-and-sampling-controls",
+          "title": "How would you explain temperature and sampling controls in a LLM Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-rlhf-versus-dpo",
+          "title": "How would you explain RLHF versus DPO in a LLM Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through RLHF versus DPO for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define RLHF versus DPO, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define RLHF versus DPO, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through RLHF versus DPO for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for llm fundamentals.",
+        "example": "Example: when asked \"How would you explain RLHF versus DPO in a LLM Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-instruction-tuning",
+          "title": "How would you explain instruction tuning in a LLM Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-quantization-tradeoffs",
+          "title": "How would you explain quantization tradeoffs in a LLM Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through quantization tradeoffs for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define quantization tradeoffs, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define quantization tradeoffs, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through quantization tradeoffs for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain quantization tradeoffs in a LLM Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-rlhf-versus-dpo",
+          "title": "How would you explain RLHF versus DPO in a LLM Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-model-distillation",
+          "title": "How would you explain model distillation in a LLM Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through model distillation for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define model distillation, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define model distillation, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through model distillation for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain model distillation in a LLM Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-quantization-tradeoffs",
+          "title": "How would you explain quantization tradeoffs in a LLM Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-multimodal-llms",
+          "title": "How would you explain multimodal LLMs in a LLM Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through multimodal LLMs for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define multimodal LLMs, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define multimodal LLMs, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through multimodal LLMs for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain multimodal LLMs in a LLM Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-model-distillation",
+          "title": "How would you explain model distillation in a LLM Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-reasoning-models",
+          "title": "How would you explain reasoning models in a LLM Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through reasoning models for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define reasoning models, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define reasoning models, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through reasoning models for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain reasoning models in a LLM Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-multimodal-llms",
+          "title": "How would you explain multimodal LLMs in a LLM Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-context-length-extension",
+          "title": "How would you explain context length extension in a LLM Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through context length extension for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define context length extension, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define context length extension, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through context length extension for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for llm fundamentals.",
+        "example": "Example: when asked \"How would you explain context length extension in a LLM Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-reasoning-models",
+          "title": "How would you explain reasoning models in a LLM Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-model-benchmarking",
+          "title": "How would you explain model benchmarking in a LLM Fundamentals interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through model benchmarking for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define model benchmarking, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define model benchmarking, explain why it matters for llm fundamentals, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through model benchmarking for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain model benchmarking in a LLM Fundamentals interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real llm fundamentals setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-context-length-extension",
+          "title": "How would you explain context length extension in a LLM Fundamentals interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "what-is-an-llm",
+          "title": "What is a large language model and how does it generate text?",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

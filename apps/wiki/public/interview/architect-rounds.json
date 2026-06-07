@@ -23,9 +23,23 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A CTO asks for one strategy across support, legal, and engineering assistants.",
-      "expectedAnswer": "RAG is for grounding answers in changing or access-controlled knowledge. Fine-tuning is for behavior, style, domain adaptation, or task performance. Architects should consider data freshness, governance, cost, latency, evaluation, and whether a hybrid approach is needed.",
+      "expectedAnswer": "RAG is for grounding answers in changing or access-controlled knowledge. Fine-tuning is for behavior, style, domain adaptation, or task performance. Architects should consider data freshness, governance, cost, latency, evaluation, and whether a hybrid approach is needed. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A CTO asks for one strategy across support, legal, and engineering assistants. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"At architecture level, how do you decide between RAG and fine-tuning?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "postgres-vs-redis-memory",
+          "title": "Postgres vs Redis for AI memory: how do you choose?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -65,9 +79,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An assistant needs both session context and long-term user preferences.",
-      "expectedAnswer": "Postgres is durable, relational, queryable, and strong for governed long-term memory. Redis is fast and useful for ephemeral session state, caches, and short-lived memory. A strong answer discusses consistency, retention, search needs, scaling, cost, and compliance.",
+      "expectedAnswer": "Postgres is durable, relational, queryable, and strong for governed long-term memory. Redis is fast and useful for ephemeral session state, caches, and short-lived memory. A strong answer discusses consistency, retention, search needs, scaling, cost, and compliance. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An assistant needs both session context and long-term user preferences. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"Postgres vs Redis for AI memory: how do you choose?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "previous"
+        },
+        {
+          "id": "sse-vs-websockets",
+          "title": "SSE vs WebSockets for streaming LLM output?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -107,9 +140,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "A web assistant streams model tokens and occasionally needs client-side interruption.",
-      "expectedAnswer": "SSE is simpler and works well for one-way server-to-client token streaming. WebSockets support bidirectional communication and richer interactive protocols. Choose based on interaction pattern, infrastructure support, reconnection, scale, and operational complexity.",
+      "expectedAnswer": "SSE is simpler and works well for one-way server-to-client token streaming. WebSockets support bidirectional communication and richer interactive protocols. Choose based on interaction pattern, infrastructure support, reconnection, scale, and operational complexity. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A web assistant streams model tokens and occasionally needs client-side interruption. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"SSE vs WebSockets for streaming LLM output?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "postgres-vs-redis-memory",
+          "title": "Postgres vs Redis for AI memory: how do you choose?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "reliability",
+          "title": "How do you design reliable GenAI systems?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -149,9 +206,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "A provider outage breaks several internal assistants.",
-      "expectedAnswer": "Reliability requires retries, fallbacks, circuit breakers, rate limits, provider failover, timeouts, graceful degradation, caching, evaluation gates, monitoring, and incident response. Architects should define SLOs and distinguish model errors from system errors.",
+      "expectedAnswer": "Reliability requires retries, fallbacks, circuit breakers, rate limits, provider failover, timeouts, graceful degradation, caching, evaluation gates, monitoring, and incident response. Architects should define SLOs and distinguish model errors from system errors. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: A provider outage breaks several internal assistants. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for architect rounds.",
+        "example": "Example: when asked \"How do you design reliable GenAI systems?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "sse-vs-websockets",
+          "title": "SSE vs WebSockets for streaming LLM output?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "vendor-selection",
+          "title": "How do you evaluate GenAI vendors?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -191,9 +272,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "Procurement asks how to choose between model providers and AI platforms.",
-      "expectedAnswer": "Evaluate quality on your tasks, security, compliance, data usage terms, latency, uptime, roadmap, pricing, integration fit, observability, support, lock-in risk, and exit strategy. Strong answers include proof-of-concept evaluation and contractual governance.",
+      "expectedAnswer": "Evaluate quality on your tasks, security, compliance, data usage terms, latency, uptime, roadmap, pricing, integration fit, observability, support, lock-in risk, and exit strategy. Strong answers include proof-of-concept evaluation and contractual governance. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: Procurement asks how to choose between model providers and AI platforms. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for architect rounds.",
+        "example": "Example: when asked \"How do you evaluate GenAI vendors?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "reliability",
+          "title": "How do you design reliable GenAI systems?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-model-routing-strategy",
+          "title": "How would you explain model routing strategy in a Architect Rounds interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -233,9 +338,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through model routing strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define model routing strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define model routing strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through model routing strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain model routing strategy in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "vendor-selection",
+          "title": "How do you evaluate GenAI vendors?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-observability-architecture",
+          "title": "How would you explain observability architecture in a Architect Rounds interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -275,9 +404,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through observability architecture for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define observability architecture, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define observability architecture, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through observability architecture for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain observability architecture in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-model-routing-strategy",
+          "title": "How would you explain model routing strategy in a Architect Rounds interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-governance-architecture",
+          "title": "How would you explain governance architecture in a Architect Rounds interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -317,9 +470,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through governance architecture for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define governance architecture, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define governance architecture, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through governance architecture for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain governance architecture in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-observability-architecture",
+          "title": "How would you explain observability architecture in a Architect Rounds interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-cost-optimization-strategy",
+          "title": "How would you explain cost optimization strategy in a Architect Rounds interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -359,9 +536,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through cost optimization strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define cost optimization strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define cost optimization strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through cost optimization strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for architect rounds.",
+        "example": "Example: when asked \"How would you explain cost optimization strategy in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-governance-architecture",
+          "title": "How would you explain governance architecture in a Architect Rounds interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-build-versus-buy-platform-decision",
+          "title": "How would you explain build versus buy platform decision in a Architect Rounds interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -401,9 +602,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through build versus buy platform decision for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define build versus buy platform decision, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define build versus buy platform decision, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through build versus buy platform decision for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain build versus buy platform decision in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-cost-optimization-strategy",
+          "title": "How would you explain cost optimization strategy in a Architect Rounds interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-data-residency-strategy",
+          "title": "How would you explain data residency strategy in a Architect Rounds interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -443,9 +668,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through data residency strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define data residency strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define data residency strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through data residency strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain data residency strategy in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-build-versus-buy-platform-decision",
+          "title": "How would you explain build versus buy platform decision in a Architect Rounds interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-ai-reliability-strategy",
+          "title": "How would you explain AI reliability strategy in a Architect Rounds interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -485,9 +734,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through AI reliability strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define AI reliability strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define AI reliability strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through AI reliability strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain AI reliability strategy in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-data-residency-strategy",
+          "title": "How would you explain data residency strategy in a Architect Rounds interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-security-review-strategy",
+          "title": "How would you explain security review strategy in a Architect Rounds interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -527,9 +800,33 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through security review strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define security review strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define security review strategy, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through security review strategy for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain security review strategy in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-ai-reliability-strategy",
+          "title": "How would you explain AI reliability strategy in a Architect Rounds interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-platform-roadmap-planning",
+          "title": "How would you explain platform roadmap planning in a Architect Rounds interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -569,9 +866,33 @@
       "estimatedMinutes": 8,
       "points": 10,
       "scenario": "An interviewer asks you to reason through platform roadmap planning for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define platform roadmap planning, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define platform roadmap planning, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through platform roadmap planning for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by turning the concept into architecture: define inputs, data flow, ownership boundaries, controls, evaluation signals, observability, and rollout steps for architect rounds.",
+        "example": "Example: when asked \"How would you explain platform roadmap planning in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-security-review-strategy",
+          "title": "How would you explain security review strategy in a Architect Rounds interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        },
+        {
+          "id": "extra-organizational-adoption-tradeoffs",
+          "title": "How would you explain organizational adoption tradeoffs in a Architect Rounds interview?",
+          "relation": "next"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],
@@ -611,9 +932,28 @@
       "estimatedMinutes": 6,
       "points": 10,
       "scenario": "An interviewer asks you to reason through organizational adoption tradeoffs for an enterprise AI use case where correctness, cost, security, and adoption all matter.",
-      "expectedAnswer": "A strong answer should define organizational adoption tradeoffs, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations.",
+      "expectedAnswer": "A strong answer should define organizational adoption tradeoffs, explain why it matters for architect rounds, and connect it to a practical implementation decision. The candidate should describe the core mechanism, identify where it appears in a production system, discuss tradeoffs such as quality, cost, latency, safety, governance, and maintainability, and name how they would evaluate whether the approach is working. For senior or architect-level interviews, the answer should also include failure modes, ownership boundaries, and rollout considerations. Then anchor the answer in the scenario by describing where the idea is applied, what decision it supports, which tradeoffs matter, and how you would validate the outcome.",
+      "answerFramework": {
+        "scenarioResponse": "Start from the scenario: An interviewer asks you to reason through organizational adoption tradeoffs for an enterprise AI use case where correctness, cost, security, and adoption all matter. In the interview, answer by naming the problem, stating the decision you would make, and explaining why that decision fits the business and technical constraints.",
+        "howToApply": "Apply it by mapping the concept to a concrete workflow, choosing the simplest suitable technique, validating it with data or user feedback, and explaining how it changes the product or platform behavior.",
+        "example": "Example: when asked \"How would you explain organizational adoption tradeoffs in a Architect Rounds interview?\", use the scenario to show where the idea applies, what you would do first, what result you expect, and how you would know the decision worked in a real architect rounds setting.",
+        "tradeoffs": "Mention tradeoffs explicitly: quality versus cost, latency versus completeness, autonomy versus control, simplicity versus flexibility, and where human review or governance is needed. Then close with how you would measure success."
+      },
+      "relatedQuestions": [
+        {
+          "id": "extra-platform-roadmap-planning",
+          "title": "How would you explain platform roadmap planning in a Architect Rounds interview?",
+          "relation": "previous"
+        },
+        {
+          "id": "rag-vs-finetune-architect",
+          "title": "At architecture level, how do you decide between RAG and fine-tuning?",
+          "relation": "foundation"
+        }
+      ],
       "commonMistakes": [
         "Answering with definitions only and not connecting to a practical system.",
+        "Skipping the scenario and giving a generic textbook explanation.",
         "Ignoring tradeoffs such as cost, latency, quality, safety, and maintainability.",
         "Failing to mention how the approach would be evaluated in production."
       ],

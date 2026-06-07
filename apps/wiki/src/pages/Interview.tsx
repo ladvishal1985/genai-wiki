@@ -22,6 +22,13 @@ const typeLabels: Record<InterviewQuestionType, string> = {
   leadership: 'Leadership',
 }
 
+const relationLabels = {
+  previous: 'Previous',
+  next: 'Next',
+  foundation: 'Foundation',
+  application: 'Application',
+}
+
 function formatLabel(value: string) {
   return value
     .split('-')
@@ -194,6 +201,26 @@ function QuestionDetail({
         <p className="mt-2 text-sm leading-6 text-slate-600">{question.scenario}</p>
       </section>
 
+      {question.relatedQuestions && question.relatedQuestions.length > 0 && (
+        <section className="mt-4 rounded-lg bg-white/80 p-4 ring-1 ring-slate-200">
+          <h3 className="text-sm font-bold text-slate-950">Question Flow</h3>
+          <div className="mt-3 grid gap-2 md:grid-cols-3">
+            {question.relatedQuestions.map((related) => (
+              <Link
+                key={`${related.relation}-${related.id}`}
+                to={`/interview/${topicSlug}/${related.id}`}
+                className="rounded-md bg-slate-50 p-3 text-sm leading-5 text-slate-700 ring-1 ring-slate-200 hover:bg-cyan-50 hover:text-cyan-900"
+              >
+                <span className="block text-xs font-bold uppercase tracking-wider text-cyan-700">
+                  {relationLabels[related.relation]}
+                </span>
+                <span className="mt-1 block font-semibold">{related.title}</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
+
       {mode === 'practice' && (
         <section className="mt-4">
           <label className="text-sm font-semibold text-gray-900" htmlFor="practice-answer">
@@ -218,41 +245,65 @@ function QuestionDetail({
 
       {revealed && (
         <div className="mt-6 grid gap-4 xl:grid-cols-2">
-          <section>
-            <h3 className="text-sm font-semibold text-gray-900">Expected Answer</h3>
-            <p className="mt-2 text-sm leading-6 text-gray-600">{question.expectedAnswer}</p>
+          <section className="xl:col-span-2">
+            <h3 className="text-sm font-semibold text-slate-950">Expected Answer</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{question.expectedAnswer}</p>
           </section>
 
+          {question.answerFramework && (
+            <section className="rounded-lg bg-white/80 p-4 ring-1 ring-slate-200 xl:col-span-2">
+              <h3 className="text-sm font-bold text-slate-950">Scenario Answer Framework</h3>
+              <div className="mt-3 grid gap-3 md:grid-cols-2">
+                <div className="rounded-md bg-cyan-50/70 p-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-cyan-800">Respond to scenario</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.scenarioResponse}</p>
+                </div>
+                <div className="rounded-md bg-slate-50 p-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-slate-600">Apply it</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.howToApply}</p>
+                </div>
+                <div className="rounded-md bg-emerald-50/80 p-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Example</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.example}</p>
+                </div>
+                <div className="rounded-md bg-amber-50/80 p-3">
+                  <p className="text-xs font-bold uppercase tracking-wider text-amber-800">Tradeoffs</p>
+                  <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.tradeoffs}</p>
+                </div>
+              </div>
+            </section>
+          )}
+
           <section>
-            <h3 className="text-sm font-semibold text-gray-900">Common Mistakes</h3>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-gray-600">
+            <h3 className="text-sm font-semibold text-slate-950">Common Mistakes</h3>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-600">
               {question.commonMistakes.map((mistake) => <li key={mistake}>{mistake}</li>)}
             </ul>
           </section>
 
           <section>
-            <h3 className="text-sm font-semibold text-gray-900">Follow-up Questions</h3>
-            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-gray-600">
+            <h3 className="text-sm font-semibold text-slate-950">Follow-up Questions</h3>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-600">
               {question.followUpQuestions.map((followUp) => <li key={followUp}>{followUp}</li>)}
             </ul>
           </section>
 
           <section>
-            <h3 className="text-sm font-semibold text-gray-900">Real-world Example</h3>
-            <p className="mt-2 text-sm leading-6 text-gray-600">{question.realWorldExample}</p>
+            <h3 className="text-sm font-semibold text-slate-950">Real-world Example</h3>
+            <p className="mt-2 text-sm leading-6 text-slate-600">{question.realWorldExample}</p>
           </section>
 
-          <section className="rounded-lg border border-gray-200 p-4 xl:col-span-2">
-            <h3 className="text-sm font-semibold text-gray-900">Rubric</h3>
+          <section className="rounded-lg border border-slate-200 p-4 xl:col-span-2">
+            <h3 className="text-sm font-semibold text-slate-950">Rubric</h3>
             <div className="mt-3 grid gap-2 sm:grid-cols-5">
               {Object.entries(question.rubric).map(([label, value]) => (
-                <div key={label} className="rounded-md bg-gray-50 px-3 py-2 text-center">
-                  <p className="text-xs capitalize text-gray-500">{label}</p>
-                  <p className="text-lg font-bold text-gray-900">{value}</p>
+                <div key={label} className="rounded-md bg-slate-50 px-3 py-2 text-center">
+                  <p className="text-xs capitalize text-slate-500">{label}</p>
+                  <p className="text-lg font-bold text-slate-950">{value}</p>
                 </div>
               ))}
             </div>
-            <p className="mt-3 text-sm leading-6 text-gray-600">{question.interviewerNotes}</p>
+            <p className="mt-3 text-sm leading-6 text-slate-600">{question.interviewerNotes}</p>
           </section>
         </div>
       )}
@@ -512,6 +563,18 @@ function MockTestView() {
               <details className="mt-4 rounded-lg bg-slate-50 p-4">
                 <summary className="cursor-pointer text-sm font-bold text-slate-950">Review answer and rubric</summary>
                 <p className="mt-3 text-sm leading-6 text-slate-600">{question.expectedAnswer}</p>
+                {question.answerFramework && (
+                  <div className="mt-3 grid gap-2 md:grid-cols-2">
+                    <div className="rounded-md bg-white p-3 ring-1 ring-slate-200">
+                      <p className="text-xs font-bold uppercase tracking-wider text-cyan-700">Apply it</p>
+                      <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.howToApply}</p>
+                    </div>
+                    <div className="rounded-md bg-white p-3 ring-1 ring-slate-200">
+                      <p className="text-xs font-bold uppercase tracking-wider text-emerald-700">Example</p>
+                      <p className="mt-1 text-sm leading-6 text-slate-600">{question.answerFramework.example}</p>
+                    </div>
+                  </div>
+                )}
                 <div className="mt-3 grid gap-2 sm:grid-cols-5">
                   {Object.entries(question.rubric).map(([label, value]) => (
                     <label key={label} className="rounded-md bg-white p-2 text-xs text-slate-600">
